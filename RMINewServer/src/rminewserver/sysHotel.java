@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface sysHotel {
     
-    ArrayList <hotel> hetHotels();
+    ArrayList <hotel> getHotels();
     
 }

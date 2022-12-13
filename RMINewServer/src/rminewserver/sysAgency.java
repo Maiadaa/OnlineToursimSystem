@@ -2,7 +2,7 @@ package rminewserver;
 
 import java.util.ArrayList;
 
-public class sysAgency {
+public class sysAgency implements sysHotel, sysAirline, sysCarAgency{
     
     private ArrayList <carAgency> carAgencies = new ArrayList <carAgency> ();
     private ArrayList <hotel> hotels = new ArrayList <hotel> ();
@@ -49,4 +49,20 @@ public class sysAgency {
     public void notifyObserver(){
     
     }
+
+    @Override
+    public ArrayList<Object> getHotels() {
+        return hotels;
+    }
+
+    @Override
+    public ArrayList<Object> getAirlines() {
+        return airLines;
+    }
+
+    @Override
+    public ArrayList<Object> getCarAgencies() {
+        return carAgencies;
+    }
+    
 }

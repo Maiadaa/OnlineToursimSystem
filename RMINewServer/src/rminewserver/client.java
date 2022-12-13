@@ -2,7 +2,7 @@ package rminewserver;
 
 import java.util.ArrayList;
 
-public class client {
+public class client extends person{
 
     private int client_card_number;
     private ArrayList <booking> booking_Hisotry = new ArrayList<booking>();
