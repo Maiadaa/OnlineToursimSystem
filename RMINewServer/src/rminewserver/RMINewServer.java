@@ -32,24 +32,6 @@ public class RMINewServer {
         //Calling the class for the database 
         DB db = new DB();
         
-        // Here we create our remote object
-        GradeInterface g = new Grade();
-        
-        // An RMI Registry initialized on port 1099
-        Registry r = LocateRegistry.createRegistry(1099);
-        
-        // Our remote object g is binded to the name "grade"
-        r.bind("grade", g);
-        
-        // Outputs that the server is ready
-        System.out.println("The server is ready");
-        
-        
-        s1 = new Student ("Meriam", 123, "Meriam12@yahoo.com");
-        s2 = new Student ("Alaa", 1234, "Alaa19@yahoo.com");
-        
-        db.insertStudent(s1);
-        db.insertStudent(s2);
         
          db.close();
         } 

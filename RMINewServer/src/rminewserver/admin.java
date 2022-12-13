@@ -8,7 +8,7 @@ package rminewserver;
  *
  * @author PC
  */
-public class admin {
+public class admin extends person{
     public void ViewComplaints(complaint c){
         
     }
