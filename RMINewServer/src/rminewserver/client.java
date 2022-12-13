@@ -9,7 +9,9 @@ public class client {
     private booking book;
     private ArrayList <complaint> complaint_history = new ArrayList <complaint>();
     private payment_method payement;
-    
+    private sysCarAgency sysCarAgencies;
+    private sysHotel sysHotels;
+    private sysAirline sysAirlines;
     
     //setters
     
