@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author LENOVO
  */
-public class airline implements booking{
+public class airline{
     private int airlineID;
     private String airlineName;
     private ArrayList<flight> flights;
@@ -57,17 +57,6 @@ public class airline implements booking{
     public void setAgent(flightAgent agent) {
         this.agent = agent;
     }
-
-    @Override
-    public void book() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void viewSummary() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     
     
     
