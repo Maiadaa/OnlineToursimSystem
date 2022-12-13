@@ -34,15 +34,15 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency{
         return true;
     }
     
-    public boolean removeAirline(airLine Airline){
+    public boolean removeAirline(airline Airline){
         return true;
     }
     
-    public void addObserver(observer obs){
+    public void addObserver(client obs){
     
     }
     
-    public void removeObserver(observer obs){
+    public void removeObserver(client obs){
     
     }
     
