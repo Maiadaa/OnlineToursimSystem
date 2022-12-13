@@ -8,7 +8,7 @@ package rminewserver;
  *
  * @author LENOVO
  */
-public class flightAgent implements  person{
+public class flightAgent extends person{
     private int flightAgentID;
     private airline agency;
 
