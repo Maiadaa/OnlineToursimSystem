@@ -9,7 +9,7 @@ package rminewserver;
  * @author PC
  */
 public class administrativeComplaintHandler implements complaint_detector {
-    private Admin admin;
+    private admin admin;
     
     
    public void handleComplaint(){
