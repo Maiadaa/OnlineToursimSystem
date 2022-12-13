@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface sysAirline {
     
-    ArrayList <airLine> getAirlines();
+    ArrayList <airline> getAirlines();
     
 }
