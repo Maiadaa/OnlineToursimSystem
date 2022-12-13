@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public interface sysCarAgency {
 
-    ArrayList <carAgenicy> getCarAgencies();
+    ArrayList <carAgency> getCarAgencies();
     
 }

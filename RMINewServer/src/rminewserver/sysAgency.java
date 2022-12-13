@@ -6,7 +6,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency{
     
     private ArrayList <carAgency> carAgencies = new ArrayList <carAgency> ();
     private ArrayList <hotel> hotels = new ArrayList <hotel> ();
-    private ArrayList <airLine> airLines = new ArrayList <airLines> ();
+    private ArrayList <airline> airlines = new ArrayList <airline> ();
     private ArrayList <client> sysClients = new ArrayList <client>();
     
     //setters
@@ -14,27 +14,27 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency{
     //getters
     
     //functions
-    public void addCarAgency (carAgency){
+    public void addCarAgency (carAgency CarAgency){
     
     }
     
-    public void addHotel (hotel){
+    public void addHotel (hotel Hotel){
         
     }
     
-    public void addAirline (airLine){
+    public void addAirline (airline Airline){
     
     }
     
-    public boolean removeCarAgency(carAgency){
+    public boolean removeCarAgency(carAgency CarAgency){
         return true;
     }
     
-    public boolean removeHotel(hotel){
+    public boolean removeHotel(hotel Hotel){
         return true;
     }
     
-    public boolean removeAirline(airLine){
+    public boolean removeAirline(airLine Airline){
         return true;
     }
     
@@ -51,17 +51,17 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency{
     }
 
     @Override
-    public ArrayList<Object> getHotels() {
+    public ArrayList<hotel> getHotels() {
         return hotels;
     }
 
     @Override
-    public ArrayList<Object> getAirlines() {
-        return airLines;
+    public ArrayList<airline> getAirlines() {
+        return airlines;
     }
 
     @Override
-    public ArrayList<Object> getCarAgencies() {
+    public ArrayList<carAgency> getCarAgencies() {
         return carAgencies;
     }
     
