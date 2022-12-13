@@ -8,6 +8,7 @@ package rminewserver;
  *
  * @author mahmo
  */
-public interface observer_interface {
-    
+public interface observer_interface 
+{
+    public void Update();
 }

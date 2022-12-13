@@ -8,6 +8,9 @@ package rminewserver;
  *
  * @author mahmo
  */
-public interface subject_interface {
-    
+public interface subject_interface 
+{
+    public void addObserver(client observer);
+    public void removeObserver (client observer);
+    public void notifyObservers();
 }
