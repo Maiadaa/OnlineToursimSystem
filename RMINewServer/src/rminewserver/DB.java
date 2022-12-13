@@ -37,9 +37,18 @@ public class DB {
         // Initialize
         mongoClient = new MongoClient();
         // Database name
-        database = mongoClient.getDatabase("School"); 
+        database = mongoClient.getDatabase("OnlineTourismSystem"); 
         // Collection for the doctor 
-        collection1 = database.getCollection("Student"); 
+        database.createCollection("car");
+        database.createCollection("airline");
+        database.createCollection("hotel");
+        database.createCollection("hotelAgent");
+        database.createCollection("carAgent");
+        database.createCollection("flightAgent");
+        database.createCollection("flightAgent");
+        database.createCollection("carAgency");
+        database.createCollection("flightAgent");
+        
   
    
     }
