@@ -1,13 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Client_classes;
+package rminewserver;
 
-/**
- *
- * @author manah
- */
+import java.util.ArrayList;
+
 public class client {
+
+    private int client_card_number;
+    private ArrayList <booking> booking_Hisotry = new ArrayList<booking>();
+    private booking book;
+    private ArrayList <complaint> complaint_history = new ArrayList <complaint>();
+    private payment_method payement;
     
+    
+    //setters
+    
+    //getters
+    
+    //functions
+    public String manage_Account (client Client){
+        
+        return "x";
+    }
+    
+    public boolean update(){
+        
+        return true;
+    }
 }
