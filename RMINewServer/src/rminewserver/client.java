@@ -12,6 +12,17 @@ public class client extends person{
     private sysCarAgency sysCarAgencies;
     private sysHotel sysHotels;
     private sysAirline sysAirlines;
+
+    public client(int client_card_number, booking book, payment_method payement, sysCarAgency sysCarAgencies, sysHotel sysHotels, sysAirline sysAirlines) {
+        this.client_card_number = client_card_number;
+        this.book = book;
+        this.payement = payement;
+        this.sysCarAgencies = sysCarAgencies;
+        this.sysHotels = sysHotels;
+        this.sysAirlines = sysAirlines;
+    }
+    
+    
     
     //setters
     

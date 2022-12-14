@@ -11,7 +11,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.GradeInterface;
+
 
 /**
  *
@@ -19,8 +19,7 @@ import rmi.GradeInterface;
  */
 public class RMINewServer {
 
-    static Student s1;
-    static Student s2;
+
 
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
         
@@ -31,8 +30,8 @@ public class RMINewServer {
         
         //Calling the class for the database 
         DB db = new DB();
-        
-        
+        client x = new client(1, null, null, null, null, null);
+        db.insertStudent(x);
          db.close();
         } 
 
