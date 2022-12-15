@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
-public class car 
+public class car implements booking
 {
     private int CarID;
     private String Model;
@@ -80,6 +80,16 @@ public class car
 
     public String getPlateNum() {
         return plateNum;
+    }
+
+    @Override
+    public void book(client c) {
+        c.getBooking_Hisotry()
+    }
+
+    @Override
+    public void viewSummary() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     
