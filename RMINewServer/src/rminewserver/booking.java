@@ -9,7 +9,7 @@ package rminewserver;
  * @author LENOVO
  */
 public interface booking {
-    public void book();
+    public void book(client c);
     public void viewSummary();
     
 }

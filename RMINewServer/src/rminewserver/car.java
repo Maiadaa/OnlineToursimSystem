@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
-public class car 
+public class car implements booking
 {
     private int CarID;
     private String Model;
@@ -81,6 +81,23 @@ public class car
     public String getPlateNum() {
         return plateNum;
     }
+
+    @Override
+    public void book(client c) {
+        c.getBooking_History().add(this);
+    }
+
+    @Override
+    public void viewSummary() {
+        this.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "car{" + "CarID=" + CarID + ", Model=" + Model + ", RentalPrice=" + RentalPrice + ", Manufacturer=" + Manufacturer + ", CarType=" + CarType + ", Seats=" + Seats + ", plateNum=" + plateNum + '}';
+    }
+    
+    
     
     
     
