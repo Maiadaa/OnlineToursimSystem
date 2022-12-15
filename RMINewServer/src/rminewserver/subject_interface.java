@@ -10,7 +10,12 @@ package rminewserver;
  */
 public interface subject_interface 
 {
+    public observer_interface obs = new observer_interface() {
+        @Override
+        public void Update(String msg) {
+        }
+    };
     public void addObserver(client observer);
     public void removeObserver (client observer);
-    public void notifyObservers();
+    public void notifyObservers(String msg);
 }

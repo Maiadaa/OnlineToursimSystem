@@ -10,5 +10,5 @@ package rminewserver;
  */
 public interface observer_interface 
 {
-    public void Update();
+    public void Update(String msg);
 }

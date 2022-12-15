@@ -2,7 +2,7 @@ package rminewserver;
 
 import java.util.ArrayList;
 
-public class client extends person{
+public class client extends person implements observer_interface{
 
     private int client_card_number;
     private ArrayList <booking> booking_History = new ArrayList<booking>();
@@ -12,6 +12,14 @@ public class client extends person{
     private sysCarAgency sysCarAgencies;
     private sysHotel sysHotels;
     private sysAirline sysAirlines;
+    private DBAssem db = new DBAssem();
+
+    @Override
+    public void Update(String msg) {
+        System.out.println(msg);
+    }
+    
+    
 
     public client() {
         super();
@@ -27,6 +35,16 @@ public class client extends person{
         this.sysAirlines = sysAirlines;
     }
 
+    public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) {
+        super(ID, Fname, Lname, gender, age, email, phone, address, username, password);
+        client tempclient = new client();
+        tempclient = this;
+       // insertClientIntoDB(tempclient);
+    }
+    public void insertClientIntoDB(client c)
+    {
+        db.insertClient(c);
+    }
     public int getClient_card_number() {
         return client_card_number;
     }
@@ -90,8 +108,10 @@ public class client extends person{
     public void setSysAirlines(sysAirline sysAirlines) {
         this.sysAirlines = sysAirlines;
     }
-    
-
+    public void Subscribe(client c)
+    {
+        
+    }
     
     //functions
     public String manage_Account (client Client){
@@ -99,8 +119,5 @@ public class client extends person{
         return "x";
     }
     
-    public boolean update(){
-        
-        return true;
-    }
+    
 }

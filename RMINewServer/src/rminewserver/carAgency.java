@@ -14,16 +14,18 @@ public class carAgency {
     private int carAgencyID;
     private ArrayList<car> cars;
     private carAgent agent;
-
+    private String AgencyName;
+    
     public carAgency() {
     }
 
+    
     public carAgency(int carAgencyID, ArrayList<car> cars, carAgent agent) {
         this.carAgencyID = carAgencyID;
         this.cars = cars;
         this.agent = agent;
     }
-
+    
     public int getCarAgencyID() {
         return carAgencyID;
     }
@@ -46,6 +48,22 @@ public class carAgency {
 
     public void setCarAgent(carAgent agent) {
         this.agent = agent;
+    }
+
+    public void setAgent(carAgent agent) {
+        this.agent = agent;
+    }
+
+    public void setAgencyName(String AgencyName) {
+        this.AgencyName = AgencyName;
+    }
+
+    public carAgent getAgent() {
+        return agent;
+    }
+
+    public String getAgencyName() {
+        return AgencyName;
     }
     
     
