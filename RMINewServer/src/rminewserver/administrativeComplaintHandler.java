@@ -12,10 +12,6 @@ public class administrativeComplaintHandler implements complaint_detector {
     private admin admin;
     
     
-   public void handleComplaint(){
-       
-   } 
-   
    public void setNextInChain(){
        
    }
