@@ -24,37 +24,46 @@ public class personDTO extends UnicastRemoteObject implements Serializable, pers
         this.password = password;
 }
 
+    @Override
     public String getPhone() throws RemoteException{
         return Phone;
     }
 
+    @Override
     public void setPhone(String Phone) throws RemoteException{
         this.Phone = Phone;
     }
 
+    @Override
     public String getAddress() throws RemoteException{
         return address;
     }
 
+    @Override
     public void setAddress(String address) throws RemoteException{
         this.address = address;
     }
 
+    @Override
     public String getUsername() throws RemoteException{
         return username;
     }
 
+    @Override
     public void setUsername(String username) throws RemoteException{
         this.username = username;
     }
 
+    @Override
     public String getPassword() throws RemoteException{
         return password;
     }
 
+    @Override
     public void setPassword(String password) throws RemoteException{
         this.password = password;
     }
+    @Override
     public void editPerson() throws RemoteException{
         this.setAddress(address);
         this.setPhone(Phone);

@@ -5,13 +5,12 @@
 package rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import rminewserver.person;
 /**
  *
  * @author Lenovo
  */
 public interface FacadeInterface extends Remote{
-    public person getPerson() throws RemoteException;
+    public personInterface getPerson() throws RemoteException;
     public void setPerson (int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException;
     public personDTOFacade editPerson(personDTOFacade dto) throws RemoteException;
     public personDTOFacade getPersonDTO() throws RemoteException;

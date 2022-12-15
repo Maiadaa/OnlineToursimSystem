@@ -19,7 +19,8 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         c = new person("","","","");
     }
     
-    public personDTOFacade getPersonDTO() throws RemoteException {        
+    @Override
+    public personDTO getPersonDTO() throws RemoteException {        
         personDTO dto=new personDTO(c.getPhone(), c.getAddress(), c.getUsername(), c.getPassword());
         return dto;
     }
