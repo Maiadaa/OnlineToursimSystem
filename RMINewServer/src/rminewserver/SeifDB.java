@@ -19,7 +19,6 @@ import org.bson.types.ObjectId;
 import static rminewserver.DB.database;
 import static rminewserver.DB.mongoClient;
 
-
 /**
  *
  * @author Seif

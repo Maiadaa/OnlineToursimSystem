@@ -1,6 +1,9 @@
 package rminewserver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_interface{
     
@@ -14,7 +17,6 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     //getters
     
     //functions
-
     public sysAgency() {
         this.carAgencies = null;
         this.hotels=null;
@@ -54,11 +56,20 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     }
     @Override
     public void removeObserver(client obs){
-        db.removeSubscribtion(obs);
+        try {
+            db.removeSubscribtion(obs);
+        } catch (RemoteException ex) {
+            Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error occured removing the subscribtion");
+        }
     }  
     @Override
     public void notifyObservers(String agencyName){
-        this.sysClients = db.getAllClients();
+        try {
+            this.sysClients = db.getAllClients();
+        } catch (RemoteException ex) {
+            Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String msg = "NEW AGENCY ADDED: -> " + agencyName + "Was successfully added to the system";
         for(int i = 0; i<sysClients.size();i++)
         {

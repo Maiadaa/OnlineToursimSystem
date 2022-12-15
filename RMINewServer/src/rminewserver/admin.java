@@ -4,11 +4,27 @@
  */
 package rminewserver;
 
+import java.rmi.RemoteException;
+
 /**
  *
  * @author PC
  */
 public class admin extends person implements complaint_detector{
+
+    public admin() throws RemoteException {
+    }
+
+    public admin(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
+        super(ID, Fname, Lname, gender, age, email, phone, address, username, password);
+    }
+
+    public admin(String phone, String address, String username, String password) throws RemoteException {
+        super(phone, address, username, password);
+    }
+    
+    
+    
     public void ViewComplaints(complaint c){
         
     }

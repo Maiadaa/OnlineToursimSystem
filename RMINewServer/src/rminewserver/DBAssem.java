@@ -76,13 +76,13 @@ public class DBAssem {
         SubsCollection.insertOne(Document.parse(gson.toJson(c)));
         System.out.println("Client subscribed to get information about added agencies");
     }
-   public void removeSubscribtion(client c)
+   public void removeSubscribtion(client c) throws RemoteException
    {
        String tempname = c.getFname();
        SubsCollection.deleteOne(Filters.eq("Fname",tempname));
        System.out.println("Client removed from subscribers list successfully");
    }
-   public ArrayList<client> getAllClients()
+   public ArrayList<client> getAllClients() throws RemoteException
    {
        String json;
        client tempclient;
@@ -98,7 +98,7 @@ public class DBAssem {
        }
        return tempclients;
    }
-   public ArrayList<client> getAllSubscribers()
+   public ArrayList<client> getAllSubscribers() throws RemoteException
    {
        String json;
        client tempclient;

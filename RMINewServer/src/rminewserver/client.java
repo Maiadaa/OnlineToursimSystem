@@ -1,5 +1,6 @@
 package rminewserver;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class client extends person implements observer_interface{
@@ -18,14 +19,13 @@ public class client extends person implements observer_interface{
     public void Update(String msg) {
         System.out.println(msg);
     }
-    
-    
 
-    public client() {
+    public client() throws RemoteException{
         super();
     }
+    
 
-    public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password, int client_card_number, booking book, payment_method payement, sysCarAgency sysCarAgencies, sysHotel sysHotels, sysAirline sysAirlines) {
+    public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password, int client_card_number, booking book, payment_method payement, sysCarAgency sysCarAgencies, sysHotel sysHotels, sysAirline sysAirlines) throws RemoteException {
         super(ID, Fname, Lname, gender, age, email, phone, address, username, password);
         this.client_card_number = client_card_number;
         this.book = book;
@@ -35,11 +35,11 @@ public class client extends person implements observer_interface{
         this.sysAirlines = sysAirlines;
     }
 
-    public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) {
+    public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
         super(ID, Fname, Lname, gender, age, email, phone, address, username, password);
         client tempclient = new client();
         tempclient = this;
-       // insertClientIntoDB(tempclient);
+        insertClientIntoDB(tempclient);
     }
     public void insertClientIntoDB(client c)
     {

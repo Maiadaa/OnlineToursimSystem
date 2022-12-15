@@ -4,6 +4,7 @@
  */
 package rminewserver;
 
+import java.rmi.RemoteException;
 import org.bson.types.ObjectId;
 
 /**
@@ -26,7 +27,7 @@ public class complaint {
     public complaint() {
     }
 
-    public complaint(ObjectId ComplaintID, String ComplaintType, String Description, String ComplaintDate, String ComplaintState, complaint_detector handler) {
+    public complaint(ObjectId ComplaintID, String ComplaintType, String Description, String ComplaintDate, String ComplaintState, complaint_detector handler) throws RemoteException {
         this.ComplaintID = ComplaintID;
         this.ComplaintType = ComplaintType;
         this.Description = Description;
@@ -85,7 +86,7 @@ public class complaint {
     }
     
     
-    public void Set_POC(){
-            handler = new admin();
+    public void Set_POC() throws RemoteException{
+          handler = new admin();
 	}
 }

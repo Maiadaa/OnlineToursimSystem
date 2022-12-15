@@ -4,6 +4,8 @@
  */
 package rminewserver;
 
+import java.rmi.RemoteException;
+
 /**
  *
  * @author LENOVO
@@ -12,10 +14,12 @@ public class flightAgent extends person{
     private int flightAgentID;
     private airline agency;
 
-    public flightAgent() {
+    public flightAgent() throws RemoteException {
+        super();
     }
 
-    public flightAgent(int flightAgentID, airline agency) {
+    public flightAgent(int flightAgentID, airline agency) throws RemoteException {
+        super();
         this.flightAgentID = flightAgentID;
         this.agency = agency;
     }
