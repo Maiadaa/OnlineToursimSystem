@@ -16,9 +16,6 @@ public class account_facade {
     public account_facade() throws RemoteException{
         c = new person("","","","");
     }
-    public void getPerson(){
-        
-    }
     public void setPerson(person person){
         
     }
@@ -31,11 +28,8 @@ public class account_facade {
     public void setPerson(personDTO dto){
         
     }
-    public personDTO getCourse() throws RemoteException {
-        
-        personDTO dto=new personDTO(c.getTitle(), c.getDescription());
+    public personDTO getPersonDTO() throws RemoteException {        
+        personDTO dto=new personDTO(c.getPhone(), c.getAddress(), c.getUsername(), c.getPassword());
         return dto;
     }
-
-    
 }
