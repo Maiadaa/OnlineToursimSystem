@@ -88,8 +88,8 @@ public class car implements booking
     }
 
     @Override
-    public void viewSummary() {
-        this.toString();
+    public String viewSummary() {
+        return this.toString();
     }
 
     @Override

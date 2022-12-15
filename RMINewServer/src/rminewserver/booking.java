@@ -10,6 +10,6 @@ package rminewserver;
  */
 public interface booking {
     public void book(client c);
-    public void viewSummary();
+    public String viewSummary();
     
 }

@@ -13,6 +13,9 @@ public class person {
     private String username;
     private String password;
 
+    public person() {
+    }
+
     public person(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) {
         this.ID = ID;
         this.Fname = Fname;
