@@ -4,12 +4,14 @@
  */
 package rminewserver;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author PC
  */
 public class complaint {
-    private int ComplaintID;
+    private ObjectId ComplaintID;
     private String ComplaintType;   
     private String Description;
     private String ComplaintDate;
@@ -21,7 +23,10 @@ public class complaint {
         
     }
 
-    public complaint(int ComplaintID, String ComplaintType, String Description, String ComplaintDate, String ComplaintState, complaint_detector handler) {
+    public complaint() {
+    }
+
+    public complaint(ObjectId ComplaintID, String ComplaintType, String Description, String ComplaintDate, String ComplaintState, complaint_detector handler) {
         this.ComplaintID = ComplaintID;
         this.ComplaintType = ComplaintType;
         this.Description = Description;
@@ -31,11 +36,11 @@ public class complaint {
         Set_POC();
     }
 
-    public int getComplaintID() {
+    public ObjectId getComplaintID() {
         return ComplaintID;
     }
 
-    public void setComplaintID(int ComplaintID) {
+    public void setComplaintID(ObjectId ComplaintID) {
         this.ComplaintID = ComplaintID;
     }
 
