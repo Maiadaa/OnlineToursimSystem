@@ -19,4 +19,9 @@ public class administrativeComplaintHandler implements complaint_detector {
    public void setNextInChain(){
        
    }
+
+    @Override
+    public void Handle_complaint(complaint c) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -11,4 +11,6 @@ package rminewserver;
 public interface complaint_detector {
     
     public void handleComplaint();
+            
+    public void Handle_complaint(complaint c);
 }
