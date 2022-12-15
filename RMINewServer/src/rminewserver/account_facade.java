@@ -3,12 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
  * @author Lenovo
  */
 public class account_facade {
+    person c;
+    
+    public account_facade() throws RemoteException{
+        c = new person("","","","");
+    }
     public void getPerson(){
         
     }
@@ -24,5 +31,11 @@ public class account_facade {
     public void setPerson(personDTO dto){
         
     }
+    public personDTO getCourse() throws RemoteException {
+        
+        personDTO dto=new personDTO(c.getTitle(), c.getDescription());
+        return dto;
+    }
+
     
 }
