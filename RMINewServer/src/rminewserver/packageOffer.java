@@ -40,7 +40,7 @@ public class packageOffer implements booking{
     }
 
     @Override
-    public void book() {
+    public void book(client c) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
