@@ -85,29 +85,21 @@ public class client extends person implements observer_interface{
         this.payement = payement;
     }
 
-    public sysCarAgency getSysCarAgencies() {
-        return sysCarAgencies;
+    public ArrayList<carAgency> viewSysCarAgencies() {
+        return sysCarAgencies.getCarAgencies();
     }
 
-    public void setSysCarAgencies(sysCarAgency sysCarAgencies) {
-        this.sysCarAgencies = sysCarAgencies;
+
+    public ArrayList<hotel> viewSysHotels() {
+        return sysHotels.getHotels();
     }
 
-    public sysHotel getSysHotels() {
-        return sysHotels;
+
+    public ArrayList<airline> viewSysAirlines() {
+        return sysAirlines.getAirlines();
     }
 
-    public void setSysHotels(sysHotel sysHotels) {
-        this.sysHotels = sysHotels;
-    }
-
-    public sysAirline getSysAirlines() {
-        return sysAirlines;
-    }
-
-    public void setSysAirlines(sysAirline sysAirlines) {
-        this.sysAirlines = sysAirlines;
-    }
+    
     public void Subscribe(client c)
     {
         

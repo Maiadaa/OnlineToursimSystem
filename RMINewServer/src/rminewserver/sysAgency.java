@@ -79,18 +79,22 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
 
     @Override
     public ArrayList<hotel> getHotels() {
-        return hotels;
+        DBHagrass dbhagrass = new DBHagrass();
+        return dbhagrass.getAllHotels();
     }
 
     @Override
     public ArrayList<airline> getAirlines() {
-        return airlines;
+        DBHagrass dbhagrass = new DBHagrass();
+        return dbhagrass.getAllAirlines();
     }
 
     @Override
     public ArrayList<carAgency> getCarAgencies() {
-        return carAgencies;
+        DBHagrass dbhagrass = new DBHagrass();
+        return dbhagrass.getAllCarAgencies();
     }
+
 
     public void setCarAgencies(ArrayList<carAgency> carAgencies) {
         this.carAgencies = carAgencies;
