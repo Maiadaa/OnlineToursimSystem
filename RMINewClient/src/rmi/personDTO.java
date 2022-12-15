@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package rminewserver;
+package rmi;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -67,7 +67,7 @@ public class personDTO extends UnicastRemoteObject implements Serializable, pers
         this.password = password;
     }
     @Override
-    public void editPerson (String address, String Phone, String username, String password) throws RemoteException{
+    public void editPerson(String address, String Phone, String username, String password) throws RemoteException{
         this.setAddress(address);
         this.setPhone(Phone);
         this.setUsername(username);

@@ -6,32 +6,44 @@ package rminewserver;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.FacadeInterface;
-import rmi.personDTOFacade;
 
-/**
- *
- * @author Lenovo
- */
 public class account_facade extends UnicastRemoteObject implements FacadeInterface{
     person c;
-    
+    DBSama db;
+    personDTO dto;
     public account_facade() throws RemoteException{
         c = new person("","","","");
     }
     
     @Override
-    public personDTO getPersonDTO() throws RemoteException {        
-        personDTO dto=new personDTO(c.getPhone(), c.getAddress(), c.getUsername(), c.getPassword());
+    public personDTO getPersonDTO(int ID) throws RemoteException {        
+        dto.getAddress();
+        dto.getPassword();
+        dto.getPhone();
+        dto.getUsername();
         return dto;
     }
 
     @Override
-    public person getPerson() throws RemoteException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public person getPerson(int ID) throws RemoteException {
+        if (ID == c.getID()){
+            c.getID();
+            c.getLname();
+            c.getFname();
+            c.getAge();
+            c.getGender();
+            c.getPassword();
+            c.getUsername();
+            c.getEmail();
+            c.getAddress();
+            return c;
+        }       
+        return null;
     }
 
     @Override
     public void setPerson(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
+        c.setID(ID);
         c.setFname(Fname);
         c.setLname(Lname);
         c.setGender(gender);
@@ -42,21 +54,27 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         c.setAddress(address);
         c.setUsername(username);
         c.setPassword(password);
+        db.setPerson(c);
     }
 
-    @Override
-    public personDTOFacade editPerson(personDTOFacade d) throws RemoteException {
-        d.editPerson();
-        return d;
-    }
-
-    @Override
-    public personDTOFacade setPersonDTO(String phone, String address, String username, String password) throws RemoteException {
-        personDTO dto = new personDTO(phone, address, username, password);
+    //@Override
+    public personDTO editPerson(String address, String Phone, String username, String password) throws RemoteException {
+        //personDTO d;
         dto.setAddress(address);
-        dto.setPhone(phone);
+        dto.setPhone(Phone);
         dto.setUsername(username);
-        dto.setPassword(password);       
+        dto.setPassword(password);
         return dto;
+    }
+
+    @Override
+    public personDTO setPersonDTO(String Phone, String address, String username, String password) throws RemoteException {
+        personDTO dt = new personDTO(Phone, address, username, password);
+        dt.setAddress(address);
+        dt.setPhone(Phone);
+        dt.setUsername(username);
+        dt.setPassword(password); 
+        db.setPersonDTO(dt);
+        return dt;
     }
 }
