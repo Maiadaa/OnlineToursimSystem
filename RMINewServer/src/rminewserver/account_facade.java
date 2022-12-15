@@ -57,7 +57,7 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         db.setPerson(c);
     }
 
-    //@Override
+    @Override
     public personDTO editPerson(String address, String Phone, String username, String password) throws RemoteException {
         //personDTO d;
         dto.setAddress(address);
