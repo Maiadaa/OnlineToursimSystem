@@ -84,13 +84,20 @@ public class car implements booking
 
     @Override
     public void book(client c) {
-        c.getBooking_History().
+        c.getBooking_History().add(this);
     }
 
     @Override
     public void viewSummary() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.toString();
     }
+
+    @Override
+    public String toString() {
+        return "car{" + "CarID=" + CarID + ", Model=" + Model + ", RentalPrice=" + RentalPrice + ", Manufacturer=" + Manufacturer + ", CarType=" + CarType + ", Seats=" + Seats + ", plateNum=" + plateNum + '}';
+    }
+    
+    
     
     
     

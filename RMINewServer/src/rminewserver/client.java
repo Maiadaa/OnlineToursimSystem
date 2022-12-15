@@ -14,9 +14,11 @@ public class client extends person{
     private sysAirline sysAirlines;
 
     public client() {
+        super();
     }
 
     public client(int client_card_number, booking book, payment_method payement, sysCarAgency sysCarAgencies, sysHotel sysHotels, sysAirline sysAirlines) {
+        super(int ID, String Fname, String Lname, String gender, int age, String email, int phone, String address, String username, String password);
         this.client_card_number = client_card_number;
         this.book = book;
         this.payement = payement;
