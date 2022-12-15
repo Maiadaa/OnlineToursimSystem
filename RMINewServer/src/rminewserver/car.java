@@ -84,7 +84,7 @@ public class car implements booking
 
     @Override
     public void book(client c) {
-        c.getBooking_Hisotry()
+        c.getBooking_History().
     }
 
     @Override

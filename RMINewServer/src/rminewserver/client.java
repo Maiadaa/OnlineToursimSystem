@@ -33,11 +33,11 @@ public class client extends person{
         this.client_card_number = client_card_number;
     }
 
-    public ArrayList<booking> getBooking_Hisotry() {
+    public ArrayList<booking> getBooking_History() {
         return booking_History;
     }
 
-    public void setBooking_Hisotry(ArrayList<booking> booking_Hisotry) {
+    public void setBooking_History(ArrayList<booking> booking_Hisotry) {
         this.booking_History = booking_Hisotry;
     }
 
