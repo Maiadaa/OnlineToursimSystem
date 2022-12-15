@@ -1,6 +1,10 @@
 package rminewserver;
 
-public class person {
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import rmi.personInterface;
+
+public class person extends UnicastRemoteObject implements personInterface{
     
     private int ID;
     private String Fname;
@@ -13,10 +17,10 @@ public class person {
     private String username;
     private String password;
 
-    public person() {
+    public person() throws RemoteException{
     }
 
-    public person(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) {
+    public person(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
         this.ID = ID;
         this.Fname = Fname;
         this.Lname = Lname;
@@ -29,90 +33,110 @@ public class person {
         this.password = password;
     }
 
-    public person(String phone, String address, String username, String password) {
+    public person(String phone, String address, String username, String password) throws RemoteException{
         this.phone = phone;
         this.address = address;
         this.username = username;
         this.password = password;
     }
     
-    public int getID() {
+    @Override
+    public int getID() throws RemoteException{
         return ID;
     }
 
-    public void setID(int ID) {
+    @Override
+    public void setID(int ID) throws RemoteException{
         this.ID = ID;
     }
 
-    public String getFname() {
+    @Override
+    public String getFname() throws RemoteException{
         return Fname;
     }
 
-    public void setFname(String Fname) {
+    @Override
+    public void setFname(String Fname) throws RemoteException{
         this.Fname = Fname;
     }
 
-    public String getLname() {
+    @Override
+    public String getLname() throws RemoteException{
         return Lname;
     }
 
-    public void setLname(String Lname) {
+    @Override
+    public void setLname(String Lname) throws RemoteException{
         this.Lname = Lname;
     }
 
-    public String getGender() {
+    @Override
+    public String getGender() throws RemoteException{
         return gender;
     }
 
-    public void setGender(String gender) {
+    @Override
+    public void setGender(String gender) throws RemoteException{
         this.gender = gender;
     }
 
-    public int getAge() {
+    @Override
+    public int getAge() throws RemoteException{
         return age;
     }
 
-    public void setAge(int age) {
+    @Override
+    public void setAge(int age) throws RemoteException{
         this.age = age;
     }
 
-    public String getEmail() {
+    @Override
+    public String getEmail() throws RemoteException{
         return email;
     }
 
-    public void setEmail(String email) {
+    @Override
+    public void setEmail(String email) throws RemoteException{
         this.email = email;
     }
 
-    public String getPhone() {
+    @Override
+    public String getPhone() throws RemoteException{
         return phone;
     }
 
-    public void setPhone(String phone) {
+    @Override
+    public void setPhone(String phone) throws RemoteException{
         this.phone = phone;
     }
 
-    public String getAddress() {
+    @Override
+    public String getAddress() throws RemoteException{
         return address;
     }
 
-    public void setAddress(String address) {
+    @Override
+    public void setAddress(String address) throws RemoteException{
         this.address = address;
     }
 
-    public String getUsername() {
+    @Override
+    public String getUsername() throws RemoteException{
         return username;
     }
 
-    public void setUsername(String username) {
+    @Override
+    public void setUsername(String username) throws RemoteException{
         this.username = username;
     }
 
-    public String getPassword() {
+    @Override
+    public String getPassword() throws RemoteException{
         return password;
     }
 
-    public void setPassword(String password) {
+    @Override
+    public void setPassword(String password) throws RemoteException{
         this.password = password;
     }
 }
