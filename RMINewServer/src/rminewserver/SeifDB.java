@@ -28,7 +28,8 @@ public class SeifDB {
     
    public static MongoDatabase database;
     
-   MongoCollection<Document> collection1;
+   MongoCollection<Document> ClientsCollection;
+   MongoCollection<Document> ComplaintsCollection;
   
    public static Gson gson = new Gson();
    
@@ -43,11 +44,12 @@ public class SeifDB {
         // Database name
         database = mongoClient.getDatabase("OnlineTourismSystem"); 
         // Collection 
-        collection1 = database.getCollection("client");
+        ClientsCollection = database.getCollection("client");
+        ComplaintsCollection = database.getCollection("complaint");
     }
    ArrayList <complaint> complaints = new ArrayList <complaint>(); 
    
-    public ArrayList<complaint> getAllComplaints(){
+    public ArrayList<complaint> getAllComplaints() throws RemoteException{
         String json;
         complaint Complaint = new complaint();
         MongoCollection<Document> collectionttemp = database.getCollection("complaint");
@@ -68,8 +70,7 @@ public class SeifDB {
 //       }
 //   }
    
-   public void createComplain(client s ,complaint c){
-       ObjectId userId = s.getID();
-       
-   }
+   public void insertComplaint(complaint c){
+       ComplaintsCollection.insertOne(Document.parse(gson.toJson(c)));
+        System.out.println("Complaint has been created.");
 }
