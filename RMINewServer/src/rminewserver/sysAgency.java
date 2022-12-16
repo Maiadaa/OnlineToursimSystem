@@ -1,9 +1,15 @@
 package rminewserver;
 
+import rmi.sysAirline;
+import rmi.sysCarAgency;
+import rmi.sysHotel;
+import rmi.subject_interface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import rmi.client;
 
 public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_interface{
     
@@ -12,30 +18,24 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     private ArrayList <airline> airlines = new ArrayList <airline> ();
     private ArrayList <client> sysClients = new ArrayList <client>();
     private DBAssem db = new DBAssem();
-    //setters
-    
-    //getters
     
     //functions
-    public sysAgency() {
+    public sysAgency()  {
         this.carAgencies = null;
         this.hotels=null;
         this.airlines=null;
         this.sysClients=null;
     }
- 
-    
-    
     
     public void addCarAgency (carAgency CarAgency){
     notifyObservers(CarAgency.getAgencyName());
     }
     
-    public void addHotel (hotel Hotel){
+    public void addHotel (hotel Hotel) throws RemoteException{
     notifyObservers(Hotel.getHotelName());    
     }
     
-    public void addAirline (airline Airline){
+    public void addAirline (airline Airline) throws RemoteException{
     notifyObservers(Airline.getAirlineName());
     }
     
@@ -55,7 +55,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
         db.subscribeClient(obs);
     }
     @Override
-    public void removeObserver(client obs){
+    public void removeObserver(client obs) {
         try {
             db.removeSubscribtion(obs);
         } catch (RemoteException ex) {
@@ -64,7 +64,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
         }
     }  
     @Override
-    public void notifyObservers(String agencyName){
+    public void notifyObservers(String agencyName) {
         try {
             this.sysClients = db.getAllSubscribers();
         } catch (RemoteException ex) {

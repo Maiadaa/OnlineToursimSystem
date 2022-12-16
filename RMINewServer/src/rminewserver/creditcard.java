@@ -4,6 +4,9 @@
  */
 package rminewserver;
 
+import rmi.payment_method;
+import rmi.booking;
+
 /**
  *
  * @author Lenovo

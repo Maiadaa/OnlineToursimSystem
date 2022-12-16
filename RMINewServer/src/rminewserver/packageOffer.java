@@ -5,6 +5,8 @@
 package rminewserver;
 
 import java.util.ArrayList;
+import rmi.booking;
+import rmi.client;
 
 /**
  *

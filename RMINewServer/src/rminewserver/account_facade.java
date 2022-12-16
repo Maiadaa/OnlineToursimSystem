@@ -6,6 +6,7 @@ package rminewserver;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.FacadeInterface;
+import rmi.personDTO;
 
 public class account_facade extends UnicastRemoteObject implements FacadeInterface{
     person c;
@@ -49,7 +50,6 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         dto.setPhone(Phone);
         dto.setUsername(username);
         dto.setPassword(password);
-        db.editPersonDTO(ID, dto);
         return dto;
         }
         return null;

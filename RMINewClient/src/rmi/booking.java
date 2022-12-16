@@ -4,6 +4,7 @@
  */
 package rmi;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 
@@ -11,7 +12,7 @@ import java.rmi.RemoteException;
  *
  * @author LENOVO
  */
-public interface booking {
+public interface booking extends Remote{
     
     public boolean book(client c) throws RemoteException;
     public String viewSummary(booking b);

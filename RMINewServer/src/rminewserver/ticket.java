@@ -4,10 +4,9 @@
  */
 package rminewserver;
 import rmi.booking;
-/**
- *
- * @author LENOVO
- */
+
+import rmi.client;
+
 public class ticket implements booking{
     private int ticketID;
     private int seatNumber;

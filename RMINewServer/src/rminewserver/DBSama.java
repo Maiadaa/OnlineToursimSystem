@@ -9,7 +9,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
@@ -19,62 +18,47 @@ import org.bson.Document;
  * @author meriam
  */
 public class DBSama {
-     public static MongoClient mongoClient;
-    
-   public static MongoDatabase database;
-    
-   MongoCollection<Document> personDTO;
-    
-   MongoCollection<Document> person;
-  
-   public static Gson gson = new Gson();
-    
-   
-   public DBSama() 
-    {
+    public static MongoClient mongoClient;
+    public static MongoDatabase database;
+    MongoCollection<Document> DTO;
+    MongoCollection<Document> person;
+    public static Gson gson = new Gson();
+
+   public DBSama() {
         // Disables Mongo Logs
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
-
         // Initialize
         mongoClient = new MongoClient();
         // Database name
         database = mongoClient.getDatabase("OnlineTourismSystem"); 
         // Collection 
-        personDTO = database.getCollection("DTO");
-        person = database.getCollection("p");
-   
+        DTO = database.getCollection("DTO");
+        person = database.getCollection("Person");
+
     }
-   public void insertStudent(client s) 
-    {
-        personDTO.insertOne(Document.parse(gson.toJson(s)));
-        System.out.println("DTO is inserted.");
-    }
-   
-    public personDTO editPerson(personDTO p){
-        return p;
-    }
-    
-    public person getPerson(person p){
-        return p;
-    }
-    
+
     public void setPerson (person c){
         person.insertOne(Document.parse(gson.toJson(c)));
         System.out.println("person is inserted.");
     }
+
     public void setPersonDTO (personDTO d){
-        personDTO.insertOne(Document.parse(gson.toJson(d)));
+        DTO.insertOne(Document.parse(gson.toJson(d)));
         System.out.println("person is inserted.");
     }
-    
-    public void editPersonDTO(int ID, personDTO dto){
-        personDTO.updateOne(Document.parse(gson.toJson(ID)), Document.parse(gson.toJson(dto)));
-        System.out.println("updated.");
+
+    public Document getPersonDTO (int ID){
+
+        Document ids = (Document) DTO.find(Filters.all("ID", ID));
+        if(ids != null){
+            return ids;
+        }else
+            System.out.println("Nothing found");
+        return null;
     }
-   
-    public void close() 
-    {
+
+    public void close() {
         mongoClient.close();
     }
 }

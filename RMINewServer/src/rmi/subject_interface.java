@@ -6,16 +6,14 @@ package rmi;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import rminewserver.*;
-
 
 /**
  *
- * @author LENOVO
+ * @author mahmo
  */
-public interface booking extends Remote {
-    
-    public boolean book(client c) throws RemoteException;
-    public String viewSummary(booking b);
-    
+public interface subject_interface extends Remote
+{
+    public void addObserver(client observer)throws RemoteException;
+    public void removeObserver (client observer) throws RemoteException;
+    public void notifyObservers(String msg) throws RemoteException;
 }

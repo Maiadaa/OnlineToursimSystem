@@ -4,6 +4,7 @@
  */
 package rminewserver;
 import rmi.booking;
+import rmi.client;
 
 public class car implements booking
 {
@@ -95,6 +96,7 @@ public class car implements booking
 
     @Override
     public boolean book(client c) {
+        
         // get current booking index/loc to proceed to payment
         int bookingIndex = c.getBooking_History().size();
        c.getBooking_History().add(this);

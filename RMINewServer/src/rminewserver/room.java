@@ -6,6 +6,7 @@ package rminewserver;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.booking;
+import rmi.client;
 /**
  *
  * @author LENOVO

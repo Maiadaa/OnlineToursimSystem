@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package rminewserver;
+package rmi;
 
-import rmi.payment_method;
-import rmi.booking;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
  * @author Lenovo
  */
-public class cash implements payment_method{
-    @Override
-    public boolean Pay(booking book){
-        return true;
-    }
+public interface payment_method extends Remote {
+      /**
+     * 
+     * @param booking
+     */
+    boolean Pay(booking booking) throws RemoteException;
 }
