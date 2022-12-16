@@ -2,9 +2,8 @@ package rminewserver;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import rmi.personInterface;
 
-public class person extends UnicastRemoteObject implements personInterface{
+public class person extends UnicastRemoteObject{
     
     private int ID;
     private String Fname;
@@ -40,102 +39,82 @@ public class person extends UnicastRemoteObject implements personInterface{
         this.password = password;
     }
     
-    @Override
     public int getID() throws RemoteException{
         return ID;
     }
 
-    @Override
     public void setID(int ID) throws RemoteException{
         this.ID = ID;
     }
 
-    @Override
     public String getFname() throws RemoteException{
         return Fname;
     }
 
-    @Override
     public void setFname(String Fname) throws RemoteException{
         this.Fname = Fname;
     }
 
-    @Override
     public String getLname() throws RemoteException{
         return Lname;
     }
 
-    @Override
     public void setLname(String Lname) throws RemoteException{
         this.Lname = Lname;
     }
 
-    @Override
     public String getGender() throws RemoteException{
         return gender;
     }
 
-    @Override
     public void setGender(String gender) throws RemoteException{
         this.gender = gender;
     }
 
-    @Override
     public int getAge() throws RemoteException{
         return age;
     }
 
-    @Override
     public void setAge(int age) throws RemoteException{
         this.age = age;
     }
 
-    @Override
     public String getEmail() throws RemoteException{
         return email;
     }
-
-    @Override
+    
     public void setEmail(String email) throws RemoteException{
         this.email = email;
     }
 
-    @Override
     public String getPhone() throws RemoteException{
         return phone;
     }
 
-    @Override
     public void setPhone(String phone) throws RemoteException{
         this.phone = phone;
     }
 
-    @Override
     public String getAddress() throws RemoteException{
         return address;
     }
 
-    @Override
     public void setAddress(String address) throws RemoteException{
         this.address = address;
     }
 
-    @Override
     public String getUsername() throws RemoteException{
         return username;
     }
 
-    @Override
     public void setUsername(String username) throws RemoteException{
         this.username = username;
     }
 
-    @Override
     public String getPassword() throws RemoteException{
         return password;
     }
 
-    @Override
     public void setPassword(String password) throws RemoteException{
         this.password = password;
     }

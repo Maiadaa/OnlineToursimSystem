@@ -19,11 +19,13 @@ import org.bson.Document;
  * @author meriam
  */
 public class DBSama {
-    public static MongoClient mongoClient;
+     public static MongoClient mongoClient;
     
    public static MongoDatabase database;
     
-   MongoCollection<Document> collection1;
+   MongoCollection<Document> personDTO;
+    
+   MongoCollection<Document> person;
   
    public static Gson gson = new Gson();
     
@@ -39,24 +41,16 @@ public class DBSama {
         // Database name
         database = mongoClient.getDatabase("OnlineTourismSystem"); 
         // Collection 
-        collection1 = database.getCollection("client");
+        personDTO = database.getCollection("DTO");
+        person = database.getCollection("p");
    
     }
    public void insertStudent(client s) 
     {
-        collection1.insertOne(Document.parse(gson.toJson(s)));
-        System.out.println("Student is inserted.");
+        personDTO.insertOne(Document.parse(gson.toJson(s)));
+        System.out.println("DTO is inserted.");
     }
    
-   
-    public void close() 
-    {
-        mongoClient.close();
-    }
-    
-    public void setPerson (person p){
-        
-    }
     public personDTO editPerson(personDTO p){
         return p;
     }
@@ -64,7 +58,23 @@ public class DBSama {
     public person getPerson(person p){
         return p;
     }
+    
+    public void setPerson (person c){
+        person.insertOne(Document.parse(gson.toJson(c)));
+        System.out.println("person is inserted.");
+    }
     public void setPersonDTO (personDTO d){
-        
+        personDTO.insertOne(Document.parse(gson.toJson(d)));
+        System.out.println("person is inserted.");
+    }
+    
+    public void editPersonDTO(int ID, personDTO dto){
+        personDTO.updateOne(Document.parse(gson.toJson(ID)), Document.parse(gson.toJson(dto)));
+        System.out.println("updated.");
+    }
+   
+    public void close() 
+    {
+        mongoClient.close();
     }
 }

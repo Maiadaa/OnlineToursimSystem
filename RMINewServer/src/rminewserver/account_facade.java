@@ -9,8 +9,8 @@ import rmi.FacadeInterface;
 
 public class account_facade extends UnicastRemoteObject implements FacadeInterface{
     person c;
-    DBSama db;
-    personDTO dto;
+    DBSama db = new DBSama();
+    personDTO dto = new personDTO();
     public account_facade() throws RemoteException{
         c = new person("","","","");
     }
@@ -41,8 +41,10 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         return null;
     }
 
+    //tested
     @Override
     public void setPerson(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
+        //person p = new person(ID, Fname, Lname, gender, age, email, phone, address, username, password);
         c.setID(ID);
         c.setFname(Fname);
         c.setLname(Lname);
@@ -58,18 +60,23 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
     }
 
     @Override
-    public personDTO editPerson(String address, String Phone, String username, String password) throws RemoteException {
-        //personDTO d;
+    public personDTO editPersonDTO (int ID, String address, String Phone, String username, String password) throws RemoteException {
+        if (ID == c.getID()){
         dto.setAddress(address);
         dto.setPhone(Phone);
         dto.setUsername(username);
         dto.setPassword(password);
+        db.editPersonDTO(ID, dto);
         return dto;
+        }
+        return null;
     }
 
+    //tested
     @Override
-    public personDTO setPersonDTO(String Phone, String address, String username, String password) throws RemoteException {
+    public personDTO setPersonDTO(int ID, String Phone, String address, String username, String password) throws RemoteException {
         personDTO dt = new personDTO(Phone, address, username, password);
+        dt.setID(ID);
         dt.setAddress(address);
         dt.setPhone(Phone);
         dt.setUsername(username);

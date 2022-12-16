@@ -18,5 +18,4 @@ public interface personDTOFacade extends Remote{
     public void setUsername(String username)  throws RemoteException;
     public String getPassword() throws RemoteException;
     public void setPassword(String password) throws RemoteException;
-    public void editPerson(String address, String Phone, String username, String password) throws RemoteException;
 }

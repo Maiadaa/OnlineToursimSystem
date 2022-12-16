@@ -12,6 +12,15 @@ import rmi.personDTOFacade;
  * @author Lenovo
  */
 public class personDTO extends UnicastRemoteObject implements Serializable, personDTOFacade{
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
     private String Phone;
     private String address;
     private String username;
@@ -67,7 +76,7 @@ public class personDTO extends UnicastRemoteObject implements Serializable, pers
         this.password = password;
     }
     @Override
-    public void editPerson(String address, String Phone, String username, String password) throws RemoteException{
+    public void editPerson (String address, String Phone, String username, String password) throws RemoteException{
         this.setAddress(address);
         this.setPhone(Phone);
         this.setUsername(username);
