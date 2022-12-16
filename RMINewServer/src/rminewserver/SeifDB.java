@@ -28,7 +28,18 @@ public class SeifDB {
     
    public static MongoDatabase database;
     
-   MongoCollection<Document> collection1;
+   MongoCollection<Document> ClientCollection;
+   MongoCollection<Document> SubsCollection;
+   MongoCollection<Document> AdminsCollection;
+   MongoCollection<Document> AgentsCollection;
+   MongoCollection<Document> HotelsCollection;
+   MongoCollection<Document> RoomsCollection;
+   MongoCollection<Document> CarsCollection;
+   MongoCollection<Document> CarAgencyCollection;
+   MongoCollection<Document> TicketsCollection;
+   MongoCollection<Document> AirlinesCollection;
+   MongoCollection<Document> BookingsCollection;
+   MongoCollection<Document> ComplaintsCollection;
   
    public static Gson gson = new Gson();
    
@@ -43,7 +54,19 @@ public class SeifDB {
         // Database name
         database = mongoClient.getDatabase("OnlineTourismSystem"); 
         // Collection 
-        collection1 = database.getCollection("client");
+        ClientCollection = database.getCollection("client");
+        AdminsCollection = database.getCollection("admin");
+        SubsCollection = database.getCollection("subscriber");
+        AgentsCollection = database.getCollection("agent");
+        HotelsCollection = database.getCollection("hotel");
+        RoomsCollection = database.getCollection("room");
+        CarsCollection = database.getCollection("car");
+        CarAgencyCollection = database.getCollection("carAgency");
+        TicketsCollection = database.getCollection("ticket");
+        AirlinesCollection = database.getCollection("airline");
+        BookingsCollection = database.getCollection("booking");
+        ComplaintsCollection = database.getCollection("complaint");
+           
     }
    ArrayList <complaint> complaints = new ArrayList <complaint>(); 
    
@@ -68,8 +91,8 @@ public class SeifDB {
 //       }
 //   }
    
-   public void createComplain(client s ,complaint c){
-       ObjectId userId = s.getID();
-       
+   public void insertComplaint(complaint c){
+       ComplaintsCollection.insertOne(Document.parse(gson.toJson(c)));
+        System.out.println("Complaint inserted successfuly.");
    }
 }
