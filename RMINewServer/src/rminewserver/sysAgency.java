@@ -11,7 +11,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     private ArrayList <hotel> hotels = new ArrayList <hotel> ();
     private ArrayList <airline> airlines = new ArrayList <airline> ();
     private ArrayList <client> sysClients = new ArrayList <client>();
-    private DBAssem db;
+    private DBAssem db = new DBAssem();
     //setters
     
     //getters
@@ -66,7 +66,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     @Override
     public void notifyObservers(String agencyName){
         try {
-            this.sysClients = db.getAllClients();
+            this.sysClients = db.getAllSubscribers();
         } catch (RemoteException ex) {
             Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -25,8 +25,8 @@ public class RMINewServer {
 
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
         
-        SeifDB db = new SeifDB();
-        System.out.println(db.getAllComplaints());
+        //SeifDB db = new SeifDB();
+        
         
         
         
@@ -36,10 +36,11 @@ public class RMINewServer {
 //        mongoLogger.setLevel(Level.SEVERE);
 //        
 //        //Calling the class for the database 
-//        DB db = new DB();
-//        client x = new client(1, null, null, null, null, null);
-//        db.insertStudent(x);
-//         db.close();
+        DBAssem db = new DBAssem();
+        client x = new client(0, "Hassan", "Ayman", "Male", 0, "m@gmail.com", "01128555666", "masr el gedida", "mahmoud123", "mahmoud123");
+        sysAgency s1 = new sysAgency();
+        s1.removeObserver(x);
+        db.close();
 //        } 
 
         //int CarID, String Model, double RentalPrice, String Manufacturer, String CarType, int Seats, String plateNum
