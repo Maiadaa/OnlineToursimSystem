@@ -11,13 +11,12 @@ import org.bson.types.ObjectId;
  *
  * @author PC
  */
-public class complaint {
-    private ObjectId ComplaintID;
+public class complaint implements complaint_detector{
+    private int ComplaintID;
     private String ComplaintType;   
     private String Description;
     private String ComplaintDate;
     private String ComplaintState;
-    private complaint_detector handler;
     
     
     public void handleComplaint(){
@@ -27,23 +26,22 @@ public class complaint {
     public complaint() {
     }
 
-    public complaint(ObjectId ComplaintID, String ComplaintType, String Description, String ComplaintDate, String ComplaintState, complaint_detector handler) throws RemoteException {
+    public complaint(String ComplaintType, String Description, String ComplaintDate, String ComplaintState) throws RemoteException {
         this.ComplaintID = ComplaintID;
         this.ComplaintType = ComplaintType;
         this.Description = Description;
         this.ComplaintDate = ComplaintDate;
         this.ComplaintState = ComplaintState;
-        this.handler = handler;
-        Set_POC();
+        //Set_POC();
     }
 
-    public ObjectId getComplaintID() {
-        return ComplaintID;
-    }
-
-    public void setComplaintID(ObjectId ComplaintID) {
-        this.ComplaintID = ComplaintID;
-    }
+//    public ObjectId getComplaintID() {
+//        return ComplaintID;
+//    }
+//
+//    public void setComplaintID(ObjectId ComplaintID) {
+//        this.ComplaintID = ComplaintID;
+//    }
 
     public String getComplaintType() {
         return ComplaintType;
@@ -76,17 +74,14 @@ public class complaint {
     public void setComplaintState(String ComplaintState) {
         this.ComplaintState = ComplaintState;
     }
-
-    public complaint_detector getHandler() {
-        return handler;
-    }
-
-    public void setHandler(complaint_detector handler) {
-        this.handler = handler;
-    }
     
     
-    public void Set_POC() throws RemoteException{
-          handler = new admin();
-	}
+//    public void Set_POC() throws RemoteException{
+//          handler = new admin();
+//	}
+
+    @Override
+    public void Handle_complaint(complaint c) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

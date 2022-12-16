@@ -21,7 +21,7 @@ import org.bson.Document;
  * @author meriam
  */
 public class DBAssem {
-    public static MongoClient mongoClient;
+   public static MongoClient mongoClient;
     
    public static MongoDatabase database;
     
