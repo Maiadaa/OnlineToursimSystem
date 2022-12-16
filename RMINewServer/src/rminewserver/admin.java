@@ -48,18 +48,6 @@ public class admin extends person implements complaint_detector{
     public void viewComplaints(complaint c){
         
     }
-//    @Override
-//    public void Handle_Feedback(Feedback f) {
-//        if (f.getFeedback_Type().equals("rating")) {
-//            f.setFeedback_State("Accepted from Restaurant Admin");
-//            DB_Connection_Hagrass db = new DB_Connection_Hagrass();
-//            db.EditFeedbackStatus(f);
-//            if (f.getRate() <= 3) {
-//                    db.editRestRating(Rest.getRest_Id(), (Rest.getRest_Rating() - 0.1));
-//            }else if(f.getRate() > 3){
-//                    db.editRestRating(Rest.getRest_Id(), (Rest.getRest_Rating() + 0.1));
-//            }
-//        }
 
     @Override
     public void Handle_complaint(complaint c) {
