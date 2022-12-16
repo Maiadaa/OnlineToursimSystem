@@ -135,7 +135,7 @@ public boolean carAgentSignUp(carAgent cA){
     }
 }
 
-public boolean hotelAgentSignUp(hotelAgent HA){
+public boolean hotelAgentSignUp(hotelAgent HA) throws RemoteException{
     try{
         collection1 = database.getCollection("hotelAgent");
         if(collection1.find(Filters.all("username", HA.getUsername())) == null){

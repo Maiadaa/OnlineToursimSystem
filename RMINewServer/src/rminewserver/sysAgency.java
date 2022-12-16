@@ -108,7 +108,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
         this.airlines = airlines;
     }
 
-    public void setSysClients() {
+    public void setSysClients() throws RemoteException {
         this.sysClients = db.getAllClients();
     }
 
