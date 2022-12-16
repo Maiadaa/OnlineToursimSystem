@@ -1,68 +1,69 @@
 package rminewserver;
 
-import com.google.gson.Gson;
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.Filters;
-import com.mongodb.util.JSON;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.bson.Document;
+import java.rmi.server.UnicastRemoteObject;
+import rmi.agencyDataMapperInterface;
 
-public class agencyDataMapper {
+public class agencyDataMapper extends UnicastRemoteObject implements agencyDataMapperInterface{
     
-   public static MongoClient mongoClient;
-    
-   public static MongoDatabase database;
-    
-   MongoCollection<Document> collection1;
-  
-   public static Gson gson = new Gson();
-    
-    private sysAgency sysAgencies;
-    
-//  function
-    
-    public boolean insertCarAgyncy(carAgency CarAgency){
-        
-        return true;
-    }
-    
-    public boolean insertHotel(){
-        return true;
-    }
-    
-    public boolean insertAirline(){
-        return true;
-    }
-    
-    public boolean deleteCarAgency(){
-        return true;
+    private sysAgency sys;
+    private DBHagrass dBHagrass = new DBHagrass();
+
+    public agencyDataMapper() throws RemoteException{
     }
 
-    public boolean deleteHotel(){
-        return true;
+    @Override
+    public boolean insertCarAgyncy() throws RemoteException{
+        carAgency c = new carAgency();
+        if(dBHagrass.insertCarAgency(c)){
+            sys.addCarAgency(c);
+            return true;
+        }else return false;
     }
     
-    public boolean deleteAirline(){
-        return true;
-    }
-    
-    public boolean modifyCarAgency(){
-        return true;
-    }
-    
-    public boolean modifyHotel(){
-        return true;
-    }
-    
-    public boolean modifyAirline(){
-        return true;
-    }
+//    @Override
+//    public boolean insertHotel(hotel Hotel){
+//        if(dBHagrass.insertHotel(Hotel)){
+//            sys.addHotel(Hotel);
+//            return true;
+//        }else return false;
+//    }
+//    
+//    @Override
+//    public boolean insertAirline(airline Airline){
+//        if(dBHagrass.insertAirline(Airline)){
+//            sys.addAirline(Airline);
+//            return true;
+//        }else return false;
+//    }
+//    
+//    @Override
+//    public boolean deleteCarAgency(carAgency CA){
+//        return dBHagrass.deleteCarAgency(CA);
+//    }
+//
+//    @Override
+//    public boolean deleteHotel(hotel Hotel){
+//        return dBHagrass.deleteHotel(Hotel);
+//    }
+//    
+//    @Override
+//    public boolean deleteAirline(airline Airline){
+//        return dBHagrass.deleteAirline(Airline);
+//    }
+//    
+//    @Override
+//    public void modifyCarAgency(carAgency CA, String name){
+//        dBHagrass.updateCarAgency(CA, name);
+//    }
+//    
+//    @Override
+//    public void modifyHotel(hotel H, String name){
+//        dBHagrass.updateHotel(H, name);
+//    }
+//    
+//    @Override
+//    public void modifyAirline(airline A, String name){
+//        dBHagrass.updateAurline(A, name);
+//    }
 }

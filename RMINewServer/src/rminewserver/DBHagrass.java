@@ -12,6 +12,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import com.mongodb.util.JSON;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -19,8 +20,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
-
-
 import rmi.client;
 /**
  *
@@ -47,7 +46,7 @@ public class DBHagrass {
         // Database name
         database = mongoClient.getDatabase("OnlineTourismSystem"); 
         // Collection 
-        collection1 = database.getCollection("client");
+        collection1 = database.getCollection("flightAgent");
    
     }
    public void insertStudent(client s) 
@@ -106,8 +105,8 @@ public ArrayList<carAgency> getAllCarAgencies (){
 public boolean clientSignUp(client c) throws RemoteException{
     try{
         collection1 = database.getCollection("client");
-        if(collection1.find(Filters.all("username", c.getUsername())) == null){
-            if(collection1.find(Filters.all("password", c.getPassword())) == null){
+        if(collection1.find(Filters.all("username", c.getUsername())).first() == null){
+            if(collection1.find(Filters.all("password", c.getPassword())).first() == null){
                 collection1.insertOne(Document.parse(gson.toJson(c)));
                 if(collection1.find(Filters.all("password", c.getPassword())).first() != null){
                     return true;
@@ -123,8 +122,8 @@ public boolean clientSignUp(client c) throws RemoteException{
 public boolean carAgentSignUp(carAgent cA){
     try{
         collection1 = database.getCollection("carAgent");
-        if(collection1.find(Filters.all("username", cA.getUsername())) == null){
-            if(collection1.find(Filters.all("password", cA.getPassword())) == null){
+        if(collection1.find(Filters.all("username", cA.getUsername())).first() == null){
+            if(collection1.find(Filters.all("password", cA.getPassword())).first() == null){
                 collection1.insertOne(Document.parse(gson.toJson(cA)));
                 if(collection1.find(Filters.all("password", cA.getPassword())).first() != null){
                     return true;
@@ -137,11 +136,11 @@ public boolean carAgentSignUp(carAgent cA){
     }
 }
 
-public boolean hotelAgentSignUp(hotelAgent HA) throws RemoteException{
+public boolean hotelAgentSignUp(hotelAgent HA){
     try{
         collection1 = database.getCollection("hotelAgent");
-        if(collection1.find(Filters.all("username", HA.getUsername())) == null){
-            if(collection1.find(Filters.all("password", HA.getPassword())) == null){
+        if(collection1.find(Filters.all("username", HA.getUsername())).first() == null){
+            if(collection1.find(Filters.all("password", HA.getPassword())).first() == null){
                 collection1.insertOne(Document.parse(gson.toJson(HA)));
                 if(collection1.find(Filters.all("password", HA.getPassword())).first() != null){
                     return true;
@@ -154,11 +153,10 @@ public boolean hotelAgentSignUp(hotelAgent HA) throws RemoteException{
     }
 }
 
-public boolean flightAgentSignUp(flightAgent FA) throws RemoteException{
+public boolean flightAgentSignUp(flightAgent FA){
     try{
-        collection1 = database.getCollection("flightAgent");
-        if(collection1.find(Filters.all("username", FA.getUsername())) == null){
-            if(collection1.find(Filters.all("password", FA.getPassword())) == null){
+        if(collection1.find(Filters.all("username", FA.getUsername())).first() == null){
+            if(collection1.find(Filters.all("password", FA.getPassword())).first()== null){
                 collection1.insertOne(Document.parse(gson.toJson(FA)));
                 if(collection1.find(Filters.all("password", FA.getPassword())).first() != null){
                     return true;
@@ -176,8 +174,8 @@ public Object clientLogin(String type,String password, String username){
         collection1 = database.getCollection("client");
         client Client;
         String json;
-        if(collection1.find(Filters.all("password", password)) != null){
-            if(collection1.find(Filters.all("username", username)) != null){
+        if(collection1.find(Filters.all("password", password)).first() != null){
+            if(collection1.find(Filters.all("username", username)).first() != null){
                 Client = gson.fromJson(gson.toJson(collection1.find(Filters.all("password", password))), client.class);
                 return Client;
             }
@@ -186,8 +184,8 @@ public Object clientLogin(String type,String password, String username){
         collection1 = database.getCollection("hotelAgent");
         hotelAgent HotelAgent;
         String json;
-        if(collection1.find(Filters.all("password", password)) != null){
-            if(collection1.find(Filters.all("username", username)) != null){
+        if(collection1.find(Filters.all("password", password)).first() != null){
+            if(collection1.find(Filters.all("username", username)).first() != null){
                 HotelAgent = gson.fromJson(gson.toJson(collection1.find(Filters.all("password", password))), hotelAgent.class);
                 return HotelAgent;
             }
@@ -196,8 +194,8 @@ public Object clientLogin(String type,String password, String username){
         collection1 = database.getCollection("carAgent");
         carAgent CarAgent;
         String json;
-        if(collection1.find(Filters.all("password", password)) != null){
-            if(collection1.find(Filters.all("username", username)) != null){
+        if(collection1.find(Filters.all("password", password)).first() != null){
+            if(collection1.find(Filters.all("username", username)).first() != null){
                 CarAgent = gson.fromJson(gson.toJson(collection1.find(Filters.all("password", password))), carAgent.class);
                 return CarAgent;
             }
@@ -206,8 +204,8 @@ public Object clientLogin(String type,String password, String username){
         collection1 = database.getCollection("flightAgent");
         flightAgent FlightAgent;
         String json;
-        if(collection1.find(Filters.all("password", password)) != null){
-            if(collection1.find(Filters.all("username", username)) != null){
+        if(collection1.find(Filters.all("password", password)).first() != null){
+            if(collection1.find(Filters.all("username", username)).first() != null){
                 FlightAgent = gson.fromJson(gson.toJson(collection1.find(Filters.all("password", password))), flightAgent.class);
                 return FlightAgent;
             }
@@ -215,6 +213,87 @@ public Object clientLogin(String type,String password, String username){
     }
     return null;
 }
+
+    /*Data mapper*/
+    
+    public boolean insertCarAgency(carAgency CarAgency){
+        collection1 = database.getCollection("carAgency");
+        collection1.insertOne(Document.parse(gson.toJson(CarAgency)));
+        if(collection1.find(Filters.all("AgencyName", CarAgency.getAgencyName())).first() != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean insertHotel(hotel Hotel){
+        collection1 = database.getCollection("hotel");
+        collection1.insertOne(Document.parse(gson.toJson(Hotel)));
+        if(collection1.find(Filters.all("HotelName", Hotel.getHotelName())).first() != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean insertAirline(airline Airline){
+        collection1 = database.getCollection("airline");
+        collection1.insertOne(Document.parse(gson.toJson(Airline)));
+        if(collection1.find(Filters.all("airlineName", Airline.getAirlineName())).first() != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean deleteCarAgency(carAgency CA){
+        collection1 = database.getCollection("carAgency");
+        if(collection1.deleteOne(Filters.eq("AgencyName", CA.getAgencyName())) != null){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    
+    public boolean deleteHotel(hotel Hotel){
+        collection1 = database.getCollection("hotel");
+        if(collection1.deleteOne(Filters.eq("HotelName", Hotel.getHotelName())) != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean deleteAirline(airline Airline){
+        collection1 = database.getCollection("airline");
+        if(collection1.deleteOne(Filters.all("airlineName", Airline.getAirlineName())) != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void updateCarAgency(carAgency CA, String name){
+        collection1 = database.getCollection("carAgency");
+        collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("carAgent", CA.getCarAgent()));
+        collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("cars", CA.getCars()));
+        collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("AgencyName", CA.getAgencyName()));
+    }
+    
+    public void updateHotel(hotel H, String name){
+        collection1 = database.getCollection("hotel");
+        collection1.updateOne(Filters.eq("HotelName", name), Updates.set("Rooms", H.getRooms()));
+        collection1.updateOne(Filters.eq("HotelName", name), Updates.set("HotelName", H.getHotelName()));
+    }  
+
+    public void updateAurline(airline A, String name){
+        collection1 = database.getCollection("hotel");
+        collection1.updateOne(Filters.eq("airlineName", name), Updates.set("flights", A.getFlights()));
+        collection1.updateOne(Filters.eq("airlineName", name), Updates.set("agent", A.getAgent()));
+        collection1.updateOne(Filters.eq("airlineName", name), Updates.set("airlineName", A.getAirlineName()));
+    }  
+
    /*/////////////////////////////////////////////////////////////////////////*/
    public void close() 
     {
