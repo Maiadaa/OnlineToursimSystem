@@ -24,23 +24,6 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         return dto;
     }
 
-    @Override
-    public person getPerson(int ID) throws RemoteException {
-        if (ID == c.getID()){
-            c.getID();
-            c.getLname();
-            c.getFname();
-            c.getAge();
-            c.getGender();
-            c.getPassword();
-            c.getUsername();
-            c.getEmail();
-            c.getAddress();
-            return c;
-        }       
-        return null;
-    }
-
     //tested
     @Override
     public void setPerson(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
