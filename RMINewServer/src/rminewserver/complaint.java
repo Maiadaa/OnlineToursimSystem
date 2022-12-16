@@ -24,8 +24,7 @@ public class complaint {
         
     }
 
-    public complaint() throws RemoteException  {
-         Set_POC();
+    public complaint() {
     }
 
     public complaint(ObjectId ComplaintID, String ComplaintType, String Description, String ComplaintDate, String ComplaintState, complaint_detector handler) throws RemoteException {
