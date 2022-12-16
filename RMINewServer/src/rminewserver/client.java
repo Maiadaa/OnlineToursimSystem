@@ -24,7 +24,9 @@ public class client extends person implements observer_interface{
         super();
     }
     
-
+public int getID (){
+    return super.getID();
+}
     public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password, int client_card_number, booking book, payment_method payement, sysCarAgency sysCarAgencies, sysHotel sysHotels, sysAirline sysAirlines) throws RemoteException {
         super(ID, Fname, Lname, gender, age, email, phone, address, username, password);
         this.client_card_number = client_card_number;
@@ -41,6 +43,8 @@ public class client extends person implements observer_interface{
         tempclient = this;
         insertClientIntoDB(tempclient);
     }
+    
+    
     public void insertClientIntoDB(client c)
     {
         db.insertClient(c);
@@ -110,6 +114,12 @@ public class client extends person implements observer_interface{
         
         return "x";
     }
+
+    @Override
+    public String toString() {
+        return "client{" + "client_card_number=" + client_card_number + ", booking_History=" + booking_History + ", book=" + book + ", complaint_history=" + complaint_history + ", payement=" + payement + ", sysCarAgencies=" + sysCarAgencies + ", sysHotels=" + sysHotels + ", sysAirlines=" + sysAirlines + ", db=" + db + '}';
+    }
+    
     
     
 }

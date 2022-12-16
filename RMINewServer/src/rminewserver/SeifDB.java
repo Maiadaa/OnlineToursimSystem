@@ -73,4 +73,5 @@ public class SeifDB {
    public void insertComplaint(complaint c){
        ComplaintsCollection.insertOne(Document.parse(gson.toJson(c)));
         System.out.println("Complaint has been created.");
+   }
 }
