@@ -12,7 +12,6 @@ import rminewserver.personDTO;
  * @author Lenovo
  */
 public interface FacadeInterface extends Remote{
-    public person getPerson(int ID) throws RemoteException;
     public void setPerson (int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException;
     public personDTO editPersonDTO (int ID, String address, String Phone, String username, String password) throws RemoteException;
     public personDTO getPersonDTO(int ID) throws RemoteException;
