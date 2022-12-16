@@ -3,12 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
-
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import rmi.booking;
 /**
  *
  * @author LENOVO
  */
-public class room implements booking{
+public class room extends UnicastRemoteObject implements booking {
     private int roomNumber;
     private String roomType;
     private int floorNumber;
@@ -17,7 +19,7 @@ public class room implements booking{
     
     maiadaDB db ;
 
-    public room() {
+    public room() throws RemoteException {
         this.roomNumber = 0;
         this.roomType = "";
         this.floorNumber = 0;
@@ -25,7 +27,7 @@ public class room implements booking{
         this.price = 0.0;
     }
 
-    public room(int roomNumber, String roomType, int floorNumber, String roomView, double price) {
+    public room(int roomNumber, String roomType, int floorNumber, String roomView, double price) throws RemoteException {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.floorNumber = floorNumber;
@@ -74,7 +76,7 @@ public class room implements booking{
     }
 
     @Override
-    public boolean book(client c) {
+    public boolean book(client c) throws RemoteException {
         // get current booking index/loc to proceed to payment
         int bookingIndex = c.getBooking_History().size();
        c.getBooking_History().add(this);
@@ -90,7 +92,7 @@ public class room implements booking{
     }
 
     @Override
-    public String viewSummary(booking c) {
+    public String viewSummary(booking c){
         return c.toString();
     }
 
