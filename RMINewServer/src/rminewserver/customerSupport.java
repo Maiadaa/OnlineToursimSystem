@@ -11,12 +11,11 @@ package rminewserver;
 public class customerSupport {
     public int custSupportID;
     
+    
     public void handleComplaint(complaint c){
         if (c.getComplaintType().equals("Technical")){
             c.setComplaintState("Your complaint has been acceppted by out customer support team");
         }
     }
-    
-    
     
 }
