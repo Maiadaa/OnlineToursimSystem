@@ -13,8 +13,14 @@ public class ticket implements booking{
     private int seatNumber;
     private double price;
     private String ticketType;
+    
+    maiadaDB db;
 
     public ticket() {
+        this.ticketID = 0;
+        this.seatNumber = 0;
+        this.price = 0.0;
+        this.ticketType = "";
     }
 
     public ticket(int ticketID, int seatNumber, double price, String ticketType) {
@@ -61,14 +67,31 @@ public class ticket implements booking{
     }
 
     @Override
-    public void book(client c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean book(client c) {
+        // get current booking index/loc to proceed to payment
+        int bookingIndex = c.getBooking_History().size();
+       c.getBooking_History().add(this);
+       
+       // add it to the database
+       if(db.addBooking(c, this)){
+           // proceed to payment
+           //c.pay(bookingIndex);
+           return true;
+       }
+  
+       return false;
     }
 
     @Override
-    public String viewSummary() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String viewSummary(booking c) {
+        return c.toString();
     }
+
+    @Override
+    public String toString() {
+        return "ticketID=" + ticketID + ", ticketType=" + ticketType + ", seatNumber=" + seatNumber ;
+    }
+    
     
     
     
