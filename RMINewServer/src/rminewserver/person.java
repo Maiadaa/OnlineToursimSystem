@@ -1,9 +1,7 @@
 package rminewserver;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
-public class person extends UnicastRemoteObject{
+public class person{
     
     private int ID;
     private String Fname;
@@ -16,10 +14,10 @@ public class person extends UnicastRemoteObject{
     private String username;
     private String password;
 
-    public person() throws RemoteException{
+    public person(){
     }
 
-    public person(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {
+    public person(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) {
         this.ID = ID;
         this.Fname = Fname;
         this.Lname = Lname;
@@ -32,90 +30,90 @@ public class person extends UnicastRemoteObject{
         this.password = password;
     }
 
-    public person(String phone, String address, String username, String password) throws RemoteException{
+    public person(String phone, String address, String username, String password){
         this.phone = phone;
         this.address = address;
         this.username = username;
         this.password = password;
     }
     
-    public int getID() throws RemoteException{
+    public int getID(){
         return ID;
     }
 
-    public void setID(int ID) throws RemoteException{
+    public void setID(int ID){
         this.ID = ID;
     }
 
-    public String getFname() throws RemoteException{
+    public String getFname(){
         return Fname;
     }
 
-    public void setFname(String Fname) throws RemoteException{
+    public void setFname(String Fname){
         this.Fname = Fname;
     }
 
-    public String getLname() throws RemoteException{
+    public String getLname(){
         return Lname;
     }
 
-    public void setLname(String Lname) throws RemoteException{
+    public void setLname(String Lname){
         this.Lname = Lname;
     }
 
-    public String getGender() throws RemoteException{
+    public String getGender(){
         return gender;
     }
 
-    public void setGender(String gender) throws RemoteException{
+    public void setGender(String gender){
         this.gender = gender;
     }
 
-    public int getAge() throws RemoteException{
+    public int getAge(){
         return age;
     }
 
-    public void setAge(int age) throws RemoteException{
+    public void setAge(int age){
         this.age = age;
     }
 
-    public String getEmail() throws RemoteException{
+    public String getEmail(){
         return email;
     }
     
-    public void setEmail(String email) throws RemoteException{
+    public void setEmail(String email){
         this.email = email;
     }
 
-    public String getPhone() throws RemoteException{
+    public String getPhone(){
         return phone;
     }
 
-    public void setPhone(String phone) throws RemoteException{
+    public void setPhone(String phone){
         this.phone = phone;
     }
 
-    public String getAddress() throws RemoteException{
+    public String getAddress(){
         return address;
     }
 
-    public void setAddress(String address) throws RemoteException{
+    public void setAddress(String address){
         this.address = address;
     }
 
-    public String getUsername() throws RemoteException{
+    public String getUsername(){
         return username;
     }
 
-    public void setUsername(String username) throws RemoteException{
+    public void setUsername(String username){
         this.username = username;
     }
 
-    public String getPassword() throws RemoteException{
+    public String getPassword(){
         return password;
     }
 
-    public void setPassword(String password) throws RemoteException{
+    public void setPassword(String password){
         this.password = password;
     }
 }
