@@ -19,11 +19,6 @@ public class complaint {
     private String ComplaintState;
     private complaint_detector handler;
     
-    
-    public void handleComplaint(){
-        
-    }
-
     public complaint() throws RemoteException {
         Set_POC();
     }
