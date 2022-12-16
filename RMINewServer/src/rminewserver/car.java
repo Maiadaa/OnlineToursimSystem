@@ -12,10 +12,19 @@ public class car implements booking
     private String CarType;
     private int Seats;
     private String plateNum;
+    
+    private maiadaDB db;
 
     public car() {
+        this.CarID = 0;
+        this.Model = "";
+        this.RentalPrice = 0.0;
+        this.Manufacturer = "";
+        this.CarType = "";
+        this.Seats = 0;
+        this.plateNum = "";
     }
-
+    
     public car(int CarID, String Model, double RentalPrice, String Manufacturer, String CarType, int Seats, String plateNum) {
         this.CarID = CarID;
         this.Model = Model;
@@ -83,18 +92,29 @@ public class car implements booking
     }
 
     @Override
-    public void book(client c) {
-        c.getBooking_History().add(this);
+    public boolean book(client c) {
+        // get current booking index/loc to proceed to payment
+        int bookingIndex = c.getBooking_History().size();
+       c.getBooking_History().add(this);
+       
+       // add it to the database
+       if(db.addBooking(c, this)){
+           // proceed to payment
+           //c.pay(bookingIndex);
+           return true;
+       }
+  
+       return false;
     }
 
     @Override
-    public String viewSummary() {
-        return this.toString();
+    public String viewSummary(booking c) {
+        return c.toString();
     }
 
     @Override
     public String toString() {
-        return "car{" + "CarID=" + CarID + ", Model=" + Model + ", RentalPrice=" + RentalPrice + ", Manufacturer=" + Manufacturer + ", CarType=" + CarType + ", Seats=" + Seats + ", plateNum=" + plateNum + '}';
+        return "carId=" + plateNum + ", CarType=" + CarType + ", Manufacturer=" + Manufacturer + ", Model=" + Model + ", Seats=" + Seats ;
     }
     
     
