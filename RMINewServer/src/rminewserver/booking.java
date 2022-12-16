@@ -4,12 +4,16 @@
  */
 package rminewserver;
 
+
 /**
  *
  * @author LENOVO
  */
 public interface booking {
-    public void book(client c);
-    public String viewSummary();
+    
+    public boolean book(client c);
+    public String viewSummary(booking b);
+    
+    
     
 }

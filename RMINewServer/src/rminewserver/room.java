@@ -14,8 +14,15 @@ public class room implements booking{
     private int floorNumber;
     private String roomView;
     private double price;
+    
+    maiadaDB db ;
 
     public room() {
+        this.roomNumber = 0;
+        this.roomType = "";
+        this.floorNumber = 0;
+        this.roomView = "";
+        this.price = 0.0;
     }
 
     public room(int roomNumber, String roomType, int floorNumber, String roomView, double price) {
@@ -67,15 +74,31 @@ public class room implements booking{
     }
 
     @Override
-    public void book(client c ) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean book(client c) {
+        // get current booking index/loc to proceed to payment
+        int bookingIndex = c.getBooking_History().size();
+       c.getBooking_History().add(this);
+       
+       // add it to the database
+       if(db.addBooking(c, this)){
+           // proceed to payment
+           //c.pay(bookingIndex);
+           return true;
+       }
+  
+       return false;
     }
 
     @Override
-    public void viewSummary() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String viewSummary(booking c) {
+        return c.toString();
     }
-    
+
+    @Override
+    public String toString() {
+        return "roomNumber=" + roomNumber  + ", floorNumber=" + floorNumber + ", roomType=" + roomType + ", roomView=" + roomView ;
+    }
+
 
     
 }
