@@ -19,7 +19,7 @@ public class cash implements payment_method{
     }
     
     public void pay(double amount){
-        JOptionPane.showMessageDialog(null,"You are paying bu cash");
+        JOptionPane.showMessageDialog(null,"You are paying by cash");
     }
     
     @Override
