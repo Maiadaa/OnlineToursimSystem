@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import rmi.booking;
 import rmi.client;
 
-public class car implements booking
+public class car extends UnicastRemoteObject implements booking
 {
     private int CarID;
     private String Model;
@@ -18,7 +20,7 @@ public class car implements booking
     
     private maiadaDB db;
 
-    public car() {
+    public car()throws RemoteException {
         this.CarID = 0;
         this.Model = "";
         this.RentalPrice = 0.0;
@@ -28,7 +30,7 @@ public class car implements booking
         this.plateNum = "";
     }
     
-    public car(int CarID, String Model, double RentalPrice, String Manufacturer, String CarType, int Seats, String plateNum) {
+    public car(int CarID, String Model, double RentalPrice, String Manufacturer, String CarType, int Seats, String plateNum) throws RemoteException{
         this.CarID = CarID;
         this.Model = Model;
         this.RentalPrice = RentalPrice;
@@ -95,23 +97,20 @@ public class car implements booking
     }
 
     @Override
-    public boolean book(client c) {
+    public boolean book(client c, String agency, String identifier) throws RemoteException {
+        car chosenCar = new car();
+        chosenCar = db.getCarByPlateNumber(agency, identifier);
+        System.out.println(chosenCar);
         
-        // get current booking index/loc to proceed to payment
-        int bookingIndex = c.getBooking_History().size();
-       c.getBooking_History().add(this);
-       
        // add it to the database
-       if(db.addBooking(c, this)){
-           // proceed to payment
-           //c.pay(bookingIndex);
+       if(db.addBooking(c, chosenCar)){
+           c.getBooking_History().add(chosenCar);
            return true;
        }
   
        return false;
     }
 
-    @Override
     public String viewSummary(booking c) {
         return c.toString();
     }

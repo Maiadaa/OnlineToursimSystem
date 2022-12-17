@@ -3,22 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.booking;
 import rmi.client;
+
 /**
  *
  * @author LENOVO
  */
 public class room extends UnicastRemoteObject implements booking {
+
     private int roomNumber;
     private String roomType;
     private int floorNumber;
     private String roomView;
     private double price;
-    
-    maiadaDB db ;
+
+    maiadaDB db;
 
     public room() throws RemoteException {
         this.roomNumber = 0;
@@ -77,31 +80,27 @@ public class room extends UnicastRemoteObject implements booking {
     }
 
     @Override
-    public boolean book(client c) throws RemoteException {
-        // get current booking index/loc to proceed to payment
-        int bookingIndex = c.getBooking_History().size();
-       c.getBooking_History().add(this);
-       
-       // add it to the database
-       if(db.addBooking(c, this)){
-           // proceed to payment
-           //c.pay(bookingIndex);
-           return true;
-       }
-  
-       return false;
+    public boolean book(client c, String identifier) throws RemoteException {
+        room chosenRoom = new room();
+        chosenRoom = db.getRoomById(identifier);
+
+        // add it to the database
+        if (db.addBooking(c, chosenRoom)) {
+            c.getBooking_History().add(chosenRoom);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
-    public String viewSummary(booking c){
+    public String viewSummary(booking c) {
         return c.toString();
     }
 
     @Override
     public String toString() {
-        return "roomNumber=" + roomNumber  + ", floorNumber=" + floorNumber + ", roomType=" + roomType + ", roomView=" + roomView ;
+        return "roomNumber=" + roomNumber + ", floorNumber=" + floorNumber + ", roomType=" + roomType + ", roomView=" + roomView;
     }
 
-
-    
 }

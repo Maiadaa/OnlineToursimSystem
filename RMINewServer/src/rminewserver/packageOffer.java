@@ -4,6 +4,7 @@
  */
 package rminewserver;
 
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import rmi.booking;
 import rmi.client;
@@ -12,7 +13,7 @@ import rmi.client;
  *
  * @author LENOVO
  */
-public class packageOffer implements booking{
+public class packageOffer extends UnicastRemoteObject implements booking{
     private int packageId;
     private double price;
     private ArrayList<booking> pkgComponents;
