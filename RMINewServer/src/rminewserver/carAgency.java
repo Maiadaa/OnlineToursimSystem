@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class carAgency {
     private int carAgencyID;
     private ArrayList<car> cars;
-    private carAgent agent;
     private String AgencyName;
     
     public carAgency() {
@@ -23,7 +22,6 @@ public class carAgency {
     public carAgency(int carAgencyID, ArrayList<car> cars, carAgent agent) {
         this.carAgencyID = carAgencyID;
         this.cars = cars;
-        this.agent = agent;
     }
     
     public int getCarAgencyID() {
@@ -42,24 +40,8 @@ public class carAgency {
         this.cars = cars;
     }
 
-    public carAgent getCarAgent() {
-        return agent;
-    }
-
-    public void setCarAgent(carAgent agent) {
-        this.agent = agent;
-    }
-
-    public void setAgent(carAgent agent) {
-        this.agent = agent;
-    }
-
     public void setAgencyName(String AgencyName) {
         this.AgencyName = AgencyName;
-    }
-
-    public carAgent getAgent() {
-        return agent;
     }
 
     public String getAgencyName() {

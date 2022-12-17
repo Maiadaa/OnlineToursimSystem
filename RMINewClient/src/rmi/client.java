@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import rmi.booking;
 
-public class client extends UnicastRemoteObject implements observer_interface, sysAirline, sysCarAgency, sysHotel{
+public class client extends UnicastRemoteObject implements observer_interface{
     private int ID;
     private String Fname;
     private String Lname;
@@ -17,6 +17,9 @@ public class client extends UnicastRemoteObject implements observer_interface, s
     private String address;
     private String username;
     private String password;
+    private sysCarAgency syscarAgency;
+    private sysHotel syshotel;
+    private sysAirline sysairline;
     
     private int client_card_number;
     private ArrayList <booking> booking_History = new ArrayList<booking>();
@@ -165,20 +168,17 @@ public class client extends UnicastRemoteObject implements observer_interface, s
     public void Update(String msg) {
         System.out.println(msg);
     }
-
-    @Override
-    public ArrayList<Object> getAirlines() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public ArrayList<Object> getAirlines() throws RemoteException {
+        return sysairline.getAirlines();
     }
 
-    @Override
-    public ArrayList<Object> getCarAgencies() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Object> getCarAgencies() throws RemoteException {
+        return syscarAgency.getCarAgencies();
     }
 
-    @Override
-    public ArrayList<Object> getHotels() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Object> getHotels() throws RemoteException {
+        return syshotel.getHotels();
     }
     
     

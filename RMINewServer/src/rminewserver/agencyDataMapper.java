@@ -13,57 +13,74 @@ public class agencyDataMapper extends UnicastRemoteObject implements agencyDataM
     }
 
     @Override
-    public boolean insertCarAgyncy() throws RemoteException{
+    public boolean insertCarAgyncy(String name) throws RemoteException{
         carAgency c = new carAgency();
+        c.setAgencyName(name);
         if(dBHagrass.insertCarAgency(c)){
             sys.addCarAgency(c);
             return true;
         }else return false;
     }
     
-//    @Override
-//    public boolean insertHotel(hotel Hotel){
-//        if(dBHagrass.insertHotel(Hotel)){
-//            sys.addHotel(Hotel);
-//            return true;
-//        }else return false;
-//    }
-//    
-//    @Override
-//    public boolean insertAirline(airline Airline){
-//        if(dBHagrass.insertAirline(Airline)){
-//            sys.addAirline(Airline);
-//            return true;
-//        }else return false;
-//    }
-//    
-//    @Override
-//    public boolean deleteCarAgency(carAgency CA){
-//        return dBHagrass.deleteCarAgency(CA);
-//    }
-//
-//    @Override
-//    public boolean deleteHotel(hotel Hotel){
-//        return dBHagrass.deleteHotel(Hotel);
-//    }
-//    
-//    @Override
-//    public boolean deleteAirline(airline Airline){
-//        return dBHagrass.deleteAirline(Airline);
-//    }
-//    
-//    @Override
-//    public void modifyCarAgency(carAgency CA, String name){
-//        dBHagrass.updateCarAgency(CA, name);
-//    }
-//    
-//    @Override
-//    public void modifyHotel(hotel H, String name){
-//        dBHagrass.updateHotel(H, name);
-//    }
-//    
-//    @Override
-//    public void modifyAirline(airline A, String name){
-//        dBHagrass.updateAurline(A, name);
-//    }
+    @Override
+    public boolean insertHotel(String name) throws RemoteException{
+        hotel h = new hotel();
+        h.setHotelName(name);
+        if(dBHagrass.insertHotel(h)){
+            sys.addHotel(h);
+            return true;
+        }else return false;
+    }
+    
+    @Override
+    public boolean insertAirline(String name) throws RemoteException{
+        airline a = new airline();
+        a.setAirlineName(name);
+        if(dBHagrass.insertAirline(a)){
+            sys.addAirline(a);
+            return true;
+        }else return false;
+    }
+    
+    @Override
+    public boolean deleteCarAgency(String name){
+        carAgency c = new carAgency();
+        c.setAgencyName(name);
+        return dBHagrass.deleteCarAgency(c);
+    }
+
+    @Override
+    public boolean deleteHotel(String name){
+        hotel h = new hotel();
+        h.setHotelName(name);
+        return dBHagrass.deleteHotel(h);
+    }
+    
+    @Override
+    public boolean deleteAirline(String name){
+        airline a = new airline();
+        a.setAirlineName(name);
+        return dBHagrass.deleteAirline(a);
+    }
+    
+    @Override
+    public void modifyCarAgency(String oldname, String newname){
+        carAgency c = new carAgency();
+        c.setAgencyName(newname);
+        dBHagrass.updateCarAgency(c, oldname);
+    }
+    
+    @Override
+    public void modifyHotel(String oldname, String newname){
+        hotel h = new hotel();
+        h.setHotelName(newname);
+        dBHagrass.updateHotel(h, oldname);
+    }
+    
+    @Override
+    public void modifyAirline(String oldname, String newname){
+        airline a = new airline();
+        a.setAirlineName(newname);
+        dBHagrass.updateAurline(a, oldname);
+    }
 }

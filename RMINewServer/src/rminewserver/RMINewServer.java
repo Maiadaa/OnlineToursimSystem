@@ -13,6 +13,7 @@ import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import rmi.client;
 
 
 /**
@@ -25,7 +26,9 @@ public class RMINewServer {
 
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
         
-//        
+        client c = new client();
+        Registry r = LocateRegistry.createRegistry(1099);
+        r.bind("client", c);
 
     }
          

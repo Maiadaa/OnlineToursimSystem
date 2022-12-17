@@ -1,20 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package rminewserver;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author LENOVO
- */
 public class airline{
     private int airlineID;
     private String airlineName;
     private ArrayList<flight> flights;
-    private flightAgent agent;
 
     public airline() {
     }
@@ -23,7 +14,6 @@ public class airline{
         this.airlineID = airlineID;
         this.airlineName = airlineName;
         this.flights = flights;
-        this.agent = agent;
     }
 
     public int getAirlineID() {
@@ -49,15 +39,4 @@ public class airline{
     public void setFlights(ArrayList<flight> flights) {
         this.flights = flights;
     }
-
-    public flightAgent getAgent() {
-        return agent;
-    }
-
-    public void setAgent(flightAgent agent) {
-        this.agent = agent;
-    }
-    
-    
-    
 }
