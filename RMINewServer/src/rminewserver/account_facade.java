@@ -24,7 +24,13 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         dto.getUsername();
         return dto;
     }
-
+    
+    @Override
+    public void getPersonLogin(String Email, String Password){
+        c.getEmail();
+        c.getPassword();
+        db.getPerson(c);
+    }
     //tested
     @Override
     public void setPerson(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {

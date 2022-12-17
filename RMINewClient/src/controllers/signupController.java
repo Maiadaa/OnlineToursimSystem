@@ -53,8 +53,14 @@ public class signupController {
                 String Address = sf.getjTextField8().getText();
                 String Username = sf.getjTextField9().getText();
                 String Password = sf.getjTextField10().getText();
-                
-                g.setPerson(0, Fname, Lname, "Female",  Age, Email, Phone, Address, Username, Password);
+                String Gender = null;
+                if (sf.getjRadioButton1().isSelected()== true){
+                    Gender = "Male";
+                }
+                else if (sf.getjRadioButton2().isSelected()== true){
+                    Gender = "Female";
+                }
+                g.setPerson(0, Fname, Lname, Gender,  Age, Email, Phone, Address, Username, Password);
             
             } catch (RemoteException ex) {
                 Logger.getLogger(signupController.class.getName()).log(Level.SEVERE, null, ex);

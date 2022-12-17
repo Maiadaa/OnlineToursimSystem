@@ -8,6 +8,7 @@ package rminewclient;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -51,7 +52,8 @@ public class signupForm extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,7 +91,9 @@ public class signupForm extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        jRadioButton1.setText("Male");
+
+        jRadioButton2.setText("Female");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,13 +121,16 @@ public class signupForm extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField7)
+                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                             .addComponent(jTextField6)
                             .addComponent(jTextField5)
                             .addComponent(jTextField3)
                             .addComponent(jTextField2)
-                            .addComponent(jComboBox1, 0, 312, Short.MAX_VALUE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton1)
+                                .addGap(67, 67, 67)
+                                .addComponent(jRadioButton2)))))
                 .addGap(40, 40, 40))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -150,7 +157,8 @@ public class signupForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -175,7 +183,7 @@ public class signupForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(30, 30, 30))
         );
@@ -199,12 +207,20 @@ public class signupForm extends javax.swing.JFrame {
         this.jButton1 = jButton1;
     }
 
-    public JComboBox<String> getjComboBox1() {
-        return jComboBox1;
+    public JRadioButton getjRadioButton1() {
+        return jRadioButton1;
     }
 
-    public void setjComboBox1(JComboBox<String> jComboBox1) {
-        this.jComboBox1 = jComboBox1;
+    public void setjRadioButton1(JRadioButton jRadioButton1) {
+        this.jRadioButton1 = jRadioButton1;
+    }
+
+    public JRadioButton getjRadioButton2() {
+        return jRadioButton2;
+    }
+
+    public void setjRadioButton2(JRadioButton jRadioButton2) {
+        this.jRadioButton2 = jRadioButton2;
     }
 
     public JTextField getjTextField10() {
@@ -274,7 +290,6 @@ public class signupForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -285,6 +300,8 @@ public class signupForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

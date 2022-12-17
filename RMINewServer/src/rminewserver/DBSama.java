@@ -49,7 +49,13 @@ public class DBSama {
         DTO.insertOne(Document.parse(gson.toJson(d)));
         System.out.println("person is inserted.");
     }
-
+    
+    public person getPerson (person p){
+        person.find(Filters.eq("email", p.getEmail()));
+        person.find(Filters.eq("password", p.getPassword()));
+        System.out.println("Successful " + p.getFname());
+        return p;
+    }
     public Document getPersonDTO (int ID){
 
         Document ids = (Document) DTO.find(Filters.all("ID", ID));
