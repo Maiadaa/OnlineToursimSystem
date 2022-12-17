@@ -72,13 +72,13 @@ public class SeifDB {
            
     }
    
-   public boolean updateBooking(client c){
-       if(c.getPayement() instanceof cash){
-        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",c.getPayement()));
+   public boolean updateBooking(client c, String method, String cc){
+       if(method == "cash"){
+        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",method));
        }
-       else if (c.getPayement() instanceof creditcard){
-        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",c.getPayement()));
-        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("CreditCard",c.getClient_card_number()));
+       else{
+        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",method));
+        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("CreditCard",cc));
        }
        return true;
    }

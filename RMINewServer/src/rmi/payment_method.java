@@ -16,7 +16,7 @@ public interface payment_method extends Remote{
      * 
      * @param booking
      */
-    public void pay(double amount);
+    public void pay();
     
-    boolean Pay(booking booking) throws RemoteException;
+//    boolean Pay(booking booking) throws RemoteException;
 }
