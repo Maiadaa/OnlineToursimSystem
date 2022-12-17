@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import org.bson.Document;
 import rmi.booking;
 import rmi.client;
+import static rminewserver.maiadaDB.database;
+import static rminewserver.maiadaDB.mongoClient;
 
 
 /**
@@ -31,10 +33,10 @@ public class RMINewServer {
         mongoLogger.setLevel(Level.SEVERE);
         
         //Calling the class for the database 
-        DB db = new DB();
+        maiadaDB db = new maiadaDB();
         
         // Here we create our remote object
-        booking g = new car();
+        booking g = (booking) new carmanager();
         
         // An RMI Registry initialized on port 1099
         Registry r = LocateRegistry.createRegistry(1099);
@@ -45,8 +47,6 @@ public class RMINewServer {
         // Outputs that the server is ready
         System.out.println("The server is ready");
         
-        
-         db.close();
 
     }
          

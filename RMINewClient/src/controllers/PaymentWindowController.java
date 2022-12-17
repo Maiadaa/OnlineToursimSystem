@@ -11,8 +11,13 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import rmi.client;
+import rmi.payment_method;
 import rminewclient.PaymentWindow;
 
 public class PaymentWindowController {
@@ -37,21 +42,36 @@ public class PaymentWindowController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try{
-                client c = (client) r.lookup("purchase");
-                if(gui.getCardRaido().isSelected()){
-                    cash ca = new cash();
-                    gui.getCardField().setEditable(false);
-                    c.setPayement(cash);
-                }
-                else if (gui.getCardRaido().isSelected()){
-                    creditcard cc = new creditcard();
-                    gui.getCardField().setEditable(true);
-                    int cardDetails =Integer.parseInt(gui.getCardField().getText());
-                    c.setClient_card_number(cardDetails);
-                    c.setPayement(cc);
-                }
-            }catch(Remote){
+                payment_method p = (payment_method) r.lookup("visa");
+                payment_method pp = (payment_method) r.lookup("cash");
                 
+                String x = gui.getMethodField().getText();
+                
+                if (x.equals("visa")){
+                    p.pay();   
+                }
+                else if(x.equals("cash")){
+                    pp.pay();
+                }
+
+                
+
+//                if(gui.getCardRaido().isSelected()){
+//                    cash ca = new cash();
+//                    gui.getCardField().setEditable(false);
+//                    c.setPayement(cash);
+//                }
+//                else if (gui.getCardRaido().isSelected()){
+//                    creditcard cc = new creditcard();
+//                    gui.getCardField().setEditable(true);
+//                    int cardDetails =Integer.parseInt(gui.getCardField().getText());
+//                    c.setClient_card_number(cardDetails);
+//                    c.setPayement(cc);
+//                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NotBoundException ex) {
+                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
        

@@ -17,16 +17,16 @@ public class creditcard implements payment_method{
     public creditcard() {
     }
     
-    public void pay(double amout){
-        JOptionPane.showMessageDialog(null, "You paied using credit card");
-    }
+   
     /**
      *
      * @param book
      * @return
      */
-    @Override        
-    public boolean Pay(booking book){
-        return true;
+    
+    @Override
+    public void pay(){
+        JOptionPane.showMessageDialog(null,"You are paying by visa");
     }
+    
 }

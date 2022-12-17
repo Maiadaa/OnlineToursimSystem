@@ -14,6 +14,6 @@ import java.rmi.RemoteException;
  */
 public interface booking extends Remote{
     
-    public boolean book(client c, String agency, String identifier) throws RemoteException;
+    public boolean book(String c, String agency, String identifier) throws RemoteException;
     
 }

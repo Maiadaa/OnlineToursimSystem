@@ -35,7 +35,7 @@ public class RMINewClient {
         
         // we create a new object from the controller and we pass it the
         // gui object along with the registry object
-        client c = new client();
+        String c = "m1";
         String chosenAgency = "";
         bookingWindowController gui_controller = new bookingWindowController(gui, r, c, chosenAgency);
         

@@ -23,18 +23,22 @@ import rminewclient.bookCarWindow;
  */
 public class bookingWindowController {
     // We have reference to both the GUI and the rmi registry
-    bookCarWindow gui;
-    Registry r;
-    client c;
+    static bookCarWindow gui;
+    static Registry r;
+    static String c;
     JTable table;
+    static String chosenAgency;
     
     
     // The constructor takes the gui and the rmi registry as paramaters
-    public bookingWindowController(bookCarWindow gui, Registry r, client c, String chosenAgency)
+    public bookingWindowController(bookCarWindow gui, Registry r, String c, String chosenAgency)
     {
         this.gui = gui;
         this.r = r;
         this.c = c;
+        this.chosenAgency = chosenAgency;
+        
+        System.out.println(this.c + " " + this.chosenAgency);
         
         
         this.table = this.gui.getjTable1();
@@ -50,19 +54,12 @@ public class bookingWindowController {
         this.gui.setjTable1(table);
         
         // This registers the button with our action listener below (the inner class)
-        gui.getBookBtn().addActionListener(new bookCarBtnAction(this.c, chosenAgency));
+        gui.getBookBtn().addActionListener(new bookCarBtnAction());
     }
     
     
     // This class is responsible for handling the button click
     class bookCarBtnAction implements ActionListener {
-        private client c;
-        private String chosenAgency;
-        
-        public bookCarBtnAction(client c, String agency) {
-            this.c = c;
-            this.chosenAgency = agency;
-        }
         
         // Whatever written inside this function will execute when the button is clicked
         @Override
@@ -75,8 +72,12 @@ public class bookingWindowController {
                 String  carPlateNum = gui.getjTable1().getModel().getValueAt(row, 0).toString();
                 
                 System.out.println(carPlateNum);
+                System.out.println(c + chosenAgency);
                 
-                g.book(this.c, this.chosenAgency, carPlateNum);
+                if(g.book(c, chosenAgency, carPlateNum)){
+                    //navigate to payment window 
+                    System.out.println("done");
+                }
                
             } catch (RemoteException ex) {
                 Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);

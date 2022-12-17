@@ -80,21 +80,21 @@ public class room extends UnicastRemoteObject implements booking {
     }
 
     @Override
-    public boolean book(client c, String identifier) throws RemoteException {
-        room chosenRoom = new room();
-        chosenRoom = db.getRoomById(identifier);
-
-        // add it to the database
-        if (db.addBooking(c, chosenRoom)) {
-            c.getBooking_History().add(chosenRoom);
-            return true;
-        }
-
+    public boolean book(String uname, String agency, String identifier) throws RemoteException {
+//        room chosenRoom = new room();
+//        chosenRoom = db.getRoomById(identifier);
+//
+//        // add it to the database
+//        if (db.addBooking(c, chosenRoom)) {
+//            c.getBooking_History().add(chosenRoom);
+//            return true;
+//        }
+//
         return false;
     }
 
-    @Override
-    public String viewSummary(booking c) {
+
+    public String viewSummary(room c) {
         return c.toString();
     }
 

@@ -28,7 +28,9 @@ public class maiadaDB {
 
     MongoCollection<Document> carAgencyCollection;
     MongoCollection<Document> bookingCollection;
+    
     MongoCollection<Document> ticketCollection;
+    MongoCollection<Document> clientCollection;
 
     public static Gson gson = new Gson();
 
@@ -38,7 +40,7 @@ public class maiadaDB {
         mongoLogger.setLevel(Level.SEVERE);
 
         // Initialize
-        this.mongoClient = new MongoClient();
+        this.mongoClient = new MongoClient("localhost", 27017);
 
         // Database name
         this.database = mongoClient.getDatabase("OnlineTourismSystem");
@@ -46,6 +48,7 @@ public class maiadaDB {
         // Collection 
         this.bookingCollection = database.getCollection("booking");
         this.carAgencyCollection = database.getCollection("carAgency");
+        this.clientCollection = database.getCollection("client");
     }
 
     public car getCarByPlateNumber(String agencyName, String plateNum) throws RemoteException {

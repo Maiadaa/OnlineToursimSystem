@@ -18,12 +18,9 @@ public class cash implements payment_method{
         
     }
     
-    public void pay(double amount){
+    @Override
+    public void pay(){
         JOptionPane.showMessageDialog(null,"You are paying by cash");
     }
-    
-    @Override
-    public boolean Pay(booking book){
-        return true;
-    }
+   
 }
