@@ -71,21 +71,20 @@ public class ticket extends UnicastRemoteObject implements booking {
     }
 
     @Override
-    public boolean book(client c, String identifier) throws RemoteException {
-        ticket chosenTicket = new ticket();
-        chosenTicket = db.getTicketById(identifier);
-
-        // add it to the database
-        if (db.addBooking(c, chosenTicket)) {
-            c.getBooking_History().add(chosenTicket);
-            return true;
-        }
+    public boolean book(String uname, String agency, String identifier) throws RemoteException {
+//        ticket chosenTicket = new ticket();
+//        chosenTicket = db.getTicketById(identifier);
+//
+//        // add it to the database
+//        if (db.addBooking(c, chosenTicket)) {
+//            c.getBooking_History().add(chosenTicket);
+//            return true;
+//        }
 
         return false;
     }
 
-    @Override
-    public String viewSummary(booking c) {
+    public String viewSummary(ticket c) {
         return c.toString();
     }
 
