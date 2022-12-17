@@ -1,13 +1,12 @@
 package rmi;
 
-import java.io.Serializable;
 import rminewclient.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import rmi.booking;
 
-public class client extends UnicastRemoteObject implements observer_interface, Serializable {
+public class client extends UnicastRemoteObject implements observer_interface{
     private int ID;
     private String Fname;
     private String Lname;
