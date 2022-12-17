@@ -6,9 +6,12 @@
 package rminewclient;
 
 import controllers.MainWindowController;
+import controllers.bookingWindowController;
+import controllers.viewCarAgenciesController;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import rmi.client;
 
 /**
  *
@@ -20,7 +23,10 @@ public class RMINewClient {
     public static void main(String[] args) throws RemoteException {
 
         // We create an object from the GUI window
-        MainWindow gui = new MainWindow();
+        // We connect to the RMI Registry
+
+        
+        bookCarWindow gui = new bookCarWindow();
         gui.setLocationRelativeTo(null); // This makes the window appears centered
         gui.setVisible(true); // This shows the gui
         
@@ -29,7 +35,10 @@ public class RMINewClient {
         
         // we create a new object from the controller and we pass it the
         // gui object along with the registry object
-        MainWindowController gui_controller = new MainWindowController(gui, r);
+        client c = new client();
+        String chosenAgency = "";
+        bookingWindowController gui_controller = new bookingWindowController(gui, r, c, chosenAgency);
+        
         
     }
     

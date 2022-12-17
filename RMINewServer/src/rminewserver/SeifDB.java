@@ -10,6 +10,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,6 +19,8 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 import static rminewserver.DB.database;
 import static rminewserver.DB.mongoClient;
+import rmi.booking;
+import rmi.client;
 
 /**
  *
@@ -68,31 +71,16 @@ public class SeifDB {
         ComplaintsCollection = database.getCollection("complaint");
            
     }
-   ArrayList <complaint> complaints = new ArrayList <complaint>(); 
    
-    public ArrayList<complaint> getAllComplaints(){
-        String json;
-        complaint Complaint = new complaint();
-        MongoCollection<Document> collectionttemp = database.getCollection("complaint");
-        //collectionttemp.insertOne(Document.parse(gson.toJson(Complaint)));
-        MongoCursor cursor = collectionttemp.find().iterator();
-        while (cursor.hasNext()){
-            json = gson.toJson(cursor.next());
-            Complaint = gson.fromJson(json, complaint.class);
-            complaints.add(Complaint);
-            System.out.println(Complaint.getComplaintID() + Complaint.getComplaintState() + Complaint.getComplaintType());
-            }
-        return complaints;
-    }
-   
-//    public void viewComplaints(){
-//       for (int i = 0; i <= complaints.size(); i++){
-//           complaints.get(i);
-//       }
-//   }
-   
-   public void insertComplaint(complaint c){
-       ComplaintsCollection.insertOne(Document.parse(gson.toJson(c)));
-        System.out.println("Complaint inserted successfuly.");
+   public boolean updateBooking(client c){
+       if(c.getPayement() instanceof cash){
+        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",c.getPayement()));
+       }
+       else if (c.getPayement() instanceof creditcard){
+        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",c.getPayement()));
+        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("CreditCard",c.getClient_card_number()));
+       }
+       return true;
    }
+   
 }

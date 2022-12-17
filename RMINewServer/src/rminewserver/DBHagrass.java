@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package rminewserver;
 
 import com.google.gson.Gson;
@@ -21,10 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
 import rmi.client;
-/**
- *
- * @author meriam
- */
+
 public class DBHagrass {
     public static MongoClient mongoClient;
     
@@ -276,21 +269,16 @@ public Object clientLogin(String type,String password, String username){
     
     public void updateCarAgency(carAgency CA, String name){
         collection1 = database.getCollection("carAgency");
-        collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("carAgent", CA.getCarAgent()));
-        collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("cars", CA.getCars()));
         collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("AgencyName", CA.getAgencyName()));
     }
     
     public void updateHotel(hotel H, String name){
         collection1 = database.getCollection("hotel");
-        collection1.updateOne(Filters.eq("HotelName", name), Updates.set("Rooms", H.getRooms()));
         collection1.updateOne(Filters.eq("HotelName", name), Updates.set("HotelName", H.getHotelName()));
     }  
 
     public void updateAurline(airline A, String name){
         collection1 = database.getCollection("hotel");
-        collection1.updateOne(Filters.eq("airlineName", name), Updates.set("flights", A.getFlights()));
-        collection1.updateOne(Filters.eq("airlineName", name), Updates.set("agent", A.getAgent()));
         collection1.updateOne(Filters.eq("airlineName", name), Updates.set("airlineName", A.getAirlineName()));
     }  
 
