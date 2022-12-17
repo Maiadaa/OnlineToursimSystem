@@ -4,6 +4,7 @@
  */
 package rminewserver;
 
+import javax.swing.JOptionPane;
 import rmi.payment_method;
 import rmi.booking;
 
@@ -12,9 +13,13 @@ import rmi.booking;
  * @author Lenovo
  */
 public class creditcard implements payment_method{
+    
     public creditcard() {
     }
     
+    public void pay(double amout){
+        JOptionPane.showMessageDialog(null, "You paied using credit card");
+    }
     /**
      *
      * @param book
