@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  *
  * @author LENOVO
  */
-public interface booking extends Remote {
+public interface booking extends Remote{
     
     public boolean book(String c, String agency, String identifier) throws RemoteException;
     

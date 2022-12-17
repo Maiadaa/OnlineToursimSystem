@@ -34,7 +34,7 @@ public class maiadaDB {
 
     public static Gson gson = new Gson();
 
-    public void DB() {
+    public maiadaDB() {
         // Disables Mongo Logs
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);

@@ -11,7 +11,7 @@ import rmi.booking;
 import rmi.client;
 import static rminewserver.maiadaDB.gson;
 
-public class car extends UnicastRemoteObject 
+public class car extends UnicastRemoteObject implements booking
 {
     private int CarID;
     private String Model;
@@ -110,6 +110,34 @@ public class car extends UnicastRemoteObject
         return "carId=" + plateNum + ", CarType=" + CarType + ", Manufacturer=" + Manufacturer + ", Model=" + Model + ", Seats=" + Seats ;
     }
     
+        
+    @Override
+    public boolean book(String uname, String agency, String identifier) throws RemoteException {
+        System.out.println(uname);
+        Document clientDoc = db.clientCollection.find(Filters.eq("username", uname)).first();
+        client c = db.gson.fromJson(clientDoc.toJson(), client.class);
+        System.out.println(c.toString());
+        System.out.println("dummy");
+
+        Document carDoc = db.carAgencyCollection.find(Filters.eq("AgencyName", agency)).first();
+        carAgency car = db.gson.fromJson(carDoc.toJson(), carAgency.class);
+        System.out.println(car);
+        
+        car chosenCar = new car();
+        for(car carr : car.getCars()){
+            if(carr.getPlateNum() == identifier){
+                chosenCar = carr;
+            }   
+        }
+        
+        // add it to the database
+        if (db.addBooking(c, (booking) chosenCar)) {
+            c.getBooking_History().add((booking) chosenCar);
+            return true;
+        }
+
+        return false;
+    }
     
     
     

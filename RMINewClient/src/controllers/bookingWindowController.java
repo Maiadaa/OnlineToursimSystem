@@ -71,10 +71,7 @@ public class bookingWindowController {
                 int row = gui.getjTable1().getSelectedRow();
                 String  carPlateNum = gui.getjTable1().getModel().getValueAt(row, 0).toString();
                 
-                System.out.println(carPlateNum);
-                System.out.println(c + chosenAgency);
-                
-                if(g.book(c, chosenAgency, carPlateNum)){
+                if(g.book("hr", chosenAgency, carPlateNum)){
                     //navigate to payment window 
                     System.out.println("done");
                 }
