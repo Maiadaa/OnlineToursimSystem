@@ -89,7 +89,7 @@ public class maiadaDB {
 //        return r;
 //    }
 
-    public boolean addBooking(client c, booking b) {
+    public boolean addBooking(client c, booking b) throws RemoteException {
         if (b instanceof car) {
             car cc = (car) b;
             Document newBooking = new Document("client", c.getEmail()).append("bookingType", "car").append("totalPrice", (cc.getRentalPrice() + "")).append("description", cc.viewSummary(cc)).append("status", "pending");
@@ -97,17 +97,17 @@ public class maiadaDB {
             return true;
         } else if (b instanceof ticket) {
             ticket tt = (ticket) b;
-            Document newBooking = new Document("client", c.getEmail()).append("bookingType", "ticket").append("totalPrice", (tt.getPrice() + "")).append("description", tt.viewSummary(tt)).append("status", "pending");
+            Document newBooking = new Document("client",  c.getEmail()).append("bookingType", "ticket").append("totalPrice", (tt.getPrice() + "")).append("description", tt.viewSummary(tt)).append("status", "pending");
             bookingCollection.insertOne(newBooking);
             return true;
         } else if (b instanceof room) {
             room rr = (room) b;
-            Document newBooking = new Document("client", c.getEmail()).append("bookingType", "room").append("totalPrice", (rr.getPrice() + "")).append("description", rr.viewSummary(rr)).append("status", "pending");
+            Document newBooking = new Document("client",  c.getEmail()).append("bookingType", "room").append("totalPrice", (rr.getPrice() + "")).append("description", rr.viewSummary(rr)).append("status", "pending");
             bookingCollection.insertOne(newBooking);
             return true;
         } else if (b instanceof packageOffer) {
             packageOffer pp = (packageOffer) b;
-            Document newBooking = new Document("client", c.getEmail()).append("bookingType", "package").append("totalPrice", (pp.getPrice() + "")).append("description", pp.viewSummary(pp)).append("status", "pending");
+            Document newBooking = new Document("client",  c.getEmail()).append("bookingType", "package").append("totalPrice", (pp.getPrice() + "")).append("description", pp.viewSummary(pp)).append("status", "pending");
             bookingCollection.insertOne(newBooking);
             return true;
         }
