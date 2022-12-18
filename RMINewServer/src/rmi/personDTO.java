@@ -6,11 +6,13 @@ package rmi;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import org.bson.Document;
 /**
  *
  * @author Lenovo
  */
 public class personDTO extends UnicastRemoteObject implements Serializable, personDTOFacade{
+
     private int ID;
 
     public int getID() {
@@ -20,6 +22,7 @@ public class personDTO extends UnicastRemoteObject implements Serializable, pers
     public void setID(int ID) {
         this.ID = ID;
     }
+    private String email;
     private String Phone;
     private String address;
     private String username;
@@ -35,6 +38,14 @@ public class personDTO extends UnicastRemoteObject implements Serializable, pers
         
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     @Override
     public String getPhone() throws RemoteException{
         return Phone;

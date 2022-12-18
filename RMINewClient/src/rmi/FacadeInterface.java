@@ -12,9 +12,12 @@ import java.rmi.RemoteException;
  */
 public interface FacadeInterface extends Remote{
     public void setPerson (int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException;
-    public personDTO editPerson(String address, String Phone, String username, String password) throws RemoteException;
     public personDTO getPersonDTO(int ID) throws RemoteException;
     public personDTO setPersonDTO(String phone, String address, String username, String password) throws RemoteException;
     public person getPersonLogin(String Email, String Password) throws RemoteException;
-
+    public void editPersonDTO (String email, String address, String Phone, String username, String password) throws RemoteException;
+    public void editaddressDTO (String email, String address) throws RemoteException;
+    public void editPhoneDTO (String email, String Phone) throws RemoteException;
+    public void editUsername (String email, String username) throws RemoteException;
+    public void editPassword (String email, String password) throws RemoteException;  
 }

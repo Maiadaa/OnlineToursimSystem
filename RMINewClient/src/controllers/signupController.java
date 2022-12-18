@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import rmi.FacadeInterface;
 import rmi.person;
+import rminewclient.Login;
 import rminewclient.signupForm;
 
 /**
@@ -61,7 +62,15 @@ public class signupController {
                     Gender = "Female";
                 }
                 g.setPerson(0, Fname, Lname, Gender,  Age, Email, Phone, Address, Username, Password);
-            
+//                sf.setVisible(false);
+//                Login gui = new Login();
+//                gui.setVisible(true);
+
+                    Login nextGui = new Login();
+                    loginController log = new loginController(nextGui, r, p);
+                    
+                    nextGui.setVisible(true);
+                    sf.dispose();
             } catch (RemoteException ex) {
                 Logger.getLogger(signupController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {

@@ -9,9 +9,12 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import rmi.person;
 import rmi.personDTO;
 
@@ -24,6 +27,11 @@ public class DBSama {
     public static MongoDatabase database;
     MongoCollection<Document> DTO;
     MongoCollection<Document> person;
+    MongoCollection<Document> carAgencyCollection;
+    MongoCollection<Document> bookingCollection;
+    MongoCollection<Document> HotelsCollection;
+    MongoCollection<Document> AirlinesCollection;
+    MongoCollection<Document> clientCollection;
     public static Gson gson = new Gson();
 
    public DBSama() {
@@ -37,6 +45,7 @@ public class DBSama {
         // Collection 
         DTO = database.getCollection("DTO");
         person = database.getCollection("Person");
+        carAgencyCollection = database.getCollection("carAgency");
 
     }
 
@@ -70,7 +79,26 @@ public class DBSama {
             System.out.println("Nothing found");
         return null;
     }
+    
+    public void editaddressDTO (String email, String address) throws RemoteException{
+       person.updateOne(person.find (Filters.eq("email", email)).first(), Updates.set("address", address));
+    }
+    
+    public void editPhoneDTO (String email, String Phone) throws RemoteException{
+       person.updateOne(person.find (Filters.eq("email", email)).first(), Updates.set("phone", Phone));
 
+    }
+    
+    public void editUsername (String email, String username){
+        person.updateOne(person.find (Filters.eq("email", email)).first(), Updates.set("username", username));
+
+    }
+    
+    public void editPass (String email, String password){        
+        person.updateOne(person.find (Filters.eq("email", email)).first(), Updates.set("password", password));
+
+    }
+    
     public void close() {
         mongoClient.close();
     }

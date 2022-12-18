@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import rmi.FacadeInterface;
 import rmi.person;
+import rminewclient.EditAccount;
 import rminewclient.Login;
 /**
  *
@@ -35,7 +36,7 @@ public class loginController {
         @Override
          public void actionPerformed(ActionEvent ae) {
             try{
-                
+                l.setVisible(true);
                 FacadeInterface g = (FacadeInterface) r.lookup("Person");
                 
                 String Email = l.getjTextField1().getText();
@@ -46,6 +47,12 @@ public class loginController {
                 System.out.println("Success");
                 
                 JOptionPane.showMessageDialog(null, "Logged In" );
+                
+                EditAccount nextGui = new EditAccount();
+                EditController pay = new EditController(nextGui, r, p);
+                    
+                nextGui.setVisible(true);
+                l.dispose();
             }catch (RemoteException ex) {
                 Logger.getLogger(loginController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {

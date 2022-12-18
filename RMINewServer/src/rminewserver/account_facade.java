@@ -26,6 +26,7 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         return dto;
     }
 
+    //@Override
     @Override
     public person getPersonLogin(String Email, String Password) throws RemoteException {
         this.c.setEmail(Email);
@@ -56,17 +57,25 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
     }
 
     @Override
-    public personDTO editPersonDTO (int ID, String address, String Phone, String username, String password) throws RemoteException {
-        if (ID == c.getID()){
-        dto.setAddress(address);
-        dto.setPhone(Phone);
-        dto.setUsername(username);
-        dto.setPassword(password);
-        return dto;
-        }
-        return null;
+    public void editaddressDTO (String email, String address) throws RemoteException {
+        //dto.setAddress(address);
+        db.editaddressDTO(email, address);
     }
-
+    
+    @Override
+    public void editPhoneDTO (String email, String Phone) throws RemoteException {
+        db.editPhoneDTO(email, Phone);
+    }
+    
+    @Override
+    public void editUsername (String email, String username) throws RemoteException{
+        db.editUsername(email, username);
+    }
+    
+    @Override
+    public void editPassword (String email, String password) throws RemoteException{
+        db.editPass(email, password);
+    }
     //tested
     @Override
     public personDTO setPersonDTO(int ID, String Phone, String address, String username, String password) throws RemoteException {
