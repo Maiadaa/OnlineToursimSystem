@@ -129,15 +129,17 @@ public class car extends UnicastRemoteObject implements booking
     public String toString() {
         return plateNum + " " + CarType + " " + Manufacturer + " " + Model + " " + Seats ;
     }
+    public String specialToString(){
+        return plateNum + " " + CarType + " " + Manufacturer + " " + Model + " " + Seats ;
+    }
     
         
     @Override
     public boolean book(String uname, String agency, String identifier) throws RemoteException {
         System.out.println(uname);
-        Document clientDoc = db.clientCollection.find(Filters.eq("username", uname)).first();
+        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
         client c = db.gson.fromJson(clientDoc.toJson(), client.class);
         System.out.println(c.toString());
-        System.out.println("dummy");
 
         Document carDoc = db.carAgencyCollection.find(Filters.eq("AgencyName", agency)).first();
         carAgency car = db.gson.fromJson(carDoc.toJson(), carAgency.class);
@@ -151,8 +153,8 @@ public class car extends UnicastRemoteObject implements booking
         }
         
         // add it to the database
-        if (db.addBooking(c, (booking) chosenCar)) {
-            c.getBooking_History().add((booking) chosenCar);
+        if (db.addBooking(c,chosenCar)) {
+            c.getBooking_History().add(chosenCar);
             return true;
         }
 

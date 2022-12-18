@@ -75,46 +75,67 @@ public class packageOffer extends UnicastRemoteObject implements booking{
     }
 
     @Override
-    public boolean book(String uname, String agency, String identifier) {
+    public boolean book(String uname, String agency, String identifier) throws RemoteException{
         
-//        String[] agencies = agency.split(" ");
-//        String ticketAgency = agencies[0];
-//        String roomAgency = agencies[1];
-//        String carAgency = agencies[2];
-//        
-//        String[] identifiers = agency.split(" ");
-//        String ticketId = identifiers[0];
-//        String roomNum = identifiers[1];
-//        String plateNum = identifiers[2];
-//        
-//        Document carDoc = db.ticketCollection.find(Filters.eq("_id", ticketAgency)).first(); 
-//        carDoc = db.carAgencyCollection.find(Filters.eq("plateNum", identifier)).first();
-//        car chosenCar =  db.gson.fromJson(carDoc.toJson(), car.class);
-//        
-//        Document carDoc = db.carAgencyCollection.find(Filters.eq("AgencyName", agency)).first(); 
-//        carDoc = db.carAgencyCollection.find(Filters.eq("plateNum", identifier)).first();
-//        car chosenCar =  db.gson.fromJson(carDoc.toJson(), car.class);
-//        
-//        Document carDoc = db.carAgencyCollection.find(Filters.eq("AgencyName", carAgency)).first(); 
-//        carDoc = db.carAgencyCollection.find(Filters.eq("plateNum", plateNum)).first();
-//        car chosenCar =  db.gson.fromJson(carDoc.toJson(), car.class);
-//        
-//        
-//        
-//        
-//        
-//        // get current booking index/loc to proceed to payment
-//        int bookingIndex = c.getBooking_History().size();
-//       c.getBooking_History().add(this);
-//       
-//       // add it to the database
-//       if(db.addBooking(c, this)){
-//           // proceed to payment
-//           //c.pay(bookingIndex);
-//           return true;
-//       }
+        String[] agencies = agency.split(" ");
+        String ticketAgency = agencies[0];
+        String roomAgency = agencies[1];
+        String carAgency = agencies[2];
+        
+        String[] identifiers = agency.split(" ");
+        String ticketId = identifiers[0];
+        String roomNum = identifiers[1];
+        String plateNum = identifiers[2];
+        
+        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
+        client c = db.gson.fromJson(clientDoc.toJson(), client.class);
+        System.out.println(c.toString());
+
+
+        Document carDoc = db.carAgencyCollection.find(Filters.eq("AgencyName", carAgency)).first();
+        carAgency car = db.gson.fromJson(carDoc.toJson(), carAgency.class);
+        System.out.println(car);
+        car chosenCar = new car();
+        for(car carr : car.getCars()){
+            if(carr.getPlateNum() == identifier){
+                chosenCar = carr;
+            }   
+        }
+        
+        Document airlineDoc = db.AirlinesCollection.find(Filters.eq("AgencyName", ticketAgency)).first();
+        airline air = db.gson.fromJson(airlineDoc.toJson(), airline.class);
+        System.out.println(air);
+        ticket t = new ticket();
+        for(flight fl : air.getFlights()){
+            for(ticket ti : fl.getTickets()){
+                if(ti.getSeatNumber()== Integer.parseInt(identifier)){
+                    t = ti;
+                }
+            }
+        }
+        
+        Document hotelDoc = db.HotelsCollection.find(Filters.eq("HotelName", roomAgency)).first();
+        hotel h = db.gson.fromJson(hotelDoc.toJson(), hotel.class);
+        System.out.println(h.toString());
+        room r = new room();
+        for(room room: h.getRooms()){
+            if(room.getRoomNumber() == Integer.parseInt(identifier)){
+                r = room;
+            }
+        }
+        
+        packageOffer p = new packageOffer();
+        p.addBooking(chosenCar);
+        p.addBooking(t);
+        p.addBooking(r);
+
+        // add it to the database
+        if (db.addBooking(c,p)) {
+            c.getBooking_History().add(p);
+            return true;
+        }
   
-       return false;
+        return false;
     }
     
     public String viewSummary(packageOffer c) {

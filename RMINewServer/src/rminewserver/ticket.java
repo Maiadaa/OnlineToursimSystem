@@ -4,8 +4,10 @@
  */
 package rminewserver;
 
+import com.mongodb.client.model.Filters;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 import rmi.booking;
 
@@ -25,6 +27,7 @@ public class ticket extends UnicastRemoteObject implements booking {
         this.seatNumber = 0;
         this.price = 0.0;
         this.ticketType = "";
+        this.db = new maiadaDB();
     }
 
     public ticket(ObjectId ticketID, int seatNumber, double price, String ticketType) throws RemoteException {
@@ -72,16 +75,30 @@ public class ticket extends UnicastRemoteObject implements booking {
 
     @Override
     public boolean book(String uname, String agency, String identifier) throws RemoteException {
-//        ticket chosenTicket = new ticket();
-//        chosenTicket = db.getTicketById(identifier);
-//
-//        // add it to the database
-//        if (db.addBooking(c, chosenTicket)) {
-//            c.getBooking_History().add(chosenTicket);
-//            return true;
-//        }
+        System.out.println(uname);
+        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
+        client c = db.gson.fromJson(clientDoc.toJson(), client.class);
+        System.out.println(c.toString());
 
+        Document airlineDoc = db.AirlinesCollection.find(Filters.eq("AgencyName", agency)).first();
+        airline air = db.gson.fromJson(airlineDoc.toJson(), airline.class);
+        System.out.println(air);
+        
+        ticket t = new ticket();
+        for(flight fl : air.getFlights()){
+            for(ticket ti : fl.getTickets()){
+                if(ti.getSeatNumber()== Integer.parseInt(identifier)){
+                    t = ti;
+                }
+            }
+        }
+        
+        if(db.addBooking(c, t)){
+            c.getBooking_History().add(t);
+            return true;
+        }
         return false;
+        
     }
 
     public String viewSummary(ticket c) {

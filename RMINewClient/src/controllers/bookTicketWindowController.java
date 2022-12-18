@@ -11,19 +11,20 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.booking;
-import rmi.client;
-import rminewclient.bookCarWindow;
+import rminewclient.PaymentWindow;
+import rminewclient.bookTicketWindow;
 
 /**
  *
  * @author LENOVO
  */
-public class bookingWindowController {
+public class bookTicketWindowController {
     // We have reference to both the GUI and the rmi registry
-    static bookCarWindow gui;
+    static bookTicketWindow gui;
     static Registry r;
     static String c;
     JTable table;
@@ -31,7 +32,7 @@ public class bookingWindowController {
     
     
     // The constructor takes the gui and the rmi registry as paramaters
-    public bookingWindowController(bookCarWindow gui, Registry r, String c, String chosenAgency)
+    public bookTicketWindowController(bookTicketWindow gui, Registry r, String c, String chosenAgency)
     {
         this.gui = gui;
         this.r = r;
@@ -45,7 +46,7 @@ public class bookingWindowController {
         DefaultTableModel model;
         model = (DefaultTableModel) table.getModel();
         
-        Object rowData[] = new Object[7];
+        Object rowData[] = new Object[3];
         rowData[0] = "hey";
         model.addRow(rowData);
 //        rowData[0] = "2";
@@ -69,17 +70,25 @@ public class bookingWindowController {
                 
                 // get selected row 
                 int row = gui.getjTable1().getSelectedRow();
-                String  carPlateNum = gui.getjTable1().getModel().getValueAt(row, 0).toString();
+                String  seatNum = gui.getjTable1().getModel().getValueAt(row, 0).toString();
+                Double totalPrice = Double.parseDouble(gui.getjTable1().getModel().getValueAt(row, 2).toString());
                 
-                if(g.book("hr", chosenAgency, carPlateNum)){
-                    //navigate to payment window 
+                if(g.book(c, chosenAgency, seatNum)){
+                    JOptionPane.showMessageDialog(null, "Booked" );
                     System.out.println("done");
+                    
+                    //navigate to payment window 
+                    PaymentWindow nextGui = new PaymentWindow();
+                    PaymentWindowController pay = new PaymentWindowController(nextGui, r, c, totalPrice);
+                    
+                    pay.setVisible(true);
+                    gui.dispose();
                 }
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(bookTicketWindowController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(bookTicketWindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
