@@ -106,7 +106,7 @@ public class ticket extends UnicastRemoteObject implements booking {
 
     @Override
     public String toString() {
-        return "ticketID=" + _id + ", ticketType=" + ticketType + ", seatNumber=" + seatNumber;
+        return _id + " " + ticketType + " " + seatNumber;
     }
 
 }

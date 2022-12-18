@@ -102,7 +102,7 @@ public class viewAirline extends javax.swing.JFrame {
 
         back.setText("Back");
 
-        showRooms.setText("Show Rooms");
+        showRooms.setText("Show flights");
 
         hoteltextbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
