@@ -13,12 +13,7 @@ import java.rmi.RemoteException;
  */
 public interface subject_interface extends Remote
 {
-    public observer_interface obs = new observer_interface() {
-        @Override
-        public void Update(String msg) {
-        }
-    };
-    public void addObserver(client observer) throws RemoteException;
-    public void removeObserver (client observer) throws RemoteException;
+    public void addObserver(int id, String fname, String lname, String gender,String email, String phone,String username, String password, int cardnum) throws RemoteException;
+    public void removeObserver (int id, String fname, String lname, String gender,String email, String phone,String username, String password, int cardnum) throws RemoteException;
     public void notifyObservers(String msg) throws RemoteException;
 }

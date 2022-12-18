@@ -38,6 +38,7 @@ public class DBAssem {
    MongoCollection<Document> AirlinesCollection;
    MongoCollection<Document> BookingsCollection;
    MongoCollection<Document> ComplainsCollection;
+   MongoCollection<Document> NotificationsCollection;
 
    
   
@@ -66,11 +67,17 @@ public class DBAssem {
         AirlinesCollection = database.getCollection("airline");
         BookingsCollection = database.getCollection("booking");
         ComplainsCollection = database.getCollection("complain");
+        NotificationsCollection = database.getCollection("notification");
     }
    public void insertClient(client s) 
     {
         ClientCollection.insertOne(Document.parse(gson.toJson(s)));
         System.out.println("Client is inserted.");
+    }
+   public void insertNotification(Notification msg) 
+    {
+        NotificationsCollection.insertOne(Document.parse(gson.toJson(msg)));
+        System.out.println("Notification is inserted.");
     }
    public void subscribeClient(client c)
     {
@@ -99,22 +106,38 @@ public class DBAssem {
        }
        return tempclients;
    }
-   public ArrayList<client> getAllSubscribers() throws RemoteException
+   public ArrayList<String> getAllSubscribers() throws RemoteException
    {
        String json;
        client tempclient;
-       ArrayList<client> tempsubs =  new ArrayList<client>(); 
+       ArrayList<String> tempsubs =  new ArrayList<String>(); 
        SubsCollection = database.getCollection("subscriber");
        MongoCursor cursor = SubsCollection.find().iterator();
        while(cursor.hasNext())
        {
            json = gson.toJson(cursor.next());
            tempclient = gson.fromJson(json, client.class);
-           tempsubs.add(tempclient);
+           tempsubs.add(tempclient.getFname());
            System.out.println(tempclient.getFname());
        }
        
        return tempsubs;
+   }
+    public ArrayList<String> getAllNotifications() throws RemoteException
+   {
+       String json;
+       Notification tempmsg = new Notification();
+       ArrayList<String> tempmsgs =  new ArrayList<String>(); 
+       NotificationsCollection = database.getCollection("notification");
+       MongoCursor cursor = NotificationsCollection.find().iterator();
+       while(cursor.hasNext())
+       {
+           json = gson.toJson(cursor.next());
+           tempmsg = gson.fromJson(json, Notification.class);
+           tempmsgs.add(tempmsg.getMsg());
+       }
+       
+       return tempmsgs;
    }
 
     @Override
