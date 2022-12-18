@@ -81,7 +81,7 @@ public class bookTicketWindowController {
                     PaymentWindow nextGui = new PaymentWindow();
                     PaymentWindowController pay = new PaymentWindowController(nextGui, r, c, totalPrice);
                     
-                    pay.setVisible(true);
+                    nextGui.setVisible(true);
                     gui.dispose();
                 }
                

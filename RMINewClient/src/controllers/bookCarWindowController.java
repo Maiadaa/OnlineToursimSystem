@@ -48,6 +48,7 @@ public class bookCarWindowController {
         
         Object rowData[] = new Object[7];
         rowData[0] = "hey";
+        rowData[6] = 10.0;
         model.addRow(rowData);
 //        rowData[0] = "2";
 //        model.addRow(rowData);
@@ -78,10 +79,19 @@ public class bookCarWindowController {
                 // get selected row 
                 int row = gui.getjTable1().getSelectedRow();
                 String  carPlateNum = gui.getjTable1().getModel().getValueAt(row, 0).toString();
+                Double totalPrice = Double.parseDouble(gui.getjTable1().getModel().getValueAt(row, 6).toString());
+
                 
                 if(g.book(this.username, this.chosenAgency, carPlateNum)){
-                    //navigate to payment window 
+                    JOptionPane.showMessageDialog(null, "Booked" );
                     System.out.println("done");
+                    
+                    //navigate to payment window 
+                    PaymentWindow nextGui = new PaymentWindow();
+                    PaymentWindowController pay = new PaymentWindowController(nextGui, r, c, totalPrice);
+                    
+                    nextGui.setVisible(true);
+                    gui.dispose();
                 }
                
             } catch (RemoteException ex) {
