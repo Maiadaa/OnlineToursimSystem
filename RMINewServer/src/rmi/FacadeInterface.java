@@ -5,6 +5,7 @@
 package rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import rminewserver.personDTO;
 /**
  *
  * @author Lenovo

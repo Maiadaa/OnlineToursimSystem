@@ -81,10 +81,8 @@ public class flight {
 
     @Override
     public String toString() {
-        return flightID + " " + destination + " " + departure + " " + takOffTime + " " + arrivalTime;
+        return  tickets + " " + destination + " " + departure + " " + takOffTime + " " + arrivalTime ;
     }
-
-    
     
     
 }

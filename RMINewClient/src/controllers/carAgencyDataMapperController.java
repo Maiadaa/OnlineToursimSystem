@@ -48,9 +48,9 @@ public class carAgencyDataMapperController {
                 datamapper.insertCarAgyncy(agencyname);
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(carAgencyDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(carAgencyDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }
@@ -66,9 +66,9 @@ public class carAgencyDataMapperController {
                 datamapper.deleteCarAgency(agencyname);
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(carAgencyDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(carAgencyDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }

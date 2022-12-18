@@ -4,26 +4,34 @@
  */
 package rminewserver;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import javax.swing.JOptionPane;
 import rmi.payment_method;
+import rmi.booking;
 
 /**
  *
  * @author Lenovo
  */
-public class creditcard extends UnicastRemoteObject implements payment_method{
+public class creditcard implements payment_method{
     
-    public creditcard() throws RemoteException {
-        
+    public creditcard() {
     }
+    
+   
+    /**
+     *
+     * @param book
+     * @return
+     */
+    
     
 
     @Override
-    public void pay(String c) throws RemoteException {
+    public void pay(String c) {
         SeifDB db = new SeifDB();
         String x = "Credit Card";
         db.updateBooking(c,x);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

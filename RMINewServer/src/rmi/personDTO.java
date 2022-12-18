@@ -2,17 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package rmi;
+package rminewserver;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import org.bson.Document;
+
+import rmi.personDTOFacade;
 /**
  *
  * @author Lenovo
  */
 public class personDTO extends UnicastRemoteObject implements Serializable, personDTOFacade{
-
     private int ID;
 
     public int getID() {
@@ -22,30 +22,22 @@ public class personDTO extends UnicastRemoteObject implements Serializable, pers
     public void setID(int ID) {
         this.ID = ID;
     }
-    private String email;
     private String Phone;
     private String address;
     private String username;
     private String password;
+    
+    public personDTO() throws RemoteException{
+        
+    }
     
     public personDTO (String Phone, String address, String username, String password) throws RemoteException{
         this.Phone = Phone;
         this.address = address;
         this.username = username;
         this.password = password;
-}
-    public personDTO() throws RemoteException{
-        
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
     @Override
     public String getPhone() throws RemoteException{
         return Phone;

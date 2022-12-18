@@ -48,9 +48,9 @@ public class airlineDataMapperController {
                 datamapper.insertAirline(airlineName);
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(airlineDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(airlineDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }
@@ -66,9 +66,9 @@ public class airlineDataMapperController {
                 datamapper.deleteAirline(airlineName);
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(airlineDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(airlineDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }

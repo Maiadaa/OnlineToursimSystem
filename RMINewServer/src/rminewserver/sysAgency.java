@@ -99,9 +99,8 @@ public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirli
 
     @Override
     public ArrayList<String> getAllRooms(String name) throws RemoteException {
-        DBHagrass dBHagrass = new DBHagrass();
-//        return dBHagrass.getAllRoom();
-        return new ArrayList<>();
+        DB dBHagrass = new DB();
+        return dBHagrass.getAllRoom(name);
     }
 
     @Override
