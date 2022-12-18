@@ -6,7 +6,7 @@
 package rminewclient;
 
 import controllers.MainWindowController;
-import controllers.bookCarWindowController;
+import controllers.bookRoomWindowController;
 import controllers.viewCarAgenciesController;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -26,7 +26,7 @@ public class RMINewClient {
         // We connect to the RMI Registry
 
         
-        bookCarWindow gui = new bookCarWindow();
+        bookRoomWindow gui = new bookRoomWindow();
         gui.setLocationRelativeTo(null); // This makes the window appears centered
         gui.setVisible(true); // This shows the gui
         
@@ -36,8 +36,8 @@ public class RMINewClient {
         // we create a new object from the controller and we pass it the
         // gui object along with the registry object
         String c = "m";
-        String chosenAgency = "k";
-        bookCarWindowController gui_controller = new bookCarWindowController(gui, r, c, chosenAgency);
+        String chosenAgency = "hey";
+        bookRoomWindowController gui_controller = new bookRoomWindowController(gui, r, c, chosenAgency);
         
         
     }

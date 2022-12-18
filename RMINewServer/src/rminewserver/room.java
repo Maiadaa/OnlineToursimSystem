@@ -117,4 +117,8 @@ public class room extends UnicastRemoteObject implements booking {
         return "roomNumber=" + roomNumber + ", floorNumber=" + floorNumber + ", roomType=" + roomType + ", roomView=" + roomView;
     }
 
+    public String specialToString(room r) {
+        return r.getRoomNumber() + " " + r.getFloorNumber() + " " + r.getRoomType() + " " + r.getRoomView() + " " + r.getPrice();
+    }
+
 }

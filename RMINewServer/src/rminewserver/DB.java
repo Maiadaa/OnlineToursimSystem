@@ -122,7 +122,7 @@ public class DB {
         json = gson.toJson(collection1.find(Filters.eq("HotelName", AgencyName)).first());
         Hotel = gson.fromJson(json, hotel.class);
         for (int i = 0; i < Hotel.getRooms().size(); i++) {
-            rooms.add(Hotel.getRooms().get(i).toString());
+            rooms.add(Room.specialToString(Hotel.getRooms().get(i)));
         }
         return rooms;
     }
