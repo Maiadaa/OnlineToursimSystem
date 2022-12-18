@@ -6,7 +6,7 @@
 package rminewclient;
 
 import controllers.MainWindowController;
-import controllers.bookingWindowController;
+import controllers.bookCarWindowController;
 import controllers.viewCarAgenciesController;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -37,7 +37,7 @@ public class RMINewClient {
         // gui object along with the registry object
         String c = "m1";
         String chosenAgency = "";
-        bookingWindowController gui_controller = new bookingWindowController(gui, r, c, chosenAgency);
+        bookCarWindowController gui_controller = new bookCarWindowController(gui, r, c, chosenAgency);
         
         
     }

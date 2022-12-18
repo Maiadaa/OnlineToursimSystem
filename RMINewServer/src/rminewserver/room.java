@@ -4,8 +4,10 @@
  */
 package rminewserver;
 
+import com.mongodb.client.model.Filters;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import org.bson.Document;
 import rmi.booking;
 import rmi.client;
 
@@ -29,6 +31,7 @@ public class room extends UnicastRemoteObject implements booking {
         this.floorNumber = 0;
         this.roomView = "";
         this.price = 0.0;
+        this.db = new maiadaDB();
     }
 
     public room(int roomNumber, String roomType, int floorNumber, String roomView, double price) throws RemoteException {
@@ -81,15 +84,26 @@ public class room extends UnicastRemoteObject implements booking {
 
     @Override
     public boolean book(String uname, String agency, String identifier) throws RemoteException {
-//        room chosenRoom = new room();
-//        chosenRoom = db.getRoomById(identifier);
-//
-//        // add it to the database
-//        if (db.addBooking(c, chosenRoom)) {
-//            c.getBooking_History().add(chosenRoom);
-//            return true;
-//        }
-//
+        System.out.println(uname);
+        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
+        client c = db.gson.fromJson(clientDoc.toJson(), client.class);
+        System.out.println(c.toString());
+        
+        Document hotelDoc = db.HotelsCollection.find(Filters.eq("HotelName", agency)).first();
+        hotel h = db.gson.fromJson(hotelDoc.toJson(), hotel.class);
+        System.out.println(h.toString());
+
+        room r = new room();
+        for(room room: h.getRooms()){
+            if(room.getRoomNumber() == Integer.parseInt(identifier)){
+                r = room;
+            }
+        }
+        
+        if(db.addBooking(c, r)){
+            c.getBooking_History().add(r);
+            return true;
+        }
         return false;
     }
 
