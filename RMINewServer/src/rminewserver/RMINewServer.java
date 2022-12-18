@@ -12,6 +12,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import rmi.agencyDataMapperInterface;
 import rmi.booking;
 import rmi.sysAirline;
 import rmi.sysCarAgency;
@@ -39,6 +40,7 @@ public class RMINewServer {
         booking room = (booking) new room();
         booking pkg = (booking) new packageOffer();
         
+        agencyDataMapperInterface dataMapper = new agencyDataMapper();
         sysCarAgency carAgency =  new sysAgency();
         sysHotel hotel = new sysAgency() ;
         sysAirline airline = new sysAgency();
@@ -56,6 +58,7 @@ public class RMINewServer {
         r.bind("carAgency", carAgency);
         r.bind("hotel", hotel);
         r.bind("airline", airline);
+        r.bind("dataMapper", dataMapper);
         
         // Outputs that the server is ready
         System.out.println("The server is ready");
