@@ -24,9 +24,11 @@ public class viewAirlineController {
     viewAirline gui;
     Registry r;
     JTable table = new JTable();
+    client c = new client();
     // The constructor takes the gui and the rmi registry as paramaters
-    public viewAirlineController(viewAirline gui, Registry r)
+    public viewAirlineController(viewAirline gui, Registry r, client C)throws RemoteException, NotBoundException
     {
+        this.c = C;
         this.gui = gui;
         this.r = r;
         
@@ -51,16 +53,18 @@ public class viewAirlineController {
 
         
         gui.setjTable1(table);
+        gui.getBack().addActionListener(new backbtn());
     }
     
     
     // This class is responsible for handling the button click
-    class GetGradeBtnAction implements ActionListener {
+    class backbtn implements ActionListener {
 
         // Whatever written inside this function will execute when the button is clicked
         @Override
         public void actionPerformed(ActionEvent ae) {
-            
+            //call menu assem
+            gui.dispose();
         }
         
     }

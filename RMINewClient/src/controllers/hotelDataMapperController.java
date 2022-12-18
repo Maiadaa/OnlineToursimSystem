@@ -22,16 +22,15 @@ import rminewclient.*;
  */
 
 
-public class carAgencyDataMapperController {
-    carAgencyDataMapper gui;
+public class hotelDataMapperController {
+    hotelDataMapper gui;
     Registry r;
     client c = new client();
-
-    public carAgencyDataMapperController(carAgencyDataMapper gui, Registry r, client C) throws RemoteException{
+    
+    public hotelDataMapperController(hotelDataMapper gui, Registry r, client C) throws RemoteException{
         this.gui = gui;
         this.r = r;
         this.c = C;
-        
         gui.getAdd().addActionListener(new addbtnaction());
         gui.getDelete().addActionListener(new deletebtnaction());
         gui.getBack().addActionListener(new backbtn());
@@ -44,8 +43,8 @@ public class carAgencyDataMapperController {
         public void actionPerformed(ActionEvent ae) {
             try {
                 agencyDataMapperInterface datamapper = (agencyDataMapperInterface) r.lookup("dataMapper");
-                String agencyname = gui.getjTextField1().getText();
-                datamapper.insertCarAgyncy(agencyname);
+                String hotelName = gui.getjTextField1().getText();
+                datamapper.insertHotel(hotelName);
                
             } catch (RemoteException ex) {
                 Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,8 +61,8 @@ public class carAgencyDataMapperController {
         public void actionPerformed(ActionEvent ae) {
             try {
                 agencyDataMapperInterface datamapper = (agencyDataMapperInterface) r.lookup("dataMapper");
-                String agencyname = gui.getjTextField1().getText();
-                datamapper.deleteCarAgency(agencyname);
+                String hotelName = gui.getjTextField1().getText();
+                datamapper.deleteHotel(hotelName);
                
             } catch (RemoteException ex) {
                 Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
