@@ -40,7 +40,7 @@
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="priceField1" max="32767" attributes="0"/>
+                  <Component id="priceField" max="32767" attributes="0"/>
                   <Component id="methodField" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <Component id="cardField" alignment="0" pref="228" max="32767" attributes="0"/>
@@ -67,7 +67,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" pref="38" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Component id="priceField1" min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="priceField" min="-2" pref="41" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="cardField" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
@@ -137,7 +137,7 @@
         <Property name="text" type="java.lang.String" value="Price:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="priceField1">
+    <Component class="javax.swing.JTextField" name="priceField">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>

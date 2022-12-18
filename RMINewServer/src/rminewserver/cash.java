@@ -17,10 +17,13 @@ public class cash implements payment_method{
     public cash(){
         
     }
-    
+
     @Override
-    public void pay(){
-        JOptionPane.showMessageDialog(null,"You are paying by cash");
+    public void pay(String c) {
+        SeifDB db = new SeifDB();
+        String x = "Cash";
+        db.updateBooking(c,x);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
    
 }

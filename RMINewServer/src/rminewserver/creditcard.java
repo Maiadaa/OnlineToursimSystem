@@ -24,9 +24,14 @@ public class creditcard implements payment_method{
      * @return
      */
     
+    
+
     @Override
-    public void pay(){
-        JOptionPane.showMessageDialog(null,"You are paying by visa");
+    public void pay(String c) {
+        SeifDB db = new SeifDB();
+        String x = "Credit Card";
+        db.updateBooking(c,x);
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

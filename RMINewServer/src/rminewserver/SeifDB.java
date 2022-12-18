@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import static rminewserver.DB.database;
 import static rminewserver.DB.mongoClient;
@@ -72,14 +73,30 @@ public class SeifDB {
            
     }
    
-   public boolean updateBooking(client c, String method, String cc){
-       if(method == "cash"){
-        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",method));
-       }
-       else{
-        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("PaymentMethod",method));
-        BookingsCollection.updateOne(Filters.eq("Username",c.getUsername()),Updates.set("CreditCard",cc));
-       }
+   public boolean updateBooking(String c, String method){
+//       if(method == "cash"){
+//        BookingsCollection.updateOne(Filters.eq("Email",c.getEmail()),Updates.set("PaymentMethod",method));
+//        //BookingsCollection.find(Filters.eq("Email",c.getEmail()));
+//        //BookingsCollection.find(Filters.eq("Pending",true));
+//        BookingsCollection.updateOne(Filters.eq("Email",c.getEmail()), Filters.eq("Pending",true), Updates.set("PaymentMethod",method));
+//        BookingsCollection.updateOne(Filters.and(Updates.set("PaymentMethod",method)));
+//       }
+//       else{
+//        BookingsCollection.updateOne(Filters.eq("Email",c.getEmail()),Updates.set("PaymentMethod",method));
+//       }
+
+    Bson f1 = (Bson) BookingsCollection.find(Filters.eq("Email", c));
+    Bson f2 = (Bson) BookingsCollection.find(Filters.eq("Pending", true));
+    
+    if (method == "cash"){
+        BookingsCollection.updateOne(Filters.and(f1,f2), Updates.set("PaymentMethod", method));
+    }else if (method == "visa"){
+        BookingsCollection.updateOne(Filters.and(f1,f2), Updates.set("PaymentMethod", method));
+    }
+    else{
+        System.out.println("Invalid payment method");
+    }
+        
        return true;
    }
    
