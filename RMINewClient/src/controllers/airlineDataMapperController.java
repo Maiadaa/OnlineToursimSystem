@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import rmi.GradeInterface;
 import rmi.agencyDataMapperInterface;
+import rmi.client;
 import rminewclient.*;
 
 /**
@@ -24,10 +25,13 @@ import rminewclient.*;
 public class airlineDataMapperController {
     airlineAgencyDataMapper gui;
     Registry r;
+    client c = new client();
 
-    public airlineDataMapperController(airlineAgencyDataMapper gui, Registry r) {
+    public airlineDataMapperController(airlineAgencyDataMapper gui, Registry r, client C) throws RemoteException{
         this.gui = gui;
         this.r = r;
+        this.c = C;
+        
         gui.getAdd().addActionListener(new addbtnaction());
         gui.getDelete().addActionListener(new deletebtnaction());
         gui.getBack().addActionListener(new backbtn());
