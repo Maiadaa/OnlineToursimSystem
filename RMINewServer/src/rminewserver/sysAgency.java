@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 import rmi.client;
 
-public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirline, sysCarAgency{
+public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirline, sysCarAgency, subject_interface{
     
     private ArrayList <carAgency> carAgencies = new ArrayList <carAgency> ();
     private ArrayList <hotel> hotels = new ArrayList <hotel> ();
@@ -52,32 +52,32 @@ public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirli
     public boolean removeAirline(airline Airline)throws RemoteException{
         return true;
     }
-//    @Override
-//    public void addObserver(client obs)throws RemoteException{
-//        db.subscribeClient(obs);
-//    }
-//    @Override
-//    public void removeObserver(client obs) throws RemoteException{
-//        try {
-//            db.removeSubscribtion(obs);
-//        } catch (RemoteException ex) {
-//            Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
-//            System.out.println("Error occured removing the subscribtion");
-//        }
-//    }  
-//    @Override
-//    public void notifyObservers(String agencyName) throws RemoteException{
-//        try {
-//            this.sysClients = db.getAllSubscribers();
-//        } catch (RemoteException ex) {
-//            Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        String msg = "NEW AGENCY ADDED: -> " + agencyName + "Was successfully added to the system";
-//        for(int i = 0; i<sysClients.size();i++)
-//        {
-//          sysClients.get(i).Update(msg);
-//        }
-//    }
+    @Override
+    public void addObserver(client obs)throws RemoteException{
+        db.subscribeClient(obs);
+    }
+    @Override
+    public void removeObserver(client obs) throws RemoteException{
+        try {
+            db.removeSubscribtion(obs);
+        } catch (RemoteException ex) {
+            Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error occured removing the subscribtion");
+        }
+    }  
+    @Override
+    public void notifyObservers(String agencyName) throws RemoteException{
+        try {
+            this.sysClients = db.getAllSubscribers();
+        } catch (RemoteException ex) {
+            Logger.getLogger(sysAgency.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String msg = "NEW AGENCY ADDED: -> " + agencyName + "Was successfully added to the system";
+        for(int i = 0; i<sysClients.size();i++)
+        {
+          sysClients.get(i).Update(msg);
+        }
+    }
 
     @Override
     public ArrayList<String> getHotels() throws RemoteException{

@@ -108,7 +108,7 @@ public class DB {
         json = gson.toJson(collection1.find(Filters.eq("AgencyName", AgencyName)).first());
         agency = gson.fromJson(json, carAgency.class);
         for (int i = 0; i < agency.getCars().size(); i++) {
-            cars.add(agency.getCars().get(i).toString());
+            cars.add(Car.specialToString(agency.getCars().get(i)));
         }
         return cars;
     }

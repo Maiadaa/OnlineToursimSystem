@@ -52,7 +52,7 @@ public class bookCarWindowController {
 
             sysCarAgency carAg = (sysCarAgency) r.lookup("carAgency");
             ArrayList<String> agencyCars = carAg.getAllCars(chosenAgency);
-            Object rowData[] = new Object[5];
+            Object rowData[] = new Object[7];
             
             for(String str: agencyCars) {
                 String[] data = str.split(" ");
@@ -60,8 +60,9 @@ public class bookCarWindowController {
                 rowData[1] = data[1];
                 rowData[2] = data[2];
                 rowData[3] = data[3];
-                rowData[3] = data[4];
-
+                rowData[4] = data[4];
+                rowData[5] = data[5];
+                
                 model.addRow(rowData);                
             }
             this.gui.setjTable1(table);
