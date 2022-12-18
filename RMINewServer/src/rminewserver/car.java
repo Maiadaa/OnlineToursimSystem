@@ -126,8 +126,8 @@ public class car extends UnicastRemoteObject implements booking
         return "car{" + "Model=" + Model + ", RentalPrice=" + RentalPrice + ", Manufacturer=" + Manufacturer + ", CarType=" + CarType + ", Seats=" + Seats + ", plateNum=" + plateNum + '}';
     }
     
-    public String specialToString(car c ){
-        return c.getPlateNum() + " " + c.getCarType() + " " + c.getManufacturer() + " " + c.getModel() + " " + c.getSeats() + " " + c.getRentalPrice() ;
+    public String specialToString(){
+        return plateNum + " " + CarType + " " + Manufacturer + " " + Model + " " + Seats ;
     }
     
         

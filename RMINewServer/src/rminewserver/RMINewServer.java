@@ -39,9 +39,9 @@ public class RMINewServer {
         booking room = (booking) new room();
         booking pkg = (booking) new packageOffer();
         
-        sysCarAgency carAgency = (sysCarAgency)new sysAgency();
-        sysHotel hotel = (sysHotel)  new sysAgency() ;
-        sysAirline airline = (sysAirline) new sysAgency();
+        sysCarAgency carAgency =  new sysAgency();
+        sysHotel hotel = new sysAgency() ;
+        sysAirline airline = new sysAgency();
         
         
         // An RMI Registry initialized on port 1099
@@ -59,8 +59,6 @@ public class RMINewServer {
         
         // Outputs that the server is ready
         System.out.println("The server is ready");
-        
-        System.out.println(db.getAllCar("k"));
         
 
     }

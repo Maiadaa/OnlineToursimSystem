@@ -5,7 +5,6 @@
  */
 package rminewclient;
 
-import controllers.bookCarWindowController;
 import controllers.viewAirlineController;
 import controllers.viewHotelController;
 import java.rmi.NotBoundException;
@@ -29,15 +28,19 @@ public class RMINewClient {
         // We connect to the RMI Registry
 
         
-        bookCarWindow gui = new bookCarWindow();
+        viewAirline gui = new viewAirline();
         gui.setLocationRelativeTo(null); // This makes the window appears centered
         gui.setVisible(true); // This shows the gui
         
         // We connect to the RMI Registry
         Registry r = LocateRegistry.getRegistry(1099);
         
-        bookCarWindowController vh = new bookCarWindowController(gui, r, "m", "k" );
-
+        client c = new client();
+        try {
+             viewAirlineController vh = new viewAirlineController(gui, r, c );
+        } catch (NotBoundException ex) {
+            Logger.getLogger(RMINewClient.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
