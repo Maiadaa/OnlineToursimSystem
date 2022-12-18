@@ -7,16 +7,9 @@ package rmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-/**
- *
- * @author Lenovo
- */
+
 public interface payment_method extends Remote{
-      /**
-     * 
-     * @param booking
-     */
-    public void pay(String c);
+
+    public void pay(String c) throws RemoteException;
     
-//    boolean Pay(booking booking) throws RemoteException;
 }

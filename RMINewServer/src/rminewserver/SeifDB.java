@@ -85,19 +85,18 @@ public class SeifDB {
 //        BookingsCollection.updateOne(Filters.eq("Email",c.getEmail()),Updates.set("PaymentMethod",method));
 //       }
 
-    Bson f1 = (Bson) BookingsCollection.find(Filters.eq("Email", c));
-    Bson f2 = (Bson) BookingsCollection.find(Filters.eq("Pending", true));
-    
-    if (method == "cash"){
-        BookingsCollection.updateOne(Filters.and(f1,f2), Updates.set("PaymentMethod", method));
-    }else if (method == "visa"){
-        BookingsCollection.updateOne(Filters.and(f1,f2), Updates.set("PaymentMethod", method));
+        Bson f1 = (Bson) BookingsCollection.find(Filters.eq("client", c));
+        Bson f2 = (Bson) BookingsCollection.find(Filters.eq("status", true));
+
+        if (method == "cash") {
+            BookingsCollection.updateOne(Filters.and(f1, f2), Updates.set("PaymentMethod", method));
+        } else if (method == "visa") {
+            BookingsCollection.updateOne(Filters.and(f1, f2), Updates.set("PaymentMethod", method));
+        } else {
+            System.out.println("Invalid payment method");
+        }
+
+        return true;
     }
-    else{
-        System.out.println("Invalid payment method");
-    }
-        
-       return true;
-   }
-   
+
 }

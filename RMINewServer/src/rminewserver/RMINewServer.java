@@ -12,8 +12,8 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.agencyDataMapperInterface;
 import rmi.booking;
+import rmi.payment_method;
 import rmi.sysAirline;
 import rmi.sysCarAgency;
 import rmi.sysHotel;
@@ -40,10 +40,12 @@ public class RMINewServer {
         booking room = (booking) new room();
         booking pkg = (booking) new packageOffer();
         
-        agencyDataMapperInterface dataMapper = new agencyDataMapper();
         sysCarAgency carAgency =  new sysAgency();
         sysHotel hotel = new sysAgency() ;
         sysAirline airline = new sysAgency();
+        
+        payment_method cash = (payment_method) new cash();
+        payment_method credit = (payment_method) new creditcard();
         
         
         // An RMI Registry initialized on port 1099
@@ -58,7 +60,9 @@ public class RMINewServer {
         r.bind("carAgency", carAgency);
         r.bind("hotel", hotel);
         r.bind("airline", airline);
-        r.bind("dataMapper", dataMapper);
+        
+        r.bind("visa", credit);
+        r.bind("cash", cash);
         
         // Outputs that the server is ready
         System.out.println("The server is ready");

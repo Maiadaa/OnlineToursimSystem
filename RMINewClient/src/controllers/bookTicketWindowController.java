@@ -47,15 +47,13 @@ public class bookTicketWindowController {
 
             sysAirline Airline = (sysAirline) r.lookup("airline");
             ArrayList<String> hotelRooms = Airline.getAllFlights(chosenAgency);
-            Object rowData[] = new Object[6];
+            Object rowData[] = new Object[4];
             
             for(String str: hotelRooms) {
                 String[] data = str.split(" ");
                 rowData[0] = data[0];
                 rowData[1] = data[1];
                 rowData[2] = data[2];
-                rowData[3] = data[3];
-                rowData[4] = data[4];
                 
                 model.addRow(rowData);                
             }

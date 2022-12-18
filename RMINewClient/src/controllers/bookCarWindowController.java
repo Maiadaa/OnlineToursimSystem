@@ -91,7 +91,7 @@ public class bookCarWindowController {
                 // get selected row 
                 int row = gui.getjTable1().getSelectedRow();
                 String  carPlateNum = gui.getjTable1().getModel().getValueAt(row, 0).toString();
-                Double totalPrice = Double.parseDouble(gui.getjTable1().getModel().getValueAt(row, 6).toString());
+                Double totalPrice = Double.parseDouble(gui.getjTable1().getModel().getValueAt(row, 5).toString());
 
                 
                 if(g.book(c, chosenAgency, carPlateNum)){
