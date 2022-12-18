@@ -24,9 +24,11 @@ public class viewCarAgenciesController {
     viewCarAgencies gui;
     Registry r;
     JTable table = new JTable();
+    client c;
     // The constructor takes the gui and the rmi registry as paramaters
-    public viewCarAgenciesController(viewCarAgencies gui, Registry r) throws RemoteException, NotBoundException
+    public viewCarAgenciesController(viewCarAgencies gui, Registry r, client C) throws RemoteException, NotBoundException
     {
+        this.c = C;
         this.gui = gui;
         this.r = r;
         
@@ -48,16 +50,17 @@ public class viewCarAgenciesController {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
         gui.setjTable1(table);
+        gui.getBack().addActionListener(new backbtn());
     }
     
-    
     // This class is responsible for handling the button click
-    class GetGradeBtnAction implements ActionListener {
+    class backbtn implements ActionListener {
 
         // Whatever written inside this function will execute when the button is clicked
         @Override
         public void actionPerformed(ActionEvent ae) {
-            
+            //call menu assem
+            gui.dispose();
         }
         
     }

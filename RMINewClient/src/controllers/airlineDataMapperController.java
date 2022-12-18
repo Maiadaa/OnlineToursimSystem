@@ -21,11 +21,11 @@ import rminewclient.*;
  */
 
 
-public class carAgencyDataMapperController {
-    carAgencyDataMapper gui;
+public class airlineDataMapperController {
+    airlineAgencyDataMapper gui;
     Registry r;
 
-    public carAgencyDataMapperController(carAgencyDataMapper gui, Registry r) {
+    public airlineDataMapperController(airlineAgencyDataMapper gui, Registry r) {
         this.gui = gui;
         this.r = r;
         gui.getAdd().addActionListener(new addbtnaction());
@@ -40,8 +40,8 @@ public class carAgencyDataMapperController {
         public void actionPerformed(ActionEvent ae) {
             try {
                 agencyDataMapperInterface datamapper = (agencyDataMapperInterface) r.lookup("dataMapper");
-                String agencyname = gui.getjTextField1().getText();
-                datamapper.insertCarAgyncy(agencyname);
+                String airlineName = gui.getjTextField1().getText();
+                datamapper.insertAirline(airlineName);
                
             } catch (RemoteException ex) {
                 Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,8 +58,8 @@ public class carAgencyDataMapperController {
         public void actionPerformed(ActionEvent ae) {
             try {
                 agencyDataMapperInterface datamapper = (agencyDataMapperInterface) r.lookup("dataMapper");
-                String agencyname = gui.getjTextField1().getText();
-                datamapper.deleteCarAgency(agencyname);
+                String airlineName = gui.getjTextField1().getText();
+                datamapper.deleteAirline(airlineName);
                
             } catch (RemoteException ex) {
                 Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,7 +68,7 @@ public class carAgencyDataMapperController {
             }
         } 
     }
-    class backbtn implements ActionListener {
+            class backbtn implements ActionListener {
 
         // Whatever written inside this function will execute when the button is clicked
         @Override
