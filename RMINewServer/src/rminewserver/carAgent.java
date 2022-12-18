@@ -4,6 +4,8 @@
  */
 package rminewserver;
 
+import rmi.person;
+
 /**
  *
  * @author LENOVO

@@ -7,6 +7,6 @@ import rminewserver.carAgency;
 
 public interface sysCarAgency extends Remote {
 
-    ArrayList <carAgency> getCarAgencies() throws RemoteException;
+    ArrayList <String> getCarAgencies() throws RemoteException;
     
 }

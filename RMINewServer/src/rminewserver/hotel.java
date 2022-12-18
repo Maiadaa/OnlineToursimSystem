@@ -4,12 +4,12 @@
  */
 package rminewserver;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class hotel 
-{
+public class hotel implements Serializable{
     private int HotelID;
-    private ArrayList<room> Rooms;
+//    private ArrayList<room> Rooms;
     private String HotelName;
 
     public hotel() {
@@ -17,7 +17,7 @@ public class hotel
 
     public hotel(int HotelID, ArrayList<room> Rooms, String HotelName) {
         this.HotelID = HotelID;
-        this.Rooms = Rooms;
+//        this.Rooms = Rooms;
         this.HotelName = HotelName;
     }
 
@@ -32,9 +32,9 @@ public class hotel
         this.HotelID = HotelID;
     }
 
-    public void setRooms(ArrayList<room> Rooms) {
-        this.Rooms = Rooms;
-    }
+//    public void setRooms(ArrayList<room> Rooms) {
+//        this.Rooms = Rooms;
+//    }
 
     public void setHotelName(String HotelName) {
         this.HotelName = HotelName;
@@ -44,9 +44,9 @@ public class hotel
         return HotelID;
     }
 
-    public ArrayList<room> getRooms() {
-        return Rooms;
-    }
+//    public ArrayList<room> getRooms() {
+//        return Rooms;
+//    }
 
     public String getHotelName() {
         return HotelName;

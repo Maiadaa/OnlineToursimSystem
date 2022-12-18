@@ -4,13 +4,14 @@
  */
 package rminewserver;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author LENOVO
  */
-public class carAgency {
+public class carAgency implements Serializable{
     private int carAgencyID;
     private ArrayList<car> cars;
     private String AgencyName;
@@ -18,10 +19,11 @@ public class carAgency {
     public carAgency() {
     }
 
-    
-    public carAgency(int carAgencyID, ArrayList<car> cars, carAgent agent) {
+ 
+    public carAgency(int carAgencyID, ArrayList<car> cars, String AgencyName) {
         this.carAgencyID = carAgencyID;
         this.cars = cars;
+        this.AgencyName = AgencyName;
     }
     
     public int getCarAgencyID() {
@@ -45,6 +47,11 @@ public class carAgency {
     }
 
     public String getAgencyName() {
+        return AgencyName;
+    }
+
+    @Override
+    public String toString() {
         return AgencyName;
     }
     

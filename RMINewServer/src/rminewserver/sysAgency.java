@@ -5,13 +5,14 @@ import rmi.sysCarAgency;
 import rmi.sysHotel;
 import rmi.subject_interface;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import rmi.client;
 
-public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_interface{
+public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirline, sysCarAgency, subject_interface{
     
     private ArrayList <carAgency> carAgencies = new ArrayList <carAgency> ();
     private ArrayList <hotel> hotels = new ArrayList <hotel> ();
@@ -19,15 +20,16 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     private ArrayList <client> sysClients = new ArrayList <client>();
     private DBAssem db = new DBAssem();
     
+    
     //functions
-    public sysAgency()  {
+    public sysAgency()  throws RemoteException{
         this.carAgencies = null;
         this.hotels=null;
         this.airlines=null;
         this.sysClients=null;
     }
     
-    public void addCarAgency (carAgency CarAgency){
+    public void addCarAgency (carAgency CarAgency)throws RemoteException{
     notifyObservers(CarAgency.getAgencyName());
     }
     
@@ -39,23 +41,23 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     notifyObservers(Airline.getAirlineName());
     }
     
-    public boolean removeCarAgency(carAgency CarAgency){
+    public boolean removeCarAgency(carAgency CarAgency)throws RemoteException{
         return true;
     }
     
-    public boolean removeHotel(hotel Hotel){
+    public boolean removeHotel(hotel Hotel)throws RemoteException{
         return true;
     }
     
-    public boolean removeAirline(airline Airline){
+    public boolean removeAirline(airline Airline)throws RemoteException{
         return true;
     }
     @Override
-    public void addObserver(client obs){
+    public void addObserver(client obs)throws RemoteException{
         db.subscribeClient(obs);
     }
     @Override
-    public void removeObserver(client obs) {
+    public void removeObserver(client obs) throws RemoteException{
         try {
             db.removeSubscribtion(obs);
         } catch (RemoteException ex) {
@@ -64,7 +66,7 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
         }
     }  
     @Override
-    public void notifyObservers(String agencyName) {
+    public void notifyObservers(String agencyName) throws RemoteException{
         try {
             this.sysClients = db.getAllSubscribers();
         } catch (RemoteException ex) {
@@ -78,33 +80,33 @@ public class sysAgency implements sysHotel, sysAirline, sysCarAgency, subject_in
     }
 
     @Override
-    public ArrayList<hotel> getHotels() {
+    public ArrayList<String> getHotels() throws RemoteException{
         DBHagrass dbhagrass = new DBHagrass();
         return dbhagrass.getAllHotels();
     }
 
     @Override
-    public ArrayList<airline> getAirlines() {
+    public ArrayList<String> getAirlines() throws RemoteException{
         DBHagrass dbhagrass = new DBHagrass();
         return dbhagrass.getAllAirlines();
     }
 
     @Override
-    public ArrayList<carAgency> getCarAgencies() {
+    public ArrayList <String> getCarAgencies() throws RemoteException{
         DBHagrass dbhagrass = new DBHagrass();
         return dbhagrass.getAllCarAgencies();
     }
 
 
-    public void setCarAgencies(ArrayList<carAgency> carAgencies) {
+    public void setCarAgencies(ArrayList<carAgency> carAgencies) throws RemoteException{
         this.carAgencies = carAgencies;
     }
 
-    public void setHotels(ArrayList<hotel> hotels) {
+    public void setHotels(ArrayList<hotel> hotels) throws RemoteException{
         this.hotels = hotels;
     }
 
-    public void setAirlines(ArrayList<airline> airlines) {
+    public void setAirlines(ArrayList<airline> airlines) throws RemoteException{
         this.airlines = airlines;
     }
 

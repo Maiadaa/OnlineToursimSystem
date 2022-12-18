@@ -17,6 +17,7 @@ import rmi.booking;
 import rmi.client;
 import static rminewserver.maiadaDB.database;
 import static rminewserver.maiadaDB.mongoClient;
+import rmi.*;
 
 
 /**
@@ -28,25 +29,26 @@ public class RMINewServer {
 
 
     public static void main(String[] args) throws RemoteException, AlreadyBoundException {
+//        DBHagrass dBHagrass = new DBHagrass();
+//        System.out.println(dBHagrass.getAllCar("haha"));
+//        dBHagrass.close();
         
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.SEVERE);
         
-        //Calling the class for the database 
-        maiadaDB db = new maiadaDB();
-        
-        // Here we create our remote object
-        booking g = (booking) new carmanager();
-        
-        // An RMI Registry initialized on port 1099
+//        
         Registry r = LocateRegistry.createRegistry(1099);
-        
-        // Our remote object g is binded to the name "grade"
-        r.bind("car", g);
-        
-        // Outputs that the server is ready
-        System.out.println("The server is ready");
-        
+        sysCarAgency x = new sysAgency();
+        sysHotel xx = new sysAgency();
+        sysAirline xxx = new sysAgency();
+        agencyDataMapperInterface xxxx = new agencyDataMapper();
+        System.out.println(xxx.getAirlines().size());
+        r.bind("hotel", xx);
+        r.bind("carAgency", x);
+        r.bind("airline", xxx);
+        r.bind("dataMapper", xxxx);
+        System.out.println("server running");
+
 
     }
          

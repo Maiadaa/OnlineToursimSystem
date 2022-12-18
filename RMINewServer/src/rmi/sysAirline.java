@@ -7,6 +7,6 @@ import rminewserver.airline;
 
 public interface sysAirline extends Remote {
     
-    ArrayList <airline> getAirlines() throws RemoteException;
+    ArrayList <String> getAirlines() throws RemoteException;
     
 }

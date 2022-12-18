@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public interface sysHotel extends Remote{
     
-    ArrayList <Object> getHotels() throws RemoteException;
+    ArrayList <String> getHotels() throws RemoteException;
     
 }

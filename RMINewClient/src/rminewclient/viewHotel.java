@@ -5,33 +5,23 @@
  */
 package rminewclient;
 
-import controllers.MainWindowController;
-import java.io.Serializable;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.Registry;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import rmi.sysCarAgency;
 
 /**
  *
  * 
  */
-public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
+public class viewHotel extends javax.swing.JFrame {
 
     /**
      * Creates new form MainWindow
      */
-    public viewCarAgencies() {
+    public viewHotel() {
         initComponents();
     }
-    
 
     public JTable getjTable1() {
         return jTable1;
@@ -42,11 +32,11 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
     }
 
     public JTextField getAgencyTextBox() {
-        return agencyTextBox;
+        return hoteltextbox;
     }
 
     public void setAgencyTextBox(JTextField agencyTextBox) {
-        this.agencyTextBox = agencyTextBox;
+        this.hoteltextbox = agencyTextBox;
     }
 
     public JButton getBack() {
@@ -58,11 +48,11 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
     }
 
     public JButton getShowCars() {
-        return showCars;
+        return showRooms;
     }
 
     public void setShowCars(JButton showCars) {
-        this.showCars = showCars;
+        this.showRooms = showCars;
     }
 
     
@@ -80,21 +70,21 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         back = new javax.swing.JButton();
-        showCars = new javax.swing.JButton();
-        agencyTextBox = new javax.swing.JTextField();
+        showRooms = new javax.swing.JButton();
+        hoteltextbox = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("View Car Agencies");
+        jLabel2.setText("View Hotels");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Agency name"
+                "Hotel name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -112,15 +102,15 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
 
         back.setText("Back");
 
-        showCars.setText("Show Cars");
+        showRooms.setText("Show Rooms");
 
-        agencyTextBox.addActionListener(new java.awt.event.ActionListener() {
+        hoteltextbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agencyTextBoxActionPerformed(evt);
+                hoteltextboxActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Enter Agency name");
+        jLabel1.setText("Enter Hotel name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,25 +118,26 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(showCars, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(agencyTextBox)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(showRooms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(hoteltextbox)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,9 +145,9 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agencyTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hoteltextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(showCars)
+                        .addComponent(showRooms)
                         .addGap(18, 18, 18)
                         .addComponent(back)
                         .addGap(49, 49, 49))))
@@ -165,19 +156,19 @@ public class viewCarAgencies extends javax.swing.JFrame implements Serializable{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void agencyTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agencyTextBoxActionPerformed
+    private void hoteltextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoteltextboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_agencyTextBoxActionPerformed
+    }//GEN-LAST:event_hoteltextboxActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField agencyTextBox;
     private javax.swing.JButton back;
+    private javax.swing.JTextField hoteltextbox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JButton showCars;
+    private javax.swing.JButton showRooms;
     // End of variables declaration//GEN-END:variables
 }

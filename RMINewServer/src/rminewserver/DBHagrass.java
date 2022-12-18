@@ -50,9 +50,41 @@ public class DBHagrass {
    
    
    //read only
-   public ArrayList<hotel> getAllHotels (){
+
+   
+public ArrayList<String> getAllAirlines(){
        String json;
-       ArrayList<hotel> hotels = new ArrayList<hotel>();
+       ArrayList<String> airlines = new ArrayList<String>();
+       airline Airline = new airline();
+       collection1 = database.getCollection("airline");
+//       collection1.insertOne(Document.parse(gson.toJson(Airline)));
+       MongoCursor cursor = collection1.find().iterator();
+       while(cursor.hasNext()){
+           json = gson.toJson(cursor.next());
+           Airline = gson.fromJson(json, airline.class);
+           airlines.add(Airline.getAirlineName());
+       }
+       return airlines;
+   }
+
+public ArrayList<String> getAllCarAgencies (){
+       String json;
+       ArrayList<String> carAgencies = new ArrayList<String>();
+       carAgency CarAgency = new carAgency();
+       collection1 = database.getCollection("carAgency");
+//       collection1.insertOne(Document.parse(gson.toJson(CarAgency)));
+       MongoCursor cursor = collection1.find().iterator();
+       while(cursor.hasNext()){
+           json = gson.toJson(cursor.next());
+           CarAgency = gson.fromJson(json, carAgency.class);
+           carAgencies.add(CarAgency.toString());
+       }
+       return carAgencies;
+   }
+
+   public ArrayList<String> getAllHotels() throws RemoteException{
+       String json;
+       ArrayList<String> hotels = new ArrayList<String>();
        hotel Hotel = new hotel();
        collection1 = database.getCollection("hotel");
 //       collection1.insertOne(Document.parse(gson.toJson(Hotel)));
@@ -60,40 +92,56 @@ public class DBHagrass {
        while(cursor.hasNext()){
            json = gson.toJson(cursor.next());
            Hotel = gson.fromJson(json, hotel.class);
-           hotels.add(Hotel);
+           hotels.add(Hotel.getHotelName());
        }
        return hotels;
    }
    
-public ArrayList<airline> getAllAirlines (){
+public ArrayList<String> getAllCar (String AgencyName) throws RemoteException{
        String json;
-       ArrayList<airline> airlines = new ArrayList<airline>();
-       airline Airline = new airline();
-       collection1 = database.getCollection("airline");
-       collection1.insertOne(Document.parse(gson.toJson(Airline)));
-       MongoCursor cursor = collection1.find().iterator();
-       while(cursor.hasNext()){
-           json = gson.toJson(cursor.next());
-           Airline = gson.fromJson(json, airline.class);
-           airlines.add(Airline);
-       }
-       return airlines;
-   }
-
-public ArrayList<carAgency> getAllCarAgencies (){
-       String json;
-       ArrayList<carAgency> carAgencies = new ArrayList<carAgency>();
-       carAgency CarAgency = new carAgency();
+       ArrayList<String> cars = new ArrayList<String>();
+       car Car = new car();
        collection1 = database.getCollection("carAgency");
-       collection1.insertOne(Document.parse(gson.toJson(CarAgency)));
-       MongoCursor cursor = collection1.find().iterator();
-       while(cursor.hasNext()){
-           json = gson.toJson(cursor.next());
-           CarAgency = gson.fromJson(json, carAgency.class);
-           carAgencies.add(CarAgency);
+       carAgency agency = new carAgency();
+//       collection1.insertOne(Document.parse(gson.toJson(agency)));
+       json = gson.toJson(collection1.find(Filters.eq("AgencyName", AgencyName)).first());
+       agency = gson.fromJson(json, carAgency.class);
+       for(int i = 0; i < agency.getCars().size(); i++){
+           cars.add(agency.getCars().get(i).toString());
        }
-       return carAgencies;
+       return cars;
    }
+//
+//public ArrayList<String> getAllRoom (String AgencyName) throws RemoteException{
+//       String json;
+//       ArrayList<String> rooms = new ArrayList<String>();
+//       room Room = new room();
+//       collection1 = database.getCollection("hotel");
+//       hotel Hotel = new hotel();
+////       collection1.insertOne(Document.parse(gson.toJson(agency)));
+//       json = gson.toJson(collection1.find(Filters.eq("HotelName", AgencyName)).first());
+//       Hotel = gson.fromJson(json, hotel.class);
+//       for(int i = 0; i < Hotel.getRoom().size(); i++){
+//           rooms.add(Hotel.getRoom().get(i).toString());
+//       }
+//       return rooms;
+//   }
+
+//public ArrayList<String> getAllFlights (String AgencyName) throws RemoteException{
+//       String json;
+//       ArrayList<String> flights = new ArrayList<String>();
+//       flight Flight = new flight();
+//       collection1 = database.getCollection("airline");
+//       airline Airline = new airline();
+////       collection1.insertOne(Document.parse(gson.toJson(agency)));
+//       json = gson.toJson(collection1.find(Filters.eq("airlineName", AgencyName)).first());
+//       Airline = gson.fromJson(json, airline.class);
+//       for(int i = 0; i < Airline.getFlights().size(); i++){
+//           flights.add(Airline.getFlights().get(i).toString());
+//       }
+//       return flights;
+//   }
+
 
 public boolean clientSignUp(client c) throws RemoteException{
     try{
@@ -219,7 +267,7 @@ public Object clientLogin(String type,String password, String username){
         }
     }
     
-    public boolean insertHotel(hotel Hotel){
+    public boolean insertHotel(hotel Hotel) throws RemoteException{
         collection1 = database.getCollection("hotel");
         collection1.insertOne(Document.parse(gson.toJson(Hotel)));
         if(collection1.find(Filters.all("HotelName", Hotel.getHotelName())).first() != null){
@@ -249,7 +297,7 @@ public Object clientLogin(String type,String password, String username){
         
     }
     
-    public boolean deleteHotel(hotel Hotel){
+    public boolean deleteHotel(hotel Hotel) throws RemoteException{
         collection1 = database.getCollection("hotel");
         if(collection1.deleteOne(Filters.eq("HotelName", Hotel.getHotelName())) != null){
             return true;
@@ -272,7 +320,7 @@ public Object clientLogin(String type,String password, String username){
         collection1.updateOne(Filters.eq("AgencyName", name), Updates.set("AgencyName", CA.getAgencyName()));
     }
     
-    public void updateHotel(hotel H, String name){
+    public void updateHotel(hotel H, String name) throws RemoteException{
         collection1 = database.getCollection("hotel");
         collection1.updateOne(Filters.eq("HotelName", name), Updates.set("HotelName", H.getHotelName()));
     }  

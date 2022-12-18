@@ -7,6 +7,6 @@ import rminewserver.hotel;
 
 public interface sysHotel extends Remote {
     
-    ArrayList <hotel> getHotels() throws RemoteException;
+    ArrayList <String> getHotels() throws RemoteException;
     
 }

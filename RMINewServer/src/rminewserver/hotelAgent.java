@@ -5,6 +5,7 @@
 package rminewserver;
 
 import java.rmi.RemoteException;
+import rmi.person;
 
 public class hotelAgent extends person{
     private int HotelAgentID;

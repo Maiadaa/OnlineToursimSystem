@@ -43,14 +43,14 @@ public class agencyDataMapper extends UnicastRemoteObject implements agencyDataM
     }
     
     @Override
-    public boolean deleteCarAgency(String name){
+    public boolean deleteCarAgency(String name) throws RemoteException{
         carAgency c = new carAgency();
         c.setAgencyName(name);
         return dBHagrass.deleteCarAgency(c);
     }
 
     @Override
-    public boolean deleteHotel(String name){
+    public boolean deleteHotel(String name) throws RemoteException{
         hotel h = new hotel();
         h.setHotelName(name);
         return dBHagrass.deleteHotel(h);
@@ -64,14 +64,14 @@ public class agencyDataMapper extends UnicastRemoteObject implements agencyDataM
     }
     
     @Override
-    public void modifyCarAgency(String oldname, String newname){
+    public void modifyCarAgency(String oldname, String newname) throws RemoteException{
         carAgency c = new carAgency();
         c.setAgencyName(newname);
         dBHagrass.updateCarAgency(c, oldname);
     }
     
     @Override
-    public void modifyHotel(String oldname, String newname){
+    public void modifyHotel(String oldname, String newname) throws RemoteException{
         hotel h = new hotel();
         h.setHotelName(newname);
         dBHagrass.updateHotel(h, oldname);

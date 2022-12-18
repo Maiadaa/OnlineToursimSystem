@@ -2,11 +2,9 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import rmi.GradeInterface;
@@ -14,32 +12,34 @@ import rminewclient.viewCarAgencies;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.*;
+import rminewclient.viewAirline;
+import rminewclient.viewHotel;
 /**
  *
  * 
  */
-public class viewCarAgenciesController {
+public class viewAirlineController {
     
     // We have reference to both the GUI and the rmi registry
-    viewCarAgencies gui;
+    viewAirline gui;
     Registry r;
     JTable table = new JTable();
     // The constructor takes the gui and the rmi registry as paramaters
-    public viewCarAgenciesController(viewCarAgencies gui, Registry r) throws RemoteException, NotBoundException
+    public viewAirlineController(viewAirline gui, Registry r)
     {
         this.gui = gui;
         this.r = r;
         
         try{
-            sysCarAgency c = (sysCarAgency) r.lookup("carAgency");
-            System.out.println(Arrays.toString(r.list()));
+            sysAirline c = (sysAirline)this.r.lookup("airline");
 //            System.out.println(c.getCarAgencies());
+            System.out.println(c.getAirlines().size());
             table = gui.getjTable1();
             DefaultTableModel model;
             model = (DefaultTableModel) table.getModel();
             Object rowData[] = new Object[1];
-            for(int i = 0; i < c.getCarAgencies().size(); i++){
-                rowData[0] = c.getCarAgencies().get(i);
+            for(int i = 0; i < c.getAirlines().size(); i++){
+                rowData[0] = c.getAirlines().get(i);
                 model.addRow(rowData);
             }
         } catch (RemoteException ex) {
@@ -47,6 +47,9 @@ public class viewCarAgenciesController {
         } catch (NotBoundException ex) {
             Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+
+        
         gui.setjTable1(table);
     }
     

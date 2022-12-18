@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public interface sysCarAgency extends Remote{
 
-    ArrayList <Object> getCarAgencies() throws RemoteException;
-    
+    ArrayList <String> getCarAgencies() throws RemoteException;
+
 }

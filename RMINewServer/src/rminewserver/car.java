@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package rminewserver;
+
 import com.mongodb.client.model.Filters;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import org.bson.Document;
+
+import java.rmi.RemoteException;
+
 import rmi.booking;
 import rmi.client;
 import static rminewserver.maiadaDB.gson;
@@ -100,6 +104,22 @@ public class car extends UnicastRemoteObject implements booking
         return plateNum;
     }
 
+//    @Override
+//    public boolean book(client c) throws RemoteException {
+//        
+//        // get current booking index/loc to proceed to payment
+//        int bookingIndex = c.getBooking_History().size();
+//       c.getBooking_History().add(this);
+//       
+//       // add it to the database
+//       if(db.addBooking(c, this)){
+//           // proceed to payment
+//           //c.pay(bookingIndex);
+//           return true;
+//       }
+//  
+//       return false;
+//    }
 
     public String viewSummary(car c) {
         return c.toString();
@@ -107,7 +127,7 @@ public class car extends UnicastRemoteObject implements booking
 
     @Override
     public String toString() {
-        return "carId=" + plateNum + ", CarType=" + CarType + ", Manufacturer=" + Manufacturer + ", Model=" + Model + ", Seats=" + Seats ;
+        return plateNum + " " + CarType + " " + Manufacturer + " " + Model + " " + Seats ;
     }
     
         
