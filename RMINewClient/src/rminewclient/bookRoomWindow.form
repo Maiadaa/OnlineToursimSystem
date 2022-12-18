@@ -88,7 +88,7 @@
                 <Column editable="false" title="Floor Number" type="java.lang.String"/>
                 <Column editable="false" title="Room Type" type="java.lang.String"/>
                 <Column editable="false" title="Room View" type="java.lang.String"/>
-                <Column editable="false" title="Price" type="java.lang.String"/>
+                <Column editable="false" title="Price" type="java.lang.Double"/>
               </Table>
             </Property>
           </Properties>

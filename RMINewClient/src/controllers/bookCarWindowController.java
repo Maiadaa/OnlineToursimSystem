@@ -56,19 +56,12 @@ public class bookCarWindowController {
         this.gui.setjTable1(table);
         
         // This registers the button with our action listener below (the inner class)
-        gui.getBookBtn().addActionListener(new bookCarBtnAction(this.c, this.chosenAgency));
+        gui.getBookBtn().addActionListener(new bookCarBtnAction());
     }
     
     
     // This class is responsible for handling the button click
     class bookCarBtnAction implements ActionListener {
-        String username;
-        String chosenAgency;
-        
-        public bookCarBtnAction(String c, String chosenAgency) {
-            this.username = c;
-            this.chosenAgency = chosenAgency;
-        }
         
         // Whatever written inside this function will execute when the button is clicked
         @Override
@@ -82,7 +75,7 @@ public class bookCarWindowController {
                 Double totalPrice = Double.parseDouble(gui.getjTable1().getModel().getValueAt(row, 6).toString());
 
                 
-                if(g.book(this.username, this.chosenAgency, carPlateNum)){
+                if(g.book(c, chosenAgency, carPlateNum)){
                     JOptionPane.showMessageDialog(null, "Booked" );
                     System.out.println("done");
                     

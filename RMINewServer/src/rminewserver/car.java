@@ -5,15 +5,11 @@
 package rminewserver;
 
 import com.mongodb.client.model.Filters;
-import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import org.bson.Document;
-
 import java.rmi.RemoteException;
-
 import rmi.booking;
 import rmi.client;
-import static rminewserver.maiadaDB.gson;
 
 public class car extends UnicastRemoteObject implements booking
 {

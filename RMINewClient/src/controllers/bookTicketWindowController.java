@@ -26,9 +26,9 @@ public class bookTicketWindowController {
     // We have reference to both the GUI and the rmi registry
     static bookTicketWindow gui;
     static Registry r;
-    static String c;
+    String c;
     JTable table;
-    static String chosenAgency;
+    String chosenAgency;
     
     
     // The constructor takes the gui and the rmi registry as paramaters
@@ -47,7 +47,8 @@ public class bookTicketWindowController {
         model = (DefaultTableModel) table.getModel();
         
         Object rowData[] = new Object[3];
-        rowData[0] = "hey";
+        rowData[0] = "2";
+        rowData[2] = "50.0";
         model.addRow(rowData);
 //        rowData[0] = "2";
 //        model.addRow(rowData);
@@ -66,7 +67,7 @@ public class bookTicketWindowController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
-                booking g = (booking) r.lookup("car");
+                booking g = (booking) r.lookup("ticket");
                 
                 // get selected row 
                 int row = gui.getjTable1().getSelectedRow();

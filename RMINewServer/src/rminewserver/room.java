@@ -85,18 +85,18 @@ public class room extends UnicastRemoteObject implements booking {
     @Override
     public boolean book(String uname, String agency, String identifier) throws RemoteException {
         System.out.println(uname);
-        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
+        Document clientDoc = db.clientCollection.find(Filters.eq("email", uname)).first();
         client c = db.gson.fromJson(clientDoc.toJson(), client.class);
         System.out.println(c.toString());
         
         Document hotelDoc = db.HotelsCollection.find(Filters.eq("HotelName", agency)).first();
         hotel h = db.gson.fromJson(hotelDoc.toJson(), hotel.class);
-        System.out.println(h.toString());
 
         room r = new room();
-        for(room room: h.getRooms()){
-            if(room.getRoomNumber() == Integer.parseInt(identifier)){
-                r = room;
+        int roomNum = Integer.parseInt(identifier);
+        for(room roomm: h.getRooms()){
+            if(roomm.getRoomNumber() == roomNum){
+                r = roomm;
             }
         }
         

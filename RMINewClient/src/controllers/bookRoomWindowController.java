@@ -26,9 +26,9 @@ public class bookRoomWindowController {
     // We have reference to both the GUI and the rmi registry
     static bookRoomWindow gui;
     static Registry r;
-    static String c;
+    String c;
     JTable table;
-    static String chosenAgency;
+    String chosenAgency;
     
     
     // The constructor takes the gui and the rmi registry as paramaters
@@ -47,7 +47,8 @@ public class bookRoomWindowController {
         model = (DefaultTableModel) table.getModel();
         
         Object rowData[] = new Object[5];
-        rowData[0] = "hey";
+        rowData[0] = 2;
+        rowData[4] = 20.0;
         model.addRow(rowData);
 //        rowData[0] = "2";
 //        model.addRow(rowData);
