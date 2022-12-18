@@ -9,12 +9,14 @@ import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.booking;
+import rmi.sysCarAgency;
 import rminewclient.PaymentWindow;
 import rminewclient.bookCarWindow;
 
@@ -42,18 +44,34 @@ public class bookCarWindowController {
         System.out.println(this.c + " " + this.chosenAgency);
         
         
-        this.table = this.gui.getjTable1();
-        DefaultTableModel model;
-        model = (DefaultTableModel) table.getModel();
-        
-        Object rowData[] = new Object[7];
-        rowData[0] = "hey";
-        rowData[6] = 10.0;
-        model.addRow(rowData);
-//        rowData[0] = "2";
-//        model.addRow(rowData);
-        
-        this.gui.setjTable1(table);
+       this.table = this.gui.getjTable1();
+
+         try {
+            DefaultTableModel model;
+            model = (DefaultTableModel) table.getModel();
+
+            sysCarAgency carAg = (sysCarAgency) r.lookup("carAgency");
+            ArrayList<String> agencyCars = carAg.getAllCars(chosenAgency);
+            Object rowData[] = new Object[5];
+            
+            for(String str: agencyCars) {
+                String[] data = str.split(" ");
+                rowData[0] = data[0];
+                rowData[1] = data[1];
+                rowData[2] = data[2];
+                rowData[3] = data[3];
+                rowData[3] = data[4];
+
+                model.addRow(rowData);                
+            }
+            this.gui.setjTable1(table);
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(bookCarWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(bookCarWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
         
         // This registers the button with our action listener below (the inner class)
         gui.getBookBtn().addActionListener(new bookCarBtnAction());

@@ -67,7 +67,7 @@ public ArrayList<String> getAllAirlines(){
        return airlines;
    }
 
-public ArrayList<String> getAllCarAgencies (){
+public ArrayList<String> getAllCarAgencies () throws RemoteException{
        String json;
        ArrayList<String> carAgencies = new ArrayList<String>();
        carAgency CarAgency = new carAgency();

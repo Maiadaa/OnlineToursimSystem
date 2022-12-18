@@ -21,7 +21,7 @@ public class car extends UnicastRemoteObject implements booking
     private int Seats;
     private String plateNum;
     
-    private maiadaDB db;
+    private DB db;
 
     public car()throws RemoteException {
         this.CarID = 0;
@@ -31,7 +31,7 @@ public class car extends UnicastRemoteObject implements booking
         this.CarType = "";
         this.Seats = 0;
         this.plateNum = "";
-        this.db = new maiadaDB();
+        this.db = new DB();
     }
     
     public car(int CarID, String Model, double RentalPrice, String Manufacturer, String CarType, int Seats, String plateNum) throws RemoteException{

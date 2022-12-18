@@ -5,6 +5,7 @@
 package rminewserver;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**
@@ -16,11 +17,12 @@ public class carAgency implements Serializable{
     private ArrayList<car> cars;
     private String AgencyName;
     
-    public carAgency() {
+    public carAgency() throws RemoteException{
+        this.cars = new ArrayList<>();
     }
 
  
-    public carAgency(int carAgencyID, ArrayList<car> cars, String AgencyName) {
+    public carAgency(int carAgencyID, ArrayList<car> cars, String AgencyName) throws RemoteException{
         this.carAgencyID = carAgencyID;
         this.cars = cars;
         this.AgencyName = AgencyName;

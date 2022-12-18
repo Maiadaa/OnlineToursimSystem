@@ -23,7 +23,7 @@ public class room extends UnicastRemoteObject implements booking {
     private String roomView;
     private double price;
 
-    maiadaDB db;
+    DB db;
 
     public room() throws RemoteException {
         this.roomNumber = 0;
@@ -31,7 +31,7 @@ public class room extends UnicastRemoteObject implements booking {
         this.floorNumber = 0;
         this.roomView = "";
         this.price = 0.0;
-        this.db = new maiadaDB();
+        this.db = new DB();
     }
 
     public room(int roomNumber, String roomType, int floorNumber, String roomView, double price) throws RemoteException {

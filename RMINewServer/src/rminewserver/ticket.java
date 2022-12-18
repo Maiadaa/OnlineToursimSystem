@@ -19,14 +19,14 @@ public class ticket extends UnicastRemoteObject implements booking {
     private double price;
     private String ticketType;
 
-    maiadaDB db;
+    DB db;
 
     public ticket() throws RemoteException {
         this._id = new ObjectId();
         this.seatNumber = 0;
         this.price = 0.0;
         this.ticketType = "";
-        this.db = new maiadaDB();
+        this.db = new DB();
     }
 
     public ticket(ObjectId ticketID, int seatNumber, double price, String ticketType) throws RemoteException {
