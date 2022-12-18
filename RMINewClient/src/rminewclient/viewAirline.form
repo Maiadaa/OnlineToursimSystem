@@ -117,7 +117,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="showRooms">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Show Rooms"/>
+        <Property name="text" type="java.lang.String" value="Show flights"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="hoteltextbox">

@@ -33,7 +33,7 @@ public class RMINewServer {
         
         //Calling the class for the database 
         DB db = new DB();
-        
+        System.out.println(db.getAllFlights("hagrass"));
         // Here we create our remote object
         booking car = (booking) new car();
         booking ticket = (booking) new ticket();

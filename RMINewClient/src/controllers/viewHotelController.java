@@ -12,6 +12,8 @@ import rminewclient.viewCarAgencies;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.*;
+import rminewclient.bookRoomWindow;
+import rminewclient.bookTicketWindow;
 import rminewclient.viewHotel;
 /**
  *
@@ -53,9 +55,25 @@ System.out.println(c.getHotels().size());
         
         gui.setjTable1(table);
         gui.getBack().addActionListener(new backbtn());
+        gui.getShowCars().addActionListener(new backshow());
     }
     
-    
+            class backshow implements ActionListener {
+
+        // Whatever written inside this function will execute when the button is clicked
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            //call menu assem
+            bookRoomWindow gui2 = new bookRoomWindow();
+            try {
+                bookRoomWindowController a = new bookRoomWindowController(gui2, r, c.getEmail(), gui.getAgencyTextBox().getText());
+            } catch (RemoteException ex) {
+                Logger.getLogger(viewAirlineController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            gui.dispose();
+        }
+        
+    }
     // This class is responsible for handling the button click
     class backbtn implements ActionListener {
 

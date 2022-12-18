@@ -136,7 +136,9 @@ public class DB {
         json = gson.toJson(collection1.find(Filters.eq("airlineName", AgencyName)).first());
         Airline = gson.fromJson(json, airline.class);
         for (int i = 0; i < Airline.getFlights().size(); i++) {
-            flights.add(Airline.getFlights().get(i).toString());
+            for(int j = 0; j < Airline.getFlights().get(i).getTickets().size(); j++){
+                flights.add(Airline.getFlights().get(i).toString() + " " + Airline.getFlights().get(i).getTickets().toString());
+            }
         }
         return flights;
     }
