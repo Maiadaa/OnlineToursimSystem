@@ -97,6 +97,25 @@ public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirli
         return dbhagrass.getAllCarAgencies();
     }
 
+    @Override
+    public ArrayList<String> getAllRooms(String name) throws RemoteException {
+        DBHagrass dBHagrass = new DBHagrass();
+//        return dBHagrass.getAllRoom();
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<String> getAllFlights(String name) throws RemoteException {
+        DBHagrass dBHagrass = new DBHagrass();
+//        return dBHagrass.getAllFlights();
+        return new ArrayList<>();
+    }
+
+    @Override
+    public ArrayList<String> getAllCars(String name) throws RemoteException {
+        DBHagrass dBHagrass = new DBHagrass();
+        return dBHagrass.getAllCar(name);
+    }
 
     public void setCarAgencies(ArrayList<carAgency> carAgencies) throws RemoteException{
         this.carAgencies = carAgencies;
@@ -113,8 +132,5 @@ public class sysAgency extends UnicastRemoteObject implements sysHotel, sysAirli
     public void setSysClients() throws RemoteException {
         this.sysClients = db.getAllClients();
     }
-
-    
-    
     
 }

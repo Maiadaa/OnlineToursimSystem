@@ -7,5 +7,5 @@ import java.util.ArrayList;
 public interface sysAirline extends Remote{
     
     ArrayList <String> getAirlines() throws RemoteException;
-    
+    ArrayList <String> getAllFlights(String name) throws RemoteException;
 }

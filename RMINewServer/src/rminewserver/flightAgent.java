@@ -4,6 +4,8 @@
  */
 package rminewserver;
 
+import rmi.person;
+
 
 /**
  *
