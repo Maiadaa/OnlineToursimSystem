@@ -12,7 +12,7 @@ import com.mongodb.client.model.Filters;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
-
+import rmi.person;
 import rmi.personDTO;
 
 /**
@@ -51,10 +51,15 @@ public class DBSama {
     }
     
     public person getPerson (person p){
-        person.find(Filters.eq("email", p.getEmail()));
-        person.find(Filters.eq("password", p.getPassword()));
-        System.out.println("Successful " + p.getFname());
-        return p;
+        Document d = (Document) person.find(Filters.eq("email", p.getEmail())).first();
+        d = (Document) person.find(Filters.eq("password", p.getPassword())).first();
+            String json;
+            json = gson.toJson(d);
+            p = gson.fromJson(json, person.class);
+        
+            System.out.println("Successful " + p);
+            return p;
+        
     }
     public Document getPersonDTO (int ID){
 

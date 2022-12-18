@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import rmi.FacadeInterface;
 import rmi.personDTO;
+import rmi.person;
 
 public class account_facade extends UnicastRemoteObject implements FacadeInterface{
     person c;
@@ -24,13 +25,18 @@ public class account_facade extends UnicastRemoteObject implements FacadeInterfa
         dto.getUsername();
         return dto;
     }
-    
+
     @Override
-    public void getPersonLogin(String Email, String Password){
-        c.getEmail();
-        c.getPassword();
-        db.getPerson(c);
+    public person getPersonLogin(String Email, String Password) throws RemoteException {
+        this.c.setEmail(Email);
+        this.c.setPassword(Password);
+        
+        System.out.println(this.c);
+        person p = db.getPerson(this.c);
+        return p;
     }
+    
+
     //tested
     @Override
     public void setPerson(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password) throws RemoteException {

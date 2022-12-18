@@ -14,5 +14,5 @@ public interface FacadeInterface extends Remote{
     public personDTO editPersonDTO (int ID, String address, String Phone, String username, String password) throws RemoteException;
     public personDTO getPersonDTO(int ID) throws RemoteException;
     public personDTO setPersonDTO(int ID, String phone, String address, String username, String password) throws RemoteException;
-    public void getPersonLogin(String Email, String Password) throws RemoteException;
+    public person getPersonLogin(String Email, String Password) throws RemoteException;
 }

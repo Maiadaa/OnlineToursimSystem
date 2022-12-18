@@ -41,8 +41,8 @@ public class loginController {
                 String Email = l.getjTextField1().getText();
                 String Password = l.getjTextField2().getText();
                 
-                g.getPersonLogin(Email, Password);
-                
+               person p = g.getPersonLogin(Email, Password);
+                System.out.println(p);
                 System.out.println("Success");
                 
                 JOptionPane.showMessageDialog(null, "Logged In" );

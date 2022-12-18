@@ -1,9 +1,11 @@
 package rmi;
 
+import java.io.Serializable;
 import rminewserver.*;
 
 
-public class person{
+public class person implements Serializable
+{
     
     private int ID;
     private String Fname;
@@ -118,4 +120,11 @@ public class person{
     public void setPassword(String password){
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "person{" + "ID=" + ID + ", Fname=" + Fname + ", Lname=" + Lname + ", gender=" + gender + ", age=" + age + ", email=" + email + ", phone=" + phone + ", address=" + address + ", username=" + username + ", password=" + password + '}';
+    }
+    
+    
 }
