@@ -40,7 +40,7 @@ public class PaymentWindow extends javax.swing.JFrame {
         methodField = new javax.swing.JTextField();
         payButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        priceField1 = new javax.swing.JTextField();
+        priceField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,7 +60,7 @@ public class PaymentWindow extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Price:");
 
-        priceField1.setEditable(false);
+        priceField.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,7 +76,7 @@ public class PaymentWindow extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(priceField1)
+                    .addComponent(priceField)
                     .addComponent(methodField)
                     .addComponent(jLabel2)
                     .addComponent(cardField, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
@@ -97,7 +97,7 @@ public class PaymentWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
-                .addComponent(priceField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cardField, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,6 +186,6 @@ public class PaymentWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField methodField;
     private javax.swing.JButton payButton;
-    private javax.swing.JTextField priceField1;
+    private javax.swing.JTextField priceField;
     // End of variables declaration//GEN-END:variables
 }

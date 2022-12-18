@@ -23,20 +23,26 @@ import rminewclient.PaymentWindow;
 public class PaymentWindowController {
     PaymentWindow gui;
     Registry r;
-    client c;
+    String c;
+    double price;
+    
 
-    public PaymentWindowController(PaymentWindow gui, Registry r, client c) {
+    public PaymentWindowController(PaymentWindow gui, Registry r, String c,double price) {
         this.gui = gui;
         this.r = r;
         this.c = c;
+        this.price = price;
         
-        gui.getPayButton().addActionListener(new payButtonAction(this.c));
+        gui.getPayButton().addActionListener(new payButtonAction());
+        //price.setText(""+o.getOrder_Price());
+        gui.getPriceField().setText(""+price);
     }
     
+    
+    
     class payButtonAction implements ActionListener{
-        private client c;
-        public payButtonAction (client c){
-            this.c =c;
+//        private client c;
+        public payButtonAction (){
         }
 
         @Override
@@ -48,10 +54,10 @@ public class PaymentWindowController {
                 String x = gui.getMethodField().getText();
                 
                 if (x.equals("visa")){
-                    p.pay();   
+                    p.pay(c);   
                 }
                 else if(x.equals("cash")){
-                    pp.pay();
+                    pp.pay(c);
                 }
 
                 
@@ -69,9 +75,9 @@ public class PaymentWindowController {
 //                    c.setPayement(cc);
 //                }
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PaymentWindowController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(PaymentWindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
        
