@@ -77,14 +77,14 @@ public class viewAirline extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("View Hotels");
+        jLabel2.setText("View Airline");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Hotel name"
+                "Airline name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -102,7 +102,7 @@ public class viewAirline extends javax.swing.JFrame {
 
         back.setText("Back");
 
-        showRooms.setText("Show Rooms");
+        showRooms.setText("Show flights");
 
         hoteltextbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

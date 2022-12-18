@@ -9,12 +9,14 @@ import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.booking;
+import rmi.sysHotel;
 import rminewclient.PaymentWindow;
 import rminewclient.bookRoomWindow;
 
@@ -26,9 +28,9 @@ public class bookRoomWindowController {
     // We have reference to both the GUI and the rmi registry
     static bookRoomWindow gui;
     static Registry r;
-    static String c;
+    String c;
     JTable table;
-    static String chosenAgency;
+    String chosenAgency;
     
     
     // The constructor takes the gui and the rmi registry as paramaters
@@ -43,17 +45,32 @@ public class bookRoomWindowController {
         
         
         this.table = this.gui.getjTable1();
-        DefaultTableModel model;
-        model = (DefaultTableModel) table.getModel();
-        
-        Object rowData[] = new Object[5];
-        rowData[0] = "hey";
-        model.addRow(rowData);
-//        rowData[0] = "2";
-//        model.addRow(rowData);
-        
-        this.gui.setjTable1(table);
-        
+         try {
+            DefaultTableModel model;
+            model = (DefaultTableModel) table.getModel();
+
+            sysHotel hotel = (sysHotel) r.lookup("hotel");
+            ArrayList<String> hotelRooms = hotel.getAllRooms(chosenAgency);
+            Object rowData[] = new Object[6];
+            
+            for(String str: hotelRooms) {
+                String[] data = str.split(" ");
+                rowData[0] = data[0];
+                rowData[1] = data[1];
+                rowData[2] = data[2];
+                rowData[3] = data[3];
+                rowData[4] = data[4];
+                
+                model.addRow(rowData);                
+            }
+            this.gui.setjTable1(table);
+            
+        } catch (RemoteException ex) {
+            Logger.getLogger(bookRoomWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(bookRoomWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
         // This registers the button with our action listener below (the inner class)
         gui.getBookBtn().addActionListener(new bookCarBtnAction());
     }

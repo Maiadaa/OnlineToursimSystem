@@ -120,9 +120,6 @@
     <Component class="javax.swing.JTextField" name="cardField">
     </Component>
     <Component class="javax.swing.JTextField" name="methodField">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="payButton">
       <Properties>

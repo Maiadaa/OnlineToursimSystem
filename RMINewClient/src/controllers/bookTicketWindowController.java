@@ -9,12 +9,15 @@ import java.awt.event.ActionListener;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.booking;
+import rmi.sysAirline;
+import rmi.sysHotel;
 import rminewclient.PaymentWindow;
 import rminewclient.bookTicketWindow;
 
@@ -26,33 +29,35 @@ public class bookTicketWindowController {
     // We have reference to both the GUI and the rmi registry
     static bookTicketWindow gui;
     static Registry r;
-    static String c;
+    String c;
     JTable table;
-    static String chosenAgency;
+    String chosenAgency;
     
     
     // The constructor takes the gui and the rmi registry as paramaters
-    public bookTicketWindowController(bookTicketWindow gui, Registry r, String c, String chosenAgency)
+    public bookTicketWindowController(bookTicketWindow gui, Registry r, String c, String chosenAgency) throws RemoteException, NotBoundException
     {
         this.gui = gui;
         this.r = r;
         this.c = c;
         this.chosenAgency = chosenAgency;
         
-        System.out.println(this.c + " " + this.chosenAgency);
-        
-        
-        this.table = this.gui.getjTable1();
-        DefaultTableModel model;
-        model = (DefaultTableModel) table.getModel();
-        
-        Object rowData[] = new Object[3];
-        rowData[0] = "hey";
-        model.addRow(rowData);
-//        rowData[0] = "2";
-//        model.addRow(rowData);
-        
-        this.gui.setjTable1(table);
+            DefaultTableModel model;
+            model = (DefaultTableModel) table.getModel();
+
+            sysAirline Airline = (sysAirline) r.lookup("airline");
+            ArrayList<String> hotelRooms = Airline.getAllFlights(chosenAgency);
+            Object rowData[] = new Object[4];
+            
+            for(String str: hotelRooms) {
+                String[] data = str.split(" ");
+                rowData[0] = data[0];
+                rowData[1] = data[1];
+                rowData[2] = data[2];
+                
+                model.addRow(rowData);                
+            }
+            this.gui.setjTable1(table);
         
         // This registers the button with our action listener below (the inner class)
         gui.getBookBtn().addActionListener(new bookCarBtnAction());
@@ -66,7 +71,7 @@ public class bookTicketWindowController {
         @Override
         public void actionPerformed(ActionEvent ae) {
             try {
-                booking g = (booking) r.lookup("car");
+                booking g = (booking) r.lookup("ticket");
                 
                 // get selected row 
                 int row = gui.getjTable1().getSelectedRow();

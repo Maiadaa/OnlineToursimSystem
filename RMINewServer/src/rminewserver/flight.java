@@ -19,6 +19,7 @@ public class flight {
     private String arrivalTime;
 
     public flight() {
+        this.tickets = new ArrayList<>();
     }
 
     public flight(int flightID, ArrayList<ticket> tickets, String destination, String departure, String takOffTime, String arrivalTime) {
@@ -77,6 +78,13 @@ public class flight {
     public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
+
+    @Override
+    public String toString() {
+        return flightID + " " + destination + " " + departure + " " + takOffTime + " " + arrivalTime;
+    }
+
+    
     
     
 }

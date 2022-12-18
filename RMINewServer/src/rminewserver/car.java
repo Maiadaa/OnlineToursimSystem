@@ -5,15 +5,11 @@
 package rminewserver;
 
 import com.mongodb.client.model.Filters;
-import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import org.bson.Document;
-
 import java.rmi.RemoteException;
-
 import rmi.booking;
 import rmi.client;
-import static rminewserver.maiadaDB.gson;
 
 public class car extends UnicastRemoteObject implements booking
 {
@@ -25,7 +21,7 @@ public class car extends UnicastRemoteObject implements booking
     private int Seats;
     private String plateNum;
     
-    private maiadaDB db;
+    private DB db;
 
     public car()throws RemoteException {
         this.CarID = 0;
@@ -35,7 +31,7 @@ public class car extends UnicastRemoteObject implements booking
         this.CarType = "";
         this.Seats = 0;
         this.plateNum = "";
-        this.db = new maiadaDB();
+        this.db = new DB();
     }
     
     public car(int CarID, String Model, double RentalPrice, String Manufacturer, String CarType, int Seats, String plateNum) throws RemoteException{
@@ -130,8 +126,8 @@ public class car extends UnicastRemoteObject implements booking
         return "car{" + "Model=" + Model + ", RentalPrice=" + RentalPrice + ", Manufacturer=" + Manufacturer + ", CarType=" + CarType + ", Seats=" + Seats + ", plateNum=" + plateNum + '}';
     }
     
-    public String specialToString(){
-        return plateNum + " " + CarType + " " + Manufacturer + " " + Model + " " + Seats ;
+    public String specialToString(car c){
+        return c.getPlateNum() + " " + c.getCarType() + " " + c.getManufacturer() + " " + c.getModel() + " " + c.getSeats() + " " + c.getRentalPrice() ;
     }
     
         

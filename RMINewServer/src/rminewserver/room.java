@@ -23,7 +23,7 @@ public class room extends UnicastRemoteObject implements booking {
     private String roomView;
     private double price;
 
-    maiadaDB db;
+    DB db;
 
     public room() throws RemoteException {
         this.roomNumber = 0;
@@ -31,7 +31,7 @@ public class room extends UnicastRemoteObject implements booking {
         this.floorNumber = 0;
         this.roomView = "";
         this.price = 0.0;
-        this.db = new maiadaDB();
+        this.db = new DB();
     }
 
     public room(int roomNumber, String roomType, int floorNumber, String roomView, double price) throws RemoteException {
@@ -85,18 +85,18 @@ public class room extends UnicastRemoteObject implements booking {
     @Override
     public boolean book(String uname, String agency, String identifier) throws RemoteException {
         System.out.println(uname);
-        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
+        Document clientDoc = db.clientCollection.find(Filters.eq("email", uname)).first();
         client c = db.gson.fromJson(clientDoc.toJson(), client.class);
         System.out.println(c.toString());
         
         Document hotelDoc = db.HotelsCollection.find(Filters.eq("HotelName", agency)).first();
         hotel h = db.gson.fromJson(hotelDoc.toJson(), hotel.class);
-        System.out.println(h.toString());
 
         room r = new room();
-        for(room room: h.getRooms()){
-            if(room.getRoomNumber() == Integer.parseInt(identifier)){
-                r = room;
+        int roomNum = Integer.parseInt(identifier);
+        for(room roomm: h.getRooms()){
+            if(roomm.getRoomNumber() == roomNum){
+                r = roomm;
             }
         }
         
@@ -115,6 +115,10 @@ public class room extends UnicastRemoteObject implements booking {
     @Override
     public String toString() {
         return "roomNumber=" + roomNumber + ", floorNumber=" + floorNumber + ", roomType=" + roomType + ", roomView=" + roomView;
+    }
+
+    public String specialToString(room r) {
+        return r.getRoomNumber() + " " + r.getFloorNumber() + " " + r.getRoomType() + " " + r.getRoomView() + " " + r.getPrice();
     }
 
 }

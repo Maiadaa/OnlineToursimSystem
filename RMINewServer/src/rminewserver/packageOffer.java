@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import org.bson.Document;
 import rmi.booking;
 import rmi.client;
-import static rminewserver.maiadaDB.gson;
 
 /**
  *
@@ -22,13 +21,14 @@ public class packageOffer extends UnicastRemoteObject implements booking{
     private double price;
     private ArrayList<booking> pkgComponents;
     
-    maiadaDB db;
+    DB db;
 
     public packageOffer() throws RemoteException
     {
         this.packageId = 0;
         this.price = 0.0;
         this.pkgComponents = new ArrayList<>();
+        this.db = new DB();
     }
 
     public packageOffer(int packageId, String description, double price, ArrayList<booking> pkgComponents) throws RemoteException {
@@ -87,7 +87,7 @@ public class packageOffer extends UnicastRemoteObject implements booking{
         String roomNum = identifiers[1];
         String plateNum = identifiers[2];
         
-        Document clientDoc = db.clientCollection.find(Filters.eq("Email", uname)).first();
+        Document clientDoc = db.clientCollection.find(Filters.eq("email", uname)).first();
         client c = db.gson.fromJson(clientDoc.toJson(), client.class);
         System.out.println(c.toString());
 

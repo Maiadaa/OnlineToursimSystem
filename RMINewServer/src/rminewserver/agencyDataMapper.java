@@ -7,7 +7,7 @@ import rmi.agencyDataMapperInterface;
 public class agencyDataMapper extends UnicastRemoteObject implements agencyDataMapperInterface{
     
     private sysAgency sys;
-    private DBHagrass dBHagrass = new DBHagrass();
+    private DB dBHagrass = new DB();
 
     public agencyDataMapper() throws RemoteException{
     }
