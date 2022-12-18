@@ -47,9 +47,9 @@ public class hotelDataMapperController {
                 datamapper.insertHotel(hotelName);
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(hotelDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(hotelDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }
@@ -65,9 +65,9 @@ public class hotelDataMapperController {
                 datamapper.deleteHotel(hotelName);
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(hotelDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(hotelDataMapperController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }

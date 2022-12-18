@@ -2,14 +2,12 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.GradeInterface;
 import rminewclient.viewCarAgencies;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -46,9 +44,9 @@ public class viewCarAgenciesController {
                 model.addRow(rowData);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(viewCarAgenciesController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(viewCarAgenciesController.class.getName()).log(Level.SEVERE, null, ex);
         }
         gui.setjTable1(table);
         gui.getBack().addActionListener(new backbtn());
@@ -62,16 +60,14 @@ public class viewCarAgenciesController {
         public void actionPerformed(ActionEvent ae) {
             //call menu assem
             bookCarWindow gui2 = new bookCarWindow();
-            try {
-                bookCarWindowController book = new bookCarWindowController(gui2, r, c.getEmail(), gui.getAgencyTextBox().getText());
-                        } catch (RemoteException ex) {
-                Logger.getLogger(viewCarAgenciesController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            gui2.setLocationRelativeTo(null); // This makes the window appears centered
+        gui2.setVisible(true);
+        bookCarWindowController book = new bookCarWindowController(gui2, r, "m", gui.getAgencyTextBox().getText());
             gui.dispose();
         }
-        
-    }
 
+    }
+    
     // This class is responsible for handling the button click
     class backbtn implements ActionListener {
 

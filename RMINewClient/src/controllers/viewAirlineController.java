@@ -7,14 +7,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.GradeInterface;
-import rminewclient.viewCarAgencies;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.*;
 import rminewclient.bookTicketWindow;
 import rminewclient.viewAirline;
-import rminewclient.viewHotel;
 /**
  *
  * 
@@ -46,35 +43,28 @@ public class viewAirlineController {
                 model.addRow(rowData);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(viewAirlineController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(viewAirlineController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 
         
         gui.setjTable1(table);
         gui.getBack().addActionListener(new backbtn());
-        gui.getShowCars().addActionListener(new backshow());
     }
     
-        class backshow implements ActionListener {
+    class showbtn implements ActionListener {
 
         // Whatever written inside this function will execute when the button is clicked
         @Override
         public void actionPerformed(ActionEvent ae) {
             //call menu assem
             bookTicketWindow gui2 = new bookTicketWindow();
-            try {
-                bookTicketWindowController a = new bookTicketWindowController(gui2, r, c.getEmail(), gui.getAgencyTextBox().getText());
-            } catch (RemoteException ex) {
-                Logger.getLogger(viewAirlineController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NotBoundException ex) {
-                Logger.getLogger(viewAirlineController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            bookTicketWindowController book = new bookTicketWindowController(gui2, r, "m", gui.getAgencyTextBox().getText());
             gui.dispose();
         }
-        
+
     }
     // This class is responsible for handling the button click
     class backbtn implements ActionListener {

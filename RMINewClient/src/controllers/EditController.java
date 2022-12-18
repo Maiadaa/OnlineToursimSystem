@@ -25,11 +25,13 @@ public class EditController {
     EditAccount ed = new EditAccount();
     Registry r;
     person p;
+    client c;
     
-    public EditController (EditAccount ed, Registry r, person p){
+    public EditController (EditAccount ed, Registry r, person p) throws RemoteException{
         this.ed = ed;
         this.r = r;
         this.p = p;
+        this.c = new client(p.getFname(), p.getEmail(), p.getUsername());
         
         String email = p.getEmail();
         ed.getjTextField1().setText(email); 
@@ -138,8 +140,9 @@ public class EditController {
         @Override
         public void actionPerformed (ActionEvent ae){
             try{
+                
                 ClientMenu nextGui = new ClientMenu();
-                ClientMenuController pay = new ClientMenuController(nextGui, r, null);
+                ClientMenuController pay = new ClientMenuController(nextGui, r, c );
                 nextGui.setVisible(true);
                 ed.dispose();
             }catch (RemoteException ex) {

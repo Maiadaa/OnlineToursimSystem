@@ -53,6 +53,8 @@ public class PaymentWindow extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Method:");
 
+        methodField.setEditable(false);
+
         payButton.setText("Pay");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -125,13 +127,21 @@ public class PaymentWindow extends javax.swing.JFrame {
         this.cardField = cardField;
     }
 
-    public JTextField getMethodField() {
-        return methodField;
-    }
-
-    public void setMethodField(JTextField methodField) {
-        this.methodField = methodField;
-    }
+//    public JRadioButton getCardRaido() {
+//        return cardRaido;
+//    }
+//
+//    public void setCardRaido(JRadioButton cardRaido) {
+//        this.cardRaido = cardRaido;
+//    }
+//
+//    public JRadioButton getCashRadio() {
+//        return cashRadio;
+//    }
+//
+//    public void setCashRadio(JRadioButton cashRadio) {
+//        this.cashRadio = cashRadio;
+//    }
 
     public JButton getPayButton() {
         return payButton;
@@ -142,13 +152,30 @@ public class PaymentWindow extends javax.swing.JFrame {
     }
 
     public JTextField getPriceField() {
-        return priceField;
+        return methodField;
     }
 
-    public void setPriceField(JTextField priceField) {
-        this.priceField = priceField;
+    public JTextField getMethodField() {
+        return methodField;
     }
+
    
+
+    public void setPriceField(JTextField priceField) {
+        this.methodField = priceField;
+    }
+    
+    public JTextField getjTextField1() {
+        return cardField;
+    }
+
+    public JButton getjButton1() {
+        return payButton;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

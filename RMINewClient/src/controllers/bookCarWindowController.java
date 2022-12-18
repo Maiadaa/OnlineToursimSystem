@@ -52,7 +52,7 @@ public class bookCarWindowController {
 
             sysCarAgency carAg = (sysCarAgency) r.lookup("carAgency");
             ArrayList<String> agencyCars = carAg.getAllCars(chosenAgency);
-            Object rowData[] = new Object[7];
+            Object rowData[] = new Object[6];
             
             for(String str: agencyCars) {
                 String[] data = str.split(" ");
@@ -107,9 +107,9 @@ public class bookCarWindowController {
                 }
                
             } catch (RemoteException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(bookCarWindowController.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NotBoundException ex) {
-                Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(bookCarWindowController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         

@@ -29,6 +29,7 @@ public class client extends UnicastRemoteObject implements observer_interface{
 
 
     public client() throws RemoteException{
+        
     }
 
     public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password, int client_card_number, booking book, payment_method payement) throws RemoteException {
@@ -46,7 +47,13 @@ public class client extends UnicastRemoteObject implements observer_interface{
         this.book = book;
         this.payement = payement;
     }
-
+    
+      
+    public client(String Fname, String email, String username) throws RemoteException {
+        this.Fname = Fname;
+        this.email = email;
+        this.username = username;
+    }
 
     public int getClient_card_number() throws RemoteException{
         return client_card_number;
@@ -56,15 +63,15 @@ public class client extends UnicastRemoteObject implements observer_interface{
         this.client_card_number = client_card_number;
     }
 
-    public ArrayList<booking> getBooking_History() throws RemoteException{
+    public ArrayList<booking> getBooking_History() {
         return booking_History;
     }
 
-    public void setBooking_History(ArrayList<booking> booking_Hisotry)throws RemoteException {
+    public void setBooking_History(ArrayList<booking> booking_Hisotry) throws RemoteException{
         this.booking_History = booking_Hisotry;
     }
 
-    public booking getBook()throws RemoteException {
+    public booking getBook() throws RemoteException{
         return book;
     }
 
@@ -100,11 +107,11 @@ public class client extends UnicastRemoteObject implements observer_interface{
         return Lname;
     }
 
-    public void setLname(String Lname) throws RemoteException{
+    public void setLname(String Lname)throws RemoteException {
         this.Lname = Lname;
     }
 
-    public String getGender() throws RemoteException{
+    public String getGender()throws RemoteException {
         return gender;
     }
 
@@ -112,7 +119,7 @@ public class client extends UnicastRemoteObject implements observer_interface{
         this.gender = gender;
     }
 
-    public int getAge() throws RemoteException{
+    public int getAge()throws RemoteException {
         return age;
     }
 
@@ -124,7 +131,7 @@ public class client extends UnicastRemoteObject implements observer_interface{
         return email;
     }
 
-    public void setEmail(String email) throws RemoteException{
+    public void setEmail(String email)throws RemoteException {
         this.email = email;
     }
 
@@ -136,11 +143,11 @@ public class client extends UnicastRemoteObject implements observer_interface{
         this.phone = phone;
     }
 
-    public String getAddress()throws RemoteException {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) throws RemoteException{
+    public void setAddress(String address)throws RemoteException {
         this.address = address;
     }
 
@@ -148,17 +155,10 @@ public class client extends UnicastRemoteObject implements observer_interface{
         return password;
     }
 
-    public void setPassword(String password) throws RemoteException{
+    public void setPassword(String password)throws RemoteException {
         this.password = password;
     }
 
-    public String getUsername()throws RemoteException {
-        return username;
-    }
-
-    public void setUsername(String username)throws RemoteException {
-        this.username = username;
-    }
     
     //functions
     public String manage_Account (client Client)throws RemoteException{
@@ -170,12 +170,22 @@ public class client extends UnicastRemoteObject implements observer_interface{
     {
         
     }
-    
-    @Override
-    public void Update(String msg) {
-        System.out.println(msg);
+
+    public String getUsername() {
+        return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    
+    
+    @Override
+    public void Update(String msg)throws RemoteException {
+        System.out.println(msg);
+    }
+    
     public ArrayList<String> getAirlines() throws RemoteException {
         return sysairline.getAirlines();
     }

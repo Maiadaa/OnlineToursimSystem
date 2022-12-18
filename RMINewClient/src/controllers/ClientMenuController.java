@@ -23,6 +23,9 @@ import rmi.client;
 import rmi.subject_interface;
 import rminewclient.ClientMenu;
 import rminewclient.ViewNotifications;
+import rminewclient.viewAirline;
+import rminewclient.viewCarAgencies;
+import rminewclient.viewHotel;
 
 /**
  *
@@ -44,38 +47,43 @@ public class ClientMenuController {
         this.r = r;
         //gui.getNameField().setText(c.getFname());
         gui.getNameField().setText(c.getFname());
-        try {
-            ClientInterface cint = (ClientInterface) r.lookup("client_interface");
-            ArrayList<String> subs = new ArrayList<String>();
-            subs = cint.getAllSubs();
-            for(int i = 0 ; i< subs.size();i++)
-            {
-                
-                if(subs.get(i).equals(c1.getFname()))
-                {
-                    gui.getStatusField().setText("Subscribed");
-                    gui.getViewNotButton().setEnabled(true);
-                    gui.getUnSubButton().setEnabled(true);
-                    gui.getSubButton().setEnabled(false);
-                }
-                else
-                {
-                    gui.getStatusField().setText("Unsubscribed");
-                    gui.getViewNotButton().setEnabled(false);
-                    gui.getUnSubButton().setEnabled(false);
-                    gui.getSubButton().setEnabled(true);
-                }
-            }
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (AccessException ex) {
-            Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            System.out.println("hello");
+//            ClientInterface cint = (ClientInterface) r.lookup("client_interface");
+//            ArrayList<String> subs = new ArrayList<String>();
+//            subs = cint.getAllSubs();
+//            System.out.println("hello");
+//            for(int i = 0 ; i<subs.size();i++)
+//            {
+//                System.out.println(cint.getAllSubs().get(i));
+//                if(cint.getAllSubs().get(i).equals(c1.getFname()))
+//                {
+//                    gui.getStatusField().setText("Subscribed");
+//                    gui.getViewNotButton().setEnabled(true);
+//                    gui.getUnSubButton().setEnabled(true);
+//                    gui.getSubButton().setEnabled(false);
+//                }
+//                else
+//                {
+//                    gui.getStatusField().setText("Unsubscribed");
+//                    gui.getViewNotButton().setEnabled(false);
+//                    gui.getUnSubButton().setEnabled(false);
+//                    gui.getSubButton().setEnabled(true);
+//                }
+//            }
+//        } catch (NotBoundException ex) {
+//            Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (AccessException ex) {
+//            Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         // This registers the button with our action listener below (the inner class)
         gui.getViewNotButton().addActionListener(new ViewNotificationsLogic());
         gui.getBackButton().addActionListener(new BackButtonLogic());
         gui.getSubButton().addActionListener(new SubscribeButtonLogic());
         gui.getUnSubButton().addActionListener(new UnSubButtonLogic());
+        gui.getViewHotelsBut().addActionListener(new ViewHotelsLogic());
+        gui.getViewCarAgenciesBut().addActionListener(new ViewCarAgenciesLogic());
+        gui.getViewAirlinesBut().addActionListener(new ViewAirlinesLogic());
         
     }
     class UnSubButtonLogic implements ActionListener
@@ -124,7 +132,7 @@ public class ClientMenuController {
     }
     // This class is responsible for handling the button click
     class ViewNotificationsLogic implements ActionListener {
-
+        
         // Whatever written inside this function will execute when the button is clicked
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -135,6 +143,66 @@ public class ClientMenuController {
                 // the constructor above)
                 ViewNotifications v1 = new ViewNotifications();
                 ViewNotificationsController cont = new ViewNotificationsController(v1,r);
+                v1.setVisible(true);
+                
+            } catch (RemoteException ex) {
+                Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    class ViewHotelsLogic implements ActionListener {
+
+        // Whatever written inside this function will execute when the button is clicked
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+
+                // We try to obtain a remote reference to the grade remote object
+                // that lives on the client. (using the registry object obtained from
+                // the constructor above)
+                viewHotel v1 = new viewHotel();
+                viewHotelController cont = new viewHotelController(v1,r,c1);
+                v1.setVisible(true);
+                
+            } catch (RemoteException ex) {
+                Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    class ViewCarAgenciesLogic implements ActionListener {
+
+        // Whatever written inside this function will execute when the button is clicked
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+
+                // We try to obtain a remote reference to the grade remote object
+                // that lives on the client. (using the registry object obtained from
+                // the constructor above)
+                viewCarAgencies v1 = new viewCarAgencies();
+                viewCarAgenciesController cont = new viewCarAgenciesController(v1,r,c1);
+                v1.setVisible(true);
+                
+            } catch (RemoteException ex) {
+                Logger.getLogger(ClientMenuController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    class ViewAirlinesLogic implements ActionListener {
+
+        // Whatever written inside this function will execute when the button is clicked
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            try {
+
+                // We try to obtain a remote reference to the grade remote object
+                // that lives on the client. (using the registry object obtained from
+                // the constructor above)
+                viewAirline v1 = new viewAirline();
+                viewAirlineController cont = new viewAirlineController(v1,r,c1);
                 v1.setVisible(true);
                 
             } catch (RemoteException ex) {

@@ -29,6 +29,7 @@ public class client extends UnicastRemoteObject implements observer_interface{
 
 
     public client() throws RemoteException{
+        
     }
 
     public client(int ID, String Fname, String Lname, String gender, int age, String email, String phone, String address, String username, String password, int client_card_number, booking book, payment_method payement) throws RemoteException {
@@ -46,7 +47,13 @@ public class client extends UnicastRemoteObject implements observer_interface{
         this.book = book;
         this.payement = payement;
     }
-
+    
+      
+    public client(String Fname, String email, String username) throws RemoteException {
+        this.Fname = Fname;
+        this.email = email;
+        this.username = username;
+    }
 
     public int getClient_card_number() throws RemoteException{
         return client_card_number;
@@ -163,6 +170,16 @@ public class client extends UnicastRemoteObject implements observer_interface{
     {
         
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    
     
     @Override
     public void Update(String msg)throws RemoteException {

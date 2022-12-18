@@ -65,26 +65,23 @@ public class bookTicketWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Title.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Title.setText("CAR BOOKING");
+        Title.setText("TICKET BOOKING");
 
         backBtn.setText("BACK");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Seat Number", "Ticket Type", "Price"
+                "Seat Number", "Ticket Type", "Destination", "Departure", "Takeoff Time", "Arrival Time", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -7,13 +7,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import rmi.GradeInterface;
-import rminewclient.viewCarAgencies;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import rmi.*;
 import rminewclient.bookRoomWindow;
-import rminewclient.bookTicketWindow;
 import rminewclient.viewHotel;
 /**
  *
@@ -46,34 +43,32 @@ System.out.println(c.getHotels().size());
                 model.addRow(rowData);
             }
         } catch (RemoteException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(viewHotelController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
-            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(viewHotelController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
 
         
         gui.setjTable1(table);
         gui.getBack().addActionListener(new backbtn());
-        gui.getShowCars().addActionListener(new backshow());
+                gui.getBack().addActionListener(new showbtn());
+
     }
     
-            class backshow implements ActionListener {
+    class showbtn implements ActionListener {
 
         // Whatever written inside this function will execute when the button is clicked
         @Override
         public void actionPerformed(ActionEvent ae) {
             //call menu assem
             bookRoomWindow gui2 = new bookRoomWindow();
-            try {
-                bookRoomWindowController a = new bookRoomWindowController(gui2, r, c.getEmail(), gui.getAgencyTextBox().getText());
-            } catch (RemoteException ex) {
-                Logger.getLogger(viewAirlineController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            bookRoomWindowController book = new bookRoomWindowController(gui2, r, "m", gui.getAgencyTextBox().getText());
             gui.dispose();
         }
-        
+
     }
+    
     // This class is responsible for handling the button click
     class backbtn implements ActionListener {
 
